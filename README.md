@@ -1,7 +1,7 @@
 # Birdie
 
 ## Description
-Birdie(<i>temporary name</i>) is an encompassing crypto-currency trading app that allows for easier trading and tracking of a user. Initial client is MiniWhales
+Birdie(<i>temporary name</i>) is an encompassing crypto-currency trading app that allows for easier trading and tracking of a user. Initial client is MiniWhales.
 
 ## Members
 Robert Chung<br>
