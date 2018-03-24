@@ -1,4 +1,9 @@
 /BackEnd/birdie-springboot/.idea
 /.idea
+
+
+# IntelliJ generated Files
 *.iml
+
+# Vim generated Files
 *~
