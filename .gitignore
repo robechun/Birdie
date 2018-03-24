@@ -7,3 +7,6 @@
 
 # Vim generated Files
 *~
+
+# generated project files
+/target
