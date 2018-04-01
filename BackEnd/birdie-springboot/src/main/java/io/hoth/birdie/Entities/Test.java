@@ -1,4 +1,4 @@
-package io.hoth.birdie;
+package io.hoth.birdie.Entities;
 
 
 import org.springframework.data.annotation.Id;

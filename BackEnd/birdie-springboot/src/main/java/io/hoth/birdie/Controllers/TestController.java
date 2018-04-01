@@ -1,5 +1,7 @@
-package io.hoth.birdie;
+package io.hoth.birdie.Controllers;
 
+import io.hoth.birdie.Entities.Test;
+import io.hoth.birdie.DAO.TestRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,10 +18,11 @@ public class TestController {
     }
 
     @GetMapping("/all")
-    public List<Test> getAll(){
+    public List<Test> getAll() {
         List<Test> tests = testRepository.findAll();
 
         return tests;
     }
+
 
 }

@@ -27,6 +27,30 @@
             <artifactId>spring-data-mongodb</artifactId>
             <version>2.0.5.RELEASE</version>
         </dependency>
+
+        <!-- Redis -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>2.0.5.RELEASE</version>
+        </dependency>
+
+        <!-- Jedis (to be used with Redis) -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Binance API -->
+        <dependency>
+            <groupId>com.binance.api</groupId>
+            <artifactId>binance-api-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
     </dependencies>
     <repositories>
         <repository>

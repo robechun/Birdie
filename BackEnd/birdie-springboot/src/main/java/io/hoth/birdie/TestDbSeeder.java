@@ -1,5 +1,7 @@
 package io.hoth.birdie;
 
+import io.hoth.birdie.DAO.TestRepository;
+import io.hoth.birdie.Entities.Test;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -7,10 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class DbSeeder implements CommandLineRunner{
+public class TestDbSeeder implements CommandLineRunner{
     private TestRepository testRepository;
 
-    public DbSeeder(TestRepository testRepository) {
+    public TestDbSeeder(TestRepository testRepository) {
         this.testRepository = testRepository;
     }
 
@@ -30,7 +32,6 @@ public class DbSeeder implements CommandLineRunner{
         List<Test> tests = Arrays.asList(robert, rafael);
         this.testRepository.saveAll(tests);
     }
-
 
 
 }
