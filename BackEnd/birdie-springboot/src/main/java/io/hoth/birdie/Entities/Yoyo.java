@@ -4,15 +4,15 @@ package io.hoth.birdie.Entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
-public class Test {
+@Document(collection = "YoooO")
+public class Yoyo {
 
     @Id
     public String id;
     public String firstName;
     public String lastName;
 
-    public Test(String firstName, String lastName) {
+    public Yoyo(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
