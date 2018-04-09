@@ -67,7 +67,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
-        this.username = email.substring(0,email.indexOf("@"));
+        this.username = email.substring(0,email.indexOf("@")-1); // TODO: care for edge cases
         this.role = role;
     }
 
