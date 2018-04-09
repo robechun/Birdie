@@ -16,6 +16,7 @@ public class RegistrationController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
+    // TODO: Delete this next method (testing method)
     @GetMapping(value = "/publicTest/newAccount")
     public String toDelete() {
         System.out.println(bCryptPasswordEncoder.encode("birdiebirdiebirdie"));

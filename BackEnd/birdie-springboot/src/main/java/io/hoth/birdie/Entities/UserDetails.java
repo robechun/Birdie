@@ -52,10 +52,12 @@ public class UserDetails implements org.springframework.security.core.userdetail
     private boolean isCredentialNonExpired = true;
     private boolean isEnabled = true;
 
+    // Default constructor needed for when post requests are made so that it can instantiate a new UserDetails object
     public UserDetails() {
 
     }
 
+    // TODO: Possibly not needed
     public UserDetails(@NotNull @NotEmpty(message = "Please enter your first name") String firstName,
                        @NotNull @NotEmpty(message = "Please enter your last name") String lastName,
                        @NotNull @NotEmpty(message = "Please enter your phone Number") String phoneNumber,
@@ -130,8 +132,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
 
 
-    // Implementing from here
-
+    // Implementing Interface from here
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
