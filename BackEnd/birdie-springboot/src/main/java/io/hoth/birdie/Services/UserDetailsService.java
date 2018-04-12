@@ -14,6 +14,7 @@ public class UserDetailsService implements org.springframework.security.core.use
 
         UserDetails test = userRepository.findByUsername(username);
         return userRepository.findByUsername(username);
+
 // TODO: Ignore whitespace
 // TODO: Error catching and stuff (like below)
 //        MongoCollection<Document> collection = database.getCollection("users");
