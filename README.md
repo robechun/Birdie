@@ -1,3 +1,5 @@
+**Dev-Note:** use https://github.com/valdezr1/binance-ws-tester/issues as reference to graph charts. 
+
 # Birdie
 
 ## Description
