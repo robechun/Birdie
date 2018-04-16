@@ -10,3 +10,6 @@
 
 # generated project files
 /Backend/birdie-springboot/target
+
+# rdb file (Redis i believe)
+*.rdb

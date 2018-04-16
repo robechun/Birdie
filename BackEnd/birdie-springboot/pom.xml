@@ -52,11 +52,20 @@ R
             <scope>compile</scope>
         </dependency>
 
-        <!-- Binance API -->
+        <!-- Binance API
+        =====================================================================================
+        ====== The one below isn't working since not an official maven dependency (?) =======
+        =====================================================================================
         <dependency>
             <groupId>com.binance.api</groupId>
             <artifactId>binance-api-client</artifactId>
             <version>1.0.0</version>
+        </dependency>
+        -->
+        <dependency>
+            <groupId>com.github.binance-exchange</groupId>
+            <artifactId>binance-java-api</artifactId>
+            <version>master-c64cee111e-1</version>
         </dependency>
 
     </dependencies>
@@ -68,6 +77,10 @@ R
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
 
