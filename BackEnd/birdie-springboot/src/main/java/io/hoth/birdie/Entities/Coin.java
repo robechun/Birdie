@@ -1,19 +1,32 @@
 package io.hoth.birdie.Entities;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@RedisHash("Coins")
-public class Coin implements Serializable {
+@Document(collection = "Coins")
+public class Coin {
+
     @Id
     private String id;
+
     private String name;
     private List<CoinEntry> coinEntries = new ArrayList<CoinEntry>();
+    private int lastFetchedId;
 
+    public Coin() {
+
+    }
+    public Coin(String name) {
+        this.name = name;
+    }
+
+    public Coin(String name, int lastFetched) {
+        this.name = name;
+        this.lastFetchedId = lastFetched;
+    }
 
     public String getName() {
         return name;
@@ -32,4 +45,18 @@ public class Coin implements Serializable {
     }
 
 
+    public int getLastFetchedId() {
+        return lastFetchedId;
+    }
+
+    public void setLastFetchedId(int lastFetchedId) {
+        this.lastFetchedId = lastFetchedId;
+    }
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

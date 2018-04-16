@@ -6,6 +6,7 @@ import io.hoth.birdie.Entities.CoinEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -36,38 +37,51 @@ public class CoinDbSeeder implements CommandLineRunner {
 
 
 
-        // Grab REST Data and add it to the Redis database.
+        // For each symbol, grab historical data from the time of last fetch --
+        // (fromID) is the variable that will get from ID of the given coin symbol.
+        // Persist to the database (MONGO) once you grab the REST data.
         for (String symbol : symbols) {
-            int from = 0;               // from what ID to get from -- will iterate through all
+
+            // Grab coin data from database and prepare for updates
+            Coin coin = getFromID(symbol);
+            int fromID = coin.getLastFetchedId() + 1;
 
             ResponseEntity<List<CoinEntry>> coinResponse = new ResponseEntity<>(HttpStatus.ACCEPTED);
-            Coin coin = new Coin();
-            coin.setName(symbol);
 
-            // TODO: Start from what doesn't exist in the database (id wise)
             // TODO: check for other errors/responses
-            // TODO: sync with websocket(?)
 
-            int i = 0;
+            // Keep getting data from the REST service until errors out or is empty.
+            // TODO: NEED TO SYNC WITH WEBSOCKET TOO
+            int i = 0; //TODO erase by production/actual
             while ((coinResponse.getStatusCodeValue() == 200 && coinResponse.hasBody())
                     || coinResponse.getStatusCodeValue() == 202) {
-                coinResponse = restTemplate.exchange(coinResourceUrl + symbol + "&fromId=" + String.valueOf(from),
+
+                // ********** REST GET REQUEST ************ //
+                coinResponse = restTemplate.exchange(coinResourceUrl + symbol + "&fromId=" + String.valueOf(fromID),
                         HttpMethod.GET,
                         entity,
                         new ParameterizedTypeReference<List<CoinEntry>>() {
                         });
-                List<CoinEntry> entries = coinResponse.getBody();
-                coin.getCoinEntries().addAll(entries);
+                // ********** END OF REST GET REQUEST ************ //
 
-                from += 500;
+
+                // Get the entries from the JSON response and add to database.
+                List<CoinEntry> entries = coinResponse.getBody();
+                coinRepository.updateCoinEntries(symbol, entries);
+
+
+                fromID += 500;
+                coin.setLastFetchedId(fromID);
+
                 i++;
                 if (i == 2) {
                     break;
                 }
             }
 
-            System.out.println(coin.getCoinEntries());
-            coinRepository.save(coin);
+            //System.out.println(coin.getCoinEntries());
+            //coinRepository.save(coin);
+            //TODO: UDATE LASTFETCHED
         }
 
 
@@ -85,6 +99,20 @@ public class CoinDbSeeder implements CommandLineRunner {
 //
 //        }
 
+    }
+
+    private Coin getFromID(String symbol) {
+
+        // Try to fetch from database; if doesnt exist, return a new coin
+        Coin c = coinRepository.findByName(symbol);
+
+        if (c == null) {
+            Coin newC = new Coin(symbol, -1);
+            coinRepository.save(newC);
+            return newC;
+        }
+
+        return c;
     }
 
 
