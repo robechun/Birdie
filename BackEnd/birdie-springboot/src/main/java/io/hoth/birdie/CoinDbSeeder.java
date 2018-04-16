@@ -70,7 +70,7 @@ public class CoinDbSeeder implements CommandLineRunner {
                 coinRepository.updateCoinEntries(symbol, entries);
 
 
-                fromID += 500;
+                fromID += 500; // TODO: WONT ALWAYS BE +500 (AT THE END)
                 coin.setLastFetchedId(fromID);
 
                 i++;
@@ -81,23 +81,8 @@ public class CoinDbSeeder implements CommandLineRunner {
 
             //System.out.println(coin.getCoinEntries());
             //coinRepository.save(coin);
-            //TODO: UDATE LASTFETCHED
         }
 
-
-
-//
-//        while (result.hasBody()) {
-//            CoinEntry entry = restTemplate.getForObject(coinResourceUrl+"&fromId="+String.valueOf(from), CoinEntry.class);
-//            coin.getCoinEntries().add(entry);
-//            //result = restTemplate.exchange(coinResourceUrl+"&fromId="+String.valueOf(from), HttpMethod.GET, entity, String.class);
-//
-//            from += 500;
-//
-//            System.out.println(result);
-//            System.out.println("NEXT\n");
-//
-//        }
 
     }
 

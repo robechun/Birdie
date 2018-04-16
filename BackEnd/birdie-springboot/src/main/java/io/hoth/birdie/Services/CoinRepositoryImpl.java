@@ -20,7 +20,7 @@ public class CoinRepositoryImpl implements CoinRepositoryCustom{
 
     // CUSTOM update coin entry
     // Finds the correct document and stores the information of the coin in there
-    // 
+    // (should be) more optimal
     @Override
     public boolean updateCoinEntries(String name, List<CoinEntry> entries) {
 
@@ -28,9 +28,11 @@ public class CoinRepositoryImpl implements CoinRepositoryCustom{
         Update update = new Update();
 
         update.push("coinEntries").each(entries);
+        update.inc("lastFetchedId",entries.size());
 
         UpdateResult updateResult = mongoTemplate.updateFirst(query, update, Coin.class);
 
         return updateResult.wasAcknowledged();
     }
+
 }
