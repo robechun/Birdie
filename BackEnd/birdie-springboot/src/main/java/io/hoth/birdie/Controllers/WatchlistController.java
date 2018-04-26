@@ -1,10 +1,9 @@
 package io.hoth.birdie.Controllers;
 
-
-import io.hoth.birdie.DAO.WatchlistRepository;
 import io.hoth.birdie.Entities.Watchlist;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.LinkedList;
@@ -19,6 +18,23 @@ public class WatchlistController {
         return watchlist.getWatchlist();
     }
 
+    @PostMapping("/watchlist/add")
+    public boolean addWatchlistElement(){
+        //stub
+        return false;
+    }
+
+    @PostMapping("/watchlist/delete")
+    public boolean deleteWatchlistElement(){
+        //stub
+        return false;
+    }
+
+    @DeleteMapping("/watchlist/clear")
+    public boolean clearWatchlist(){
+        //stub
+        return false;
+    }
 
 
 }

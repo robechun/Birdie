@@ -11,7 +11,7 @@ public class Watchlist {
 
     @Id
     private String id;
-    //Potentailly should change template type to Coin 
+    //Potentially should change template type to Coin
     //  (may need to include a member in Coin entity called Symbol)
     private LinkedList<String> watchlist = new LinkedList<String>(); //could include a hash as well or LinkedHashMap (maybe)
 
@@ -42,7 +42,7 @@ public class Watchlist {
         else {
             watchlist.remove(pos);
             return true;
-        }   
+        }
     }
     public boolean deleteWatchlistElement(String element){ //Hash could make this O(1) instead of O(n)
         for (int i = 0; i < watchlist.size(); i++) {

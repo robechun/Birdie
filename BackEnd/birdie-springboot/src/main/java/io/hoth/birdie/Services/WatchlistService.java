@@ -15,7 +15,28 @@ public class WatchlistService {
         listOfWatchlist = watchlistRepository.findAll();
         if(listOfWatchlist.size() == 0)
             return null;
-        return listOfWatchlist.get(0); //returns first instance of watchlist
+        return listOfWatchlist.get(0); //returns first instance of watchlist (will be
     }
+
+    public boolean clearWatchlist(){
+        //stub
+        return false;
+    }
+
+    public boolean deleteWatchlistElement(String element){
+        //stub
+        return false;
+    }
+
+    public boolean deleteWatchlistElement(int pos){
+        //stub
+        return false;
+    }
+
+    public boolean addWatchlistElement(String element){
+        //stub
+        return false;
+    }
+
 
 }
