@@ -1,19 +1,26 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import TradingViewWidget, { Themes } from 'react-tradingview-widget';
 
-import {Icon, Segment} from 'semantic-ui-react';
-
-class LandingPageChart extends Component {
-  render() {
-    return (
-      <div className="LandingPageChart">
-        <Segment loading>
-            <div className="centerize">
-            <Icon name='line chart' size="large"/>
+class LandingPageChart extends Component {	
+    render() {							
+        return (
+            <div>				            
+				<TradingViewWidget
+					symbol="BINANCE:BTCUSDT"
+					theme={Themes.DARK}
+					locale="en"
+					timezone="America/Vancouver"
+					width="980"
+					height="610"
+					watchlist= {
+						"BINANCE:BTCUSDT",
+						"BINANCE:ETHBTC",
+						"BINANCE:LTCBTC"
+					}					
+				/>		   				
             </div>
-        </Segment>
-      </div>
-    )
-  }
+        );
+    }
 }
 
 export default LandingPageChart;
