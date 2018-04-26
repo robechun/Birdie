@@ -1,10 +1,12 @@
 package io.hoth.birdie.Services;
 import io.hoth.birdie.DAO.UserRepository;
+import io.hoth.birdie.Entities.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -12,8 +14,10 @@ public class UserDetailsService implements org.springframework.security.core.use
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        UserDetails test = userRepository.findByUsername(username);
-        return userRepository.findByUsername(username);
+        UserDetails user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+
+        return user;
 
 // TODO: Ignore whitespace
 // TODO: Error catching and stuff (like below)
@@ -29,5 +33,13 @@ public class UserDetailsService implements org.springframework.security.core.use
 //        }
 //        return null;
 
+    }
+
+    public UserDetails loadUserById(String id) {
+        UserPrincipal user = userRepository.findById(id).orElseThrow(
+                () -> new UsernameNotFoundException("User not found with id : " + id)
+        );
+
+        return user;
     }
 }

@@ -1,6 +1,7 @@
 package io.hoth.birdie.Entities;
 
 
+import io.hoth.birdie.CustomAnnotation.PasswordMatches;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,8 +12,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
+@PasswordMatches
 @Document(collection = "Users")
-public class UserDetails implements org.springframework.security.core.userdetails.UserDetails{
+public class UserPrincipal implements org.springframework.security.core.userdetails.UserDetails{
 
     @Id
     private String id;
@@ -30,14 +32,14 @@ public class UserDetails implements org.springframework.security.core.userdetail
     private String phoneNumber;
 
     @NotNull
-    @Email(message = "Please enter a valid email address")
+    @Email
     @NotEmpty(message = "Please enter an email address")
     private String email;
 
     @NotNull
     @NotEmpty(message = "Please enter a password")
-    @Length(min = 8)
     private String password;
+    private String matchingPassword;
 
     @NotNull
     @NotEmpty
@@ -52,18 +54,18 @@ public class UserDetails implements org.springframework.security.core.userdetail
     private boolean isCredentialNonExpired = true;
     private boolean isEnabled = true;
 
-    // Default constructor needed for when post requests are made so that it can instantiate a new UserDetails object
-    public UserDetails() {
+    // Default constructor needed for when post requests are made so that it can instantiate a new UserPrincipal object
+    public UserPrincipal() {
 
     }
 
     // TODO: Possibly not needed
-    public UserDetails(@NotNull @NotEmpty(message = "Please enter your first name") String firstName,
-                       @NotNull @NotEmpty(message = "Please enter your last name") String lastName,
-                       @NotNull @NotEmpty(message = "Please enter your phone Number") String phoneNumber,
-                       @NotNull @Email(message = "Please enter a valid email address") @NotEmpty(message = "Please enter an email address") String email,
-                       @NotNull @NotEmpty(message = "Please enter a password") @Length(min = 8) String password,
-                       @NotNull @NotEmpty String role) {
+    public UserPrincipal(@NotNull @NotEmpty(message = "Please enter your first name") String firstName,
+                         @NotNull @NotEmpty(message = "Please enter your last name") String lastName,
+                         @NotNull @NotEmpty(message = "Please enter your phone Number") String phoneNumber,
+                         @NotNull @Email(message = "Please enter a valid email address") @NotEmpty(message = "Please enter an email address") String email,
+                         @NotNull @NotEmpty(message = "Please enter a password") @Length(min = 8) String password,
+                         @NotNull @NotEmpty String role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -101,6 +103,9 @@ public class UserDetails implements org.springframework.security.core.userdetail
         return phoneNumber;
     }
 
+    public String getMatchingPassword() { return matchingPassword; }
+
+    public void setMatchingPassword(String matchingPassword) { this.matchingPassword = matchingPassword; }
 
     public void setPassword(String password) {
         this.password = password;
@@ -167,7 +172,6 @@ public class UserDetails implements org.springframework.security.core.userdetail
     public String getUsername() {
         return username;
     }
-
 
 
 

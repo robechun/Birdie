@@ -14,6 +14,13 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.0.RELEASE</version>
     </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <jjwt.version>0.9.0</jjwt.version>
+    </properties>
 R
     <dependencies>
 
@@ -66,6 +73,13 @@ R
             <groupId>com.github.binance-exchange</groupId>
             <artifactId>binance-java-api</artifactId>
             <version>master-c64cee111e-1</version>
+        </dependency>
+
+        <!-- For Working with Json Web Tokens (JWT) -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.version}</version>
         </dependency>
 
     </dependencies>

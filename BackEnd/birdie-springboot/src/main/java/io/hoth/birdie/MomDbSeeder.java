@@ -2,7 +2,7 @@
 //
 //import io.hoth.birdie.DAO.UserRepository;
 //import io.hoth.birdie.DAO.YourmomRepository;
-//import io.hoth.birdie.Entities.UserDetails;
+//import io.hoth.birdie.Entities.UserPrincipal;
 //import io.hoth.birdie.Entities.Yoyo;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.CommandLineRunner;
@@ -37,7 +37,7 @@
 //                "Vallldeezzz"
 //        );
 //
-//        UserDetails userOne = new UserDetails(
+//        UserPrincipal userOne = new UserPrincipal(
 //                "Robert",
 //                "Chung",
 //                "1111111111",
@@ -46,7 +46,7 @@
 //                "ADMIN"
 //        );
 //
-//        UserDetails userTwo = new UserDetails(
+//        UserPrincipal userTwo = new UserPrincipal(
 //                "Bob",
 //                "Bobby",
 //                "22222222222",
@@ -60,7 +60,7 @@
 //        this.yourmomRepository.saveAll(yoyos);
 //
 //        this.userRepository.deleteAll();;
-//        List<UserDetails> users = Arrays.asList(userOne, userTwo);
+//        List<UserPrincipal> users = Arrays.asList(userOne, userTwo);
 //        this.userRepository.saveAll(users);
 //    }
 //

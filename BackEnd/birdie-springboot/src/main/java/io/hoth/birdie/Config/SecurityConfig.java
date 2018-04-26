@@ -1,6 +1,6 @@
 package io.hoth.birdie.Config;
 
-import io.hoth.birdie.Services.UserDetailsService;
+import io.hoth.birdie.Services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,14 +18,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Bean
-    public UserDetailsService mongoUserDetails() {
-        return new UserDetailsService();
+    public CustomUserDetailsService mongoUserDetails() {
+        return new CustomUserDetailsService();
     }
 
+// TODO
+//    @Bean
+//    public JwtAuthenticationFilter jwtAuthenticationFilter() {
+//        return new JwtAuthenticationFilter();
+//    }
+
+    // This configuration tells the application to use a custom Authentication Manager
+    // We use mongodb instead of the default in-memory store.
+    // We also set the password encoder to by bCrypt.
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        UserDetailsService userDetailsService = mongoUserDetails();
-        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+        CustomUserDetailsService customUserDetailsService = mongoUserDetails();
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(bCryptPasswordEncoder);
     }
 
 
@@ -41,10 +50,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .formLogin()
-                .permitAll()
+                    .loginPage("/login").loginProcessingUrl("/handle_login")
+                    .failureUrl("/login?error=true").successForwardUrl("/")
+                    .usernameParameter("username").passwordParameter("password").permitAll()
                 .and()
                 .logout()
-                .permitAll();
+                    .logoutSuccessUrl("/").invalidateHttpSession(true).deleteCookies("JSESSIONID").permitAll();
     }
 
 }
