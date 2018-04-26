@@ -1,4 +1,4 @@
-package main.java.io.hoth.birdie.Entities;
+package io.hoth.birdie.Entities;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class Watchlist {
     private String id;
     //Potentailly should change template type to Coin 
     //  (may need to include a member in Coin entity called Symbol)
-    private List<String> watchlist = new LinkedList<String>(); //could include a hash as well or LinkedHashMap (maybe)
+    private LinkedList<String> watchlist = new LinkedList<String>(); //could include a hash as well or LinkedHashMap (maybe)
 
     // I guess the method below is uneeded since we'd always grab the entire list
     // public String getWatchlistElement(int pos){
@@ -46,7 +46,7 @@ public class Watchlist {
     }
     public boolean deleteWatchlistElement(String element){ //Hash could make this O(1) instead of O(n)
         for (int i = 0; i < watchlist.size(); i++) {
-            if(watchlist.get(i) == element){
+            if(watchlist.get(i).equals(element)){
                 deleteWatchlistElement(i);
                 return true;
             }
