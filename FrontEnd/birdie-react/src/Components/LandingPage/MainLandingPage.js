@@ -1,5 +1,5 @@
 //import React, { Component } from 'react'
-
+{/*add*/}
 import NavBar from './../NavBar/NavBar';
 import AboutBirdie from './AboutBirdie/AboutBirdie';
 import LandingPageChart from './LandingPageChart/LandingPageChart';

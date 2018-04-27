@@ -16,7 +16,7 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react'
-
+{/*add*/}
 class NavBar extends Component {
   state = {}
 
