@@ -35,29 +35,27 @@ import {
     )
   }
 }*/
-
-
-
-const HomepageHeading = ({ mobile }) => (
-  <Container text>
-    <div className='login-form'>
-      {
-        /*notes*/
+const LoginForm = () => (
+  <div className='registerForm-form'>
+    {
+      /*notes*/
+    }
+    <div>
+      <NavBar/>
+      </div>
+    <style>{`
+      body > div,
+      body > div > div,
+      body > div > div > div.login-form {
+        height: 100%;
       }
-
-      <style>{`
-        body > div,
-        body > div > div,
-        body > div > div > div.login-form {
-          height: 100%;
-        }
-      `}</style>
-      <Grid
-        textAlign='center'
-        style={{ height: '100%' }}
-        verticalAlign='middle'
-      >
-        <Grid.Column style={{ maxWidth: 450 }}>
+    `}</style>
+    <Grid
+      textAlign='center'
+      style={{ height: '100%' }}
+      verticalAlign='middle'
+    >
+<Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='teal' textAlign='center-left'>
             <Image src='/logo.png' />
             {' '}Log-in to your Account
@@ -87,88 +85,10 @@ const HomepageHeading = ({ mobile }) => (
         </Grid.Column>
       </Grid>
     </div>
-  </Container>
 
 
 )
 
-HomepageHeading.propTypes = {
-  mobile: PropTypes.bool,
-}
-class DesktopContainer extends Component {
-  state = {}
 
-  hideFixedMenu = () => this.setState({ fixed: false })
-  showFixedMenu = () => this.setState({ fixed: true })
 
-  render() {
-    const { children } = this.props
-    const { fixed } = this.state
-
-    return (
-      <Responsive {...Responsive.onlyComputer}>
-        <Visibility once={false} onBottomPassed={this.showFixedMenu} onBottomPassedReverse={this.hideFixedMenu}>
-          <Segment inverted textAlign='center'>
-            <Menu
-              fixed={fixed ? 'top' : null}
-              inverted={!fixed}
-              pointing={!fixed}
-              secondary={!fixed}
-              size='large'
-            >
-              <Container>
-                <Menu.Item as='a' active>
-                <NavLink exact to={'/'}>
-                    <p>Home</p>
-                </NavLink>
-                </Menu.Item>
-                <Menu.Item as='a'>
-                <NavLink exact to={'/watchlist'}>
-                    <p>Watchlist</p>
-                </NavLink>
-                </Menu.Item>
-                <Menu.Item as='a'>
-                <NavLink exact to={'/wallet'}>
-                    <p>Wallet</p>
-                </NavLink>
-                </Menu.Item>
-                {/*<Menu.Item as='a'>Careers</Menu.Item> */}
-                <Menu.Item position='right'>
-                <NavLink exact to={'/login'}>
-                  <Button as='a' inverted={!fixed}>Log in</Button>
-                  </NavLink>
-                  <NavLink exact to={'/register'}>
-                  <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>Sign Up</Button>
-                  </NavLink>
-                </Menu.Item>
-              </Container>
-            </Menu>
-            <HomepageHeading />
-            </Segment>
-        </Visibility>
-
-        {children}
-      </Responsive>
-    )
-  }
-}
-
-DesktopContainer.propTypes = {
-  children: PropTypes.node,
-}
-const ResponsiveContainer = ({ children }) => (
-  <div>
-    <DesktopContainer>{children}</DesktopContainer>
-  </div>
-)
-
-ResponsiveContainer.propTypes = {
-  children: PropTypes.node,
-}
-const HomepageLayout = () => (
-  <ResponsiveContainer>
-
-  </ResponsiveContainer>
-)
-export default HomepageLayout
-{/*export default LoginForm; */}
+export default LoginForm;

@@ -36,7 +36,7 @@ class NavBar extends Component {
               inverted={!fixed}
               pointing={!fixed}
               secondary={!fixed}
-              size='large'
+              size='medium'
             >
               <Container>
                 <Menu.Item as='a'>
@@ -52,6 +52,11 @@ class NavBar extends Component {
                 <Menu.Item as='a'>
                 <NavLink exact to={'/wallet'}>
                     <p>Wallet</p>
+                </NavLink>
+                </Menu.Item>
+                <Menu.Item as='a'>
+                <NavLink exact to={'/profile'}>
+                    <p>Profile</p>
                 </NavLink>
                 </Menu.Item>
 

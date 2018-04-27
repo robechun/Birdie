@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+import CoinTable from './CoinTable/CoinTable';
+import LandingPageChart from './LandingPageChart/LandingPageChart'
+
 
 import {NavLink} from 'react-router-dom'
 
@@ -39,7 +42,7 @@ render() {
             inverted={!fixed}
             pointing={!fixed}
             secondary={!fixed}
-            size='large'
+            size='medium'
           >
             <Container>
               <Menu.Item as='a'>
@@ -57,7 +60,11 @@ render() {
                   <p>Wallet</p>
               </NavLink>
               </Menu.Item>
-
+              <Menu.Item as='a'>
+              <NavLink exact to={'/profile'}>
+                  <p>Profile</p>
+              </NavLink>
+              </Menu.Item>
               <Menu.Item position='right'>
               <NavLink exact to={'/login'}>
                 <Button as='a' inverted={!fixed}>Log in</Button>
@@ -84,8 +91,19 @@ class Wallet extends Component {
     return (
       <div>
       <NavBar/>
-        <h1>Hello Wallet</h1>
-      </div>
+    <div className="righttable">
+    <h2>
+    Coin Table
+    </h2>
+    <CoinTable/>
+    </div>
+    <div className="leftchart">
+    <h2>
+    Overall
+    </h2>
+      <LandingPageChart/>
+    </div>
+    </div>
     )
   }
 }

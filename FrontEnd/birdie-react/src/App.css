@@ -13,6 +13,7 @@ a:hover{
 
 .centerize{
   text-align: center;
+
 }
 
 .right{
@@ -23,6 +24,17 @@ a:hover{
   text-align: left;
   padding-left: 50px;
 }
+.righttable{
+  position: fixed;
+  top: 150px;
+  right: 50px;
+}
+.leftchart{
+
+  left: 30px;
+  position: fixed;
+  top: 100px
+}
 .LandingPageChart{
   vertical-align: top;
   display: inline-block;
@@ -31,4 +43,11 @@ a:hover{
 
 .CoinTable{
   display: inline-block;
+}
+
+.center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
