@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 
 import {NavLink} from 'react-router-dom';
-{/*add*/}
+
 import NavBar from './../NavBar/NavBar';
 import PropTypes from 'prop-types'
 import {

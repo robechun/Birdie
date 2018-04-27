@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {NavLink} from 'react-router-dom'
-{/*add*/}
+
 
 import CoinTable from './CoinTable/CoinTable';
 import LandingPageChart from './LandingPageChart/LandingPageChart'

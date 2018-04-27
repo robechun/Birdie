@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-{/*add*/}
+
 import CoinTable from './CoinTable/CoinTable';
 import LandingPageChart from './LandingPageChart/LandingPageChart'
 
