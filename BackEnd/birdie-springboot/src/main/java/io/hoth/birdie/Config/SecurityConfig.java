@@ -50,9 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/login").loginProcessingUrl("/handle_login")
-                    .failureUrl("/login?error=true").successForwardUrl("/")
-                    .usernameParameter("username").passwordParameter("password").permitAll()
+                    //.loginPage("/login").loginProcessingUrl("/login")
+                    //.failureUrl("/login?error=true").successForwardUrl("/")
+                    //.usernameParameter("username").passwordParameter("password").permitAll()
                 .and()
                 .logout()
                     .logoutSuccessUrl("/").invalidateHttpSession(true).deleteCookies("JSESSIONID").permitAll();
