@@ -1,2 +1,15 @@
 /BackEnd/birdie-springboot/.idea
 /.idea
+
+
+# IntelliJ generated Files
+*.iml
+
+# Vim generated Files
+*~
+
+# generated project files
+/Backend/birdie-springboot/target
+
+# rdb file (Redis i believe)
+*.rdb
