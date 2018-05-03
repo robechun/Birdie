@@ -24,6 +24,7 @@ public class RegistrationController {
     // @Receives: all fields of UserPrincipal
     // @Returns: HttpStatus on fail/success
     // @Description: This method checks to see if UserPrincipal is valid; if valid, encodes given password and saves
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/register")
     public ResponseEntity register(@RequestBody @Valid UserPrincipal user) {
 

@@ -49,8 +49,8 @@ public class UserPrincipal implements org.springframework.security.core.userdeta
     @NotEmpty
     private String role;
 
-    private String apiKey;
-    private String secret;
+//    private String apiKey;
+//    private String secret;
 
     private boolean isAccountNonLocked = true;
     private boolean isAccountNonExpired = true;
@@ -137,22 +137,22 @@ public class UserPrincipal implements org.springframework.security.core.userdeta
     public void setRole(String role) {
         this.role = role;
     }
-
-    public String getApiKey() {
-        return apiKey;
-    }
-
-    public void setApiKey(String apiKey) {
-        this.apiKey = apiKey;
-    }
-
-    public String getSecret() {
-        return secret;
-    }
-
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
+//
+//    public String getApiKey() {
+//        return apiKey;
+//    }
+//
+//    public void setApiKey(String apiKey) {
+//        this.apiKey = apiKey;
+//    }
+//
+//    public String getSecret() {
+//        return secret;
+//    }
+//
+//    public void setSecret(String secret) {
+//        this.secret = secret;
+//    }
 
 
 
