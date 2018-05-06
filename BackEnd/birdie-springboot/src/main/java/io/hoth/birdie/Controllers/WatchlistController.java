@@ -22,6 +22,8 @@ public class WatchlistController {
     //Adds to watchlist
     @PostMapping("/watchlist/add/{id}/{symbol}")
     public boolean addWatchlistElement(@PathVariable String id, @PathVariable String symbol){
+        System.out.println("Id: " + id);
+        System.out.println("Symbol: " + symbol);
         return this.watchlistService.addWatchlistElement(id, symbol);
     }
 
