@@ -4,6 +4,7 @@ import NavBar from './../NavBar/NavBar';
 import AboutBirdie from './AboutBirdie/AboutBirdie';
 import LandingPageChart from './LandingPageChart/LandingPageChart';
 import CoinTable from './CoinTable/CoinTable';
+import BuySellSetLimit from './../BuySellSetLimit/BuySellSetLimit';
 /*
 class MainLandingPage extends Component {
   render() {
@@ -68,6 +69,8 @@ const HomepageHeading = ({ mobile }) => (
 <div classname = "centerize">
     <LandingPageChart/>
     <CoinTable/>
+	<BuySellSetLimit/>
+	<br></br>
     </div>
     <Button primary size='huge'>
     <NavLink exact to={'/login'}>
