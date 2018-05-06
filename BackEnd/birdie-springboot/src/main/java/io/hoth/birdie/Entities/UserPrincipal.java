@@ -52,6 +52,8 @@ public class UserPrincipal implements org.springframework.security.core.userdeta
     private String apiKey;
     private String secret;
 
+    private String watchListId;
+
     private boolean isAccountNonLocked = true;
     private boolean isAccountNonExpired = true;
     private boolean isCredentialNonExpired = true;
@@ -84,6 +86,14 @@ public class UserPrincipal implements org.springframework.security.core.userdeta
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getWatchListId(String watchListId){
+        return this.watchListId;
+    }
+
+    public void setWatchListId(String watchListId){
+        this.watchListId = watchListId;
     }
 
     public String getFirstName() {

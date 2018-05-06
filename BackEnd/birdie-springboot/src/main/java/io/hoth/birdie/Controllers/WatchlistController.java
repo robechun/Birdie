@@ -5,6 +5,7 @@ import io.hoth.birdie.Services.WatchlistService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
+import java.util.List;
 
 @RestController
 public class WatchlistController {
@@ -14,8 +15,8 @@ public class WatchlistController {
 
     //Gets Watchlist based on ID provided
     @GetMapping("/watchlist/{id}")
-    public Watchlist getWatchlist(@PathVariable String id){
-        return this.watchlistService.getWatchlist(id);
+    public List<String> getWatchlist(@PathVariable String id){
+        return this.watchlistService.getWatchlist(id).getWatchlist();
     }
 
     //Adds to watchlist

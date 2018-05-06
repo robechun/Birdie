@@ -2,6 +2,7 @@ package io.hoth.birdie.Services;
 
 import io.hoth.birdie.DAO.WatchlistRepository;
 import io.hoth.birdie.Entities.Watchlist;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 
 public class WatchlistService {
 
+    @Autowired
     private WatchlistRepository watchlistRepository;
 
     public Watchlist getWatchlist(String id){
