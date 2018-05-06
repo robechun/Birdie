@@ -72,9 +72,10 @@ public class WalletController {
 
         List<List<Trade>> allTrades  = new ArrayList<>();
         // Grab the Binance account associated
-        for (String symbol : availableSymbols.getSymbols())
+        for (String[] group : availableSymbols.getAllSymbols())
         {
-            for (String majorSym : availableSymbols.getMajorSymbols()) {
+            for (String symbol : group)
+            {
                 /*
                  * @param symbol symbol to get trades from
                  * @param limit default 500; max 500
@@ -84,15 +85,14 @@ public class WalletController {
                  * @return a list of trades
                  */
                 try {
-                    List<Trade> trades = client.getMyTrades(symbol+majorSym, 500, 0L, 6000000L, System.currentTimeMillis());
+                    List<Trade> trades = client.getMyTrades(symbol, 500, 0L, 6000000L, System.currentTimeMillis());
                     if (trades.size() > 0)
                         allTrades.add(trades);
                 } catch (BinanceApiException e) {
                     System.out.println(e.getError().getCode());
                     System.out.println(e.getError().getMsg());
-                    System.out.println(symbol+majorSym);
+                    System.out.println(symbol);
                 }
-
             }
         }
 
