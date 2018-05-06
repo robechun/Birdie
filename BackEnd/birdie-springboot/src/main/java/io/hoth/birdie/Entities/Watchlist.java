@@ -11,6 +11,7 @@ public class Watchlist {
 
     @Id
     private String id;
+
     //Potentially should change template type to Coin
     //  (may need to include a member in Coin entity called Symbol)
     private LinkedList<String> watchlist = new LinkedList<String>(); //could include a hash as well or LinkedHashMap (maybe)
@@ -26,28 +27,24 @@ public class Watchlist {
     // Potentially could contain an isValid where it would check if the coin/symbol is a valid one
     // May have to do this through FE or have a list of all coins stored somewhere in BE
 
+    // Description: Getter to grab ID
+    // Params: None
+    // Returns: Id
+    public String getId(){
+        return id;
+    }
+
     // Description: Returns entire watchlist
     // Params: None
-    // Returns: Watchlist member
+    // Returns: Watchlist
     public LinkedList<String> getWatchlist(){
         return watchlist;
     }
 
-    // Description: Deletes element from Watchlist
-    // Params: Position of element or the element itself
-    // Returns: Success or fail of deletion 
-    public boolean deleteWatchlistElement(int pos){
-        if(pos < 0 || pos >= watchlist.size())
-            return false;
-        else {
-            watchlist.remove(pos);
-            return true;
-        }
-    }
     public boolean deleteWatchlistElement(String element){ //Hash could make this O(1) instead of O(n)
         for (int i = 0; i < watchlist.size(); i++) {
             if(watchlist.get(i).equals(element)){
-                deleteWatchlistElement(i);
+                watchlist.remove(i);
                 return true;
             }
         }
@@ -58,8 +55,13 @@ public class Watchlist {
     // Params: None
     // Returns: True when watchlist is cleared
     public boolean clearWatchlist(){
-        watchlist.clear();
-        return true;
+        //List is already empty
+        if(watchlist == null)
+            return false;
+        else {
+            watchlist.clear();
+            return true;
+        }
     }
 
     // Description: Adds a new element to the watchlist

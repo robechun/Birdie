@@ -4,7 +4,9 @@ import io.hoth.birdie.Entities.Watchlist;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface WatchlistRepository extends MongoRepository<Watchlist, String> {
-    //No idea
+    Optional<Watchlist> findById(String s);
 }

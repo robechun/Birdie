@@ -1,10 +1,8 @@
 package io.hoth.birdie.Controllers;
 
 import io.hoth.birdie.Entities.Watchlist;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.hoth.birdie.Services.WatchlistService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 
@@ -12,29 +10,29 @@ import java.util.LinkedList;
 public class WatchlistController {
 
     //Call an instance of service
+    WatchlistService watchlistService;
 
-    @GetMapping("/watchlist")
-    public LinkedList<String> getWatchlist(Watchlist watchlist){
-        return watchlist.getWatchlist();
+    //Gets Watchlist based on ID provided
+    @GetMapping("/watchlist/{id}")
+    public Watchlist getWatchlist(@PathVariable String id){
+        return this.watchlistService.getWatchlist(id);
     }
 
-    @PostMapping("/watchlist/add")
-    public boolean addWatchlistElement(){
-        //stub
-        return false;
+    //Adds to watchlist
+    @PostMapping("/watchlist/add/{id}/{symbol}")
+    public boolean addWatchlistElement(@PathVariable String id, @PathVariable String symbol){
+        return this.watchlistService.addWatchlistElement(id, symbol);
     }
 
-    @PostMapping("/watchlist/delete")
-    public boolean deleteWatchlistElement(){
-        //stub
-        return false;
+    //Deletes from the watchlist
+    @DeleteMapping("/watchlist/delete/{id}/{symbol}")
+    public boolean deleteWatchlistElement(@PathVariable String id, @PathVariable String symbol){
+        return this.watchlistService.deleteWatchlistElement(id, symbol);
     }
 
-    @DeleteMapping("/watchlist/clear")
-    public boolean clearWatchlist(){
-        //stub
-        return false;
+    //Clears out the watchlist
+    @DeleteMapping("/watchlist/clear/{id}")
+    public boolean clearWatchlist(@PathVariable String id){
+        return this.watchlistService.clearWatchlist(id);
     }
-
-
 }
