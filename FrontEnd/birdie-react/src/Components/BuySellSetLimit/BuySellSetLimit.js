@@ -18,6 +18,7 @@ import {
   Visibility,
   Input,
   Form,
+  Dropdown,
 } from 'semantic-ui-react'
 
 const colors = [
@@ -34,10 +35,10 @@ const panes = [
 				<Grid.Column>
 					<b>Buy BTC</b><br></br>    
 					BTC Balance: 0.00000000<br>
-					</br><br></br>
-					Price:     <Input focus placeholder='Enter price...' />
+					</br><br></br>					
+					Price:&emsp;&emsp;<Input focus placeholder='Enter price...' />							
 					<br></br><br></br>
-					Amount:    <Input focus placeholder='Enter amount...' />
+					Amount:&emsp;<Input focus placeholder='Enter amount...' />
 					<br></br><br></br>
 					<Button.Group >
 						<Button>25%</Button>
@@ -46,7 +47,7 @@ const panes = [
 						<Button>100%</Button>
 					</Button.Group>
 					<br></br><br></br>
-					Total:    <Input focus placeholder='Total...' />
+					Total:&emsp;&emsp;<Input focus placeholder='Total...' />
 					<br></br><br></br>		
 					<Button color='green'>Buy BTC</Button>
 					</Grid.Column>
@@ -55,9 +56,9 @@ const panes = [
 					<b>Sell BTC</b><br></br>    
 					BTC Balance: 0.00000000<br>
 					</br><br></br>
-					Price:     <Input focus placeholder='Enter price...' />
+					Price:&emsp;&emsp;<Input focus placeholder='Enter price...' />
 					<br></br><br></br>
-					Amount:    <Input focus placeholder='Enter amount...' />
+					Amount:&emsp;<Input focus placeholder='Enter amount...' />
 					<br></br><br></br>
 					<Button.Group >
 						<Button>25%</Button>
@@ -66,7 +67,7 @@ const panes = [
 						<Button>100%</Button>
 					</Button.Group>
 					<br></br><br></br>
-					Total:    <Input focus placeholder='Total...' />
+					Total:&emsp;<Input focus placeholder='Total...' />
 					<br></br><br></br>		
 					<Button color='red'>Sell BTC</Button>
 				</Grid.Column>
@@ -85,9 +86,9 @@ const panes = [
 					<b>Buy BTC</b><br></br>    
 					BTC Balance: 0.00000000<br>
 					</br><br></br>
-					Price:     <Input disabled placeholder='Market price...' />
+					Price:&emsp;&emsp;<Input disabled placeholder='Market price...' />
 					<br></br><br></br>
-					Amount:    <Input focus placeholder='Enter amount...' />
+					Amount:&emsp;<Input focus placeholder='Enter amount...' />
 					<br></br><br></br>
 					<Button.Group >
 						<Button>25%</Button>
@@ -103,9 +104,9 @@ const panes = [
 					<b>Sell BTC</b><br></br>    
 					BTC Balance: 0.00000000<br>
 					</br><br></br>
-					Price:     <Input disabled placeholder='Market price...' />
+					Price:&emsp;&emsp;<Input disabled placeholder='Market price...' />
 					<br></br><br></br>
-					Amount:    <Input focus placeholder='Enter amount...' />
+					Amount:&emsp;<Input focus placeholder='Enter amount...' />
 					<br></br><br></br>
 					<Button.Group >
 						<Button>25%</Button>
@@ -129,11 +130,11 @@ const panes = [
 					<b>Buy BTC</b><br></br>    
 					BTC Balance: 0.00000000<br>
 					</br><br></br>
-					Stop:     <Input focus placeholder='Enter price...' />
+					Stop:&emsp;&emsp;<Input focus placeholder='Enter price...' />
 					<br></br><br></br>
-					Limit:     <Input focus placeholder='Enter price...' />	
+					Limit:&emsp;&emsp;<Input focus placeholder='Enter price...' />	
 					<br></br><br></br>
-					Amount:    <Input focus placeholder='Enter amount...' />
+					Amount:&emsp;<Input focus placeholder='Enter amount...' />
 					<br></br><br></br>
 					<Button.Group >
 						<Button>25%</Button>
@@ -142,7 +143,7 @@ const panes = [
 						<Button>100%</Button>
 					</Button.Group>
 					<br></br><br></br>
-					Total:    <Input focus placeholder='Total...' />
+					Total:&emsp;<Input focus placeholder='Total...' />
 					<br></br><br></br>		
 					<Button color='green'>Buy BTC</Button>
 					</Grid.Column>
@@ -151,11 +152,11 @@ const panes = [
 					<b>Sell BTC</b><br></br>    
 					BTC Balance: 0.00000000<br>
 					</br><br></br>
-					Stop:     <Input focus placeholder='Enter price...' />
+					Stop:&emsp;&emsp;<Input focus placeholder='Enter price...' />
 					<br></br><br></br>
-					Limit:     <Input focus placeholder='Enter price...' />	
+					Limit:&emsp;&emsp;<Input focus placeholder='Enter price...' />	
 					<br></br><br></br>
-					Amount:    <Input focus placeholder='Enter amount...' />
+					Amount:&emsp;<Input focus placeholder='Enter amount...' />
 					<br></br><br></br>
 					<Button.Group >
 						<Button>25%</Button>
@@ -164,7 +165,7 @@ const panes = [
 						<Button>100%</Button>
 					</Button.Group>
 					<br></br><br></br>
-					Total:    <Input focus placeholder='Total...' />
+					Total:&emsp;&emsp;<Input focus placeholder='Total...' />
 					<br></br><br></br>		
 					<Button color='red'>Sell BTC</Button>
 				</Grid.Column>
