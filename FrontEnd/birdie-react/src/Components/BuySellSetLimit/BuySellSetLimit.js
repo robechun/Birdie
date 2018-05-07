@@ -28,138 +28,149 @@ const colors = [
 const panes = [
   { menuItem: 'Limit', render: () => 
   
-  <Tab.Pane attached={false} >	
-		
-		<b>Buy BTC</b><br></br>    
-		BTC Balance: 0.00000000<br>
-		</br><br></br>
-		Price:     <Input focus placeholder='Enter price...' />
-		<br></br><br></br>
-		Amount:    <Input focus placeholder='Enter amount...' />
-		<br></br><br></br>
-		<Button.Group >
-			<Button>25%</Button>
-			<Button>50%</Button>
-			<Button>75%</Button>
-			<Button>100%</Button>
-		</Button.Group>
-		<br></br><br></br>
-		Total:    <Input focus placeholder='Total...' />
-		<br></br><br></br>		
-		<Button fluid color='green'>Buy BTC</Button>
-		
-		<br></br><br></br>
-		
-		<b>Sell BTC</b><br></br>    
-		BTC Balance: 0.00000000<br>
-		</br><br></br>
-		Price:     <Input focus placeholder='Enter price...' />
-		<br></br><br></br>
-		Amount:    <Input focus placeholder='Enter amount...' />
-		<br></br><br></br>
-		<Button.Group >
-			<Button>25%</Button>
-			<Button>50%</Button>
-			<Button>75%</Button>
-			<Button>100%</Button>
-		</Button.Group>
-		<br></br><br></br>
-		Total:    <Input focus placeholder='Total...' />
-		<br></br><br></br>		
-		<Button fluid color='red'>Sell BTC</Button>
-		
-  </Tab.Pane> 
-  
+	<Tab.Pane attached={false} >	
+		<Grid divided='vertically'>
+			<Grid.Row columns={2}>	
+				<Grid.Column>
+					<b>Buy BTC</b><br></br>    
+					BTC Balance: 0.00000000<br>
+					</br><br></br>
+					Price:     <Input focus placeholder='Enter price...' />
+					<br></br><br></br>
+					Amount:    <Input focus placeholder='Enter amount...' />
+					<br></br><br></br>
+					<Button.Group >
+						<Button>25%</Button>
+						<Button>50%</Button>
+						<Button>75%</Button>
+						<Button>100%</Button>
+					</Button.Group>
+					<br></br><br></br>
+					Total:    <Input focus placeholder='Total...' />
+					<br></br><br></br>		
+					<Button color='green'>Buy BTC</Button>
+					</Grid.Column>
+					
+					<Grid.Column>
+					<b>Sell BTC</b><br></br>    
+					BTC Balance: 0.00000000<br>
+					</br><br></br>
+					Price:     <Input focus placeholder='Enter price...' />
+					<br></br><br></br>
+					Amount:    <Input focus placeholder='Enter amount...' />
+					<br></br><br></br>
+					<Button.Group >
+						<Button>25%</Button>
+						<Button>50%</Button>
+						<Button>75%</Button>
+						<Button>100%</Button>
+					</Button.Group>
+					<br></br><br></br>
+					Total:    <Input focus placeholder='Total...' />
+					<br></br><br></br>		
+					<Button color='red'>Sell BTC</Button>
+				</Grid.Column>
+			</Grid.Row>
+		</Grid>
+	</Tab.Pane> 
+
   },
   
   { menuItem: 'Market', render: () => 
   
-  <Tab.Pane attached={false}>
-  
-		<b>Buy BTC</b><br></br>    
-		BTC Balance: 0.00000000<br>
-		</br><br></br>
-		Price:     <Input disabled placeholder='Enter price...' />
-		<br></br><br></br>
-		Amount:    <Input focus placeholder='Enter amount...' />
-		<br></br><br></br>
-		<Button.Group >
-			<Button>25%</Button>
-			<Button>50%</Button>
-			<Button>75%</Button>
-			<Button>100%</Button>
-		</Button.Group>
-		<br></br><br></br>
-		<Button fluid color='green'>Buy BTC</Button>
-		
-		<br></br><br></br>
-		
-		<b>Sell BTC</b><br></br>    
-		BTC Balance: 0.00000000<br>
-		</br><br></br>
-		Price:     <Input disabled placeholder='Market price...' />
-		<br></br><br></br>
-		Amount:    <Input focus placeholder='Enter amount...' />
-		<br></br><br></br>
-		<Button.Group >
-			<Button>25%</Button>
-			<Button>50%</Button>
-			<Button>75%</Button>
-			<Button>100%</Button>
-		</Button.Group>
-		<br></br><br></br>	
-		<Button fluid color='red'>Sell BTC</Button>
-  
-  </Tab.Pane> 
-  
+	<Tab.Pane attached={false}>
+		<Grid divided='vertically'>
+			<Grid.Row columns={2}>		
+				<Grid.Column>
+					<b>Buy BTC</b><br></br>    
+					BTC Balance: 0.00000000<br>
+					</br><br></br>
+					Price:     <Input disabled placeholder='Market price...' />
+					<br></br><br></br>
+					Amount:    <Input focus placeholder='Enter amount...' />
+					<br></br><br></br>
+					<Button.Group >
+						<Button>25%</Button>
+						<Button>50%</Button>
+						<Button>75%</Button>
+						<Button>100%</Button>
+					</Button.Group>
+					<br></br><br></br>
+					<Button color='green'>Buy BTC</Button>		
+					</Grid.Column>
+					
+					<Grid.Column>
+					<b>Sell BTC</b><br></br>    
+					BTC Balance: 0.00000000<br>
+					</br><br></br>
+					Price:     <Input disabled placeholder='Market price...' />
+					<br></br><br></br>
+					Amount:    <Input focus placeholder='Enter amount...' />
+					<br></br><br></br>
+					<Button.Group >
+						<Button>25%</Button>
+						<Button>50%</Button>
+						<Button>75%</Button>
+						<Button>100%</Button>
+					</Button.Group>
+					<br></br><br></br>	
+					<Button color='red'>Sell BTC</Button>
+				</Grid.Column>
+			</Grid.Row>
+		</Grid>
+	</Tab.Pane>  
   },
   
   { menuItem: 'Stop-Limit', render: () => 
-  <Tab.Pane attached={false}>
-		
-		<b>Buy BTC</b><br></br>    
-		BTC Balance: 0.00000000<br>
-		</br><br></br>
-		Stop:     <Input focus placeholder='Enter price...' />
-		<br></br><br></br>
-		Limit:     <Input focus placeholder='Enter price...' />	
-		<br></br><br></br>
-		Amount:    <Input focus placeholder='Enter amount...' />
-		<br></br><br></br>
-		<Button.Group >
-			<Button>25%</Button>
-			<Button>50%</Button>
-			<Button>75%</Button>
-			<Button>100%</Button>
-		</Button.Group>
-		<br></br><br></br>
-		Total:    <Input focus placeholder='Total...' />
-		<br></br><br></br>		
-		<Button fluid color='green'>Buy BTC</Button>
-		
-		<br></br><br></br>
-		
-		<b>Sell BTC</b><br></br>    
-		BTC Balance: 0.00000000<br>
-		</br><br></br>
-		Stop:     <Input focus placeholder='Enter price...' />
-		<br></br><br></br>
-		Limit:     <Input focus placeholder='Enter price...' />	
-		<br></br><br></br>
-		Amount:    <Input focus placeholder='Enter amount...' />
-		<br></br><br></br>
-		<Button.Group >
-			<Button>25%</Button>
-			<Button>50%</Button>
-			<Button>75%</Button>
-			<Button>100%</Button>
-		</Button.Group>
-		<br></br><br></br>
-		Total:    <Input focus placeholder='Total...' />
-		<br></br><br></br>		
-		<Button fluid color='red'>Sell BTC</Button>
-		
-  </Tab.Pane> 
+	<Tab.Pane attached={false}>
+		<Grid divided='vertically'>
+			<Grid.Row columns={2}>	
+				<Grid.Column>	
+					<b>Buy BTC</b><br></br>    
+					BTC Balance: 0.00000000<br>
+					</br><br></br>
+					Stop:     <Input focus placeholder='Enter price...' />
+					<br></br><br></br>
+					Limit:     <Input focus placeholder='Enter price...' />	
+					<br></br><br></br>
+					Amount:    <Input focus placeholder='Enter amount...' />
+					<br></br><br></br>
+					<Button.Group >
+						<Button>25%</Button>
+						<Button>50%</Button>
+						<Button>75%</Button>
+						<Button>100%</Button>
+					</Button.Group>
+					<br></br><br></br>
+					Total:    <Input focus placeholder='Total...' />
+					<br></br><br></br>		
+					<Button color='green'>Buy BTC</Button>
+					</Grid.Column>
+					
+					<Grid.Column>
+					<b>Sell BTC</b><br></br>    
+					BTC Balance: 0.00000000<br>
+					</br><br></br>
+					Stop:     <Input focus placeholder='Enter price...' />
+					<br></br><br></br>
+					Limit:     <Input focus placeholder='Enter price...' />	
+					<br></br><br></br>
+					Amount:    <Input focus placeholder='Enter amount...' />
+					<br></br><br></br>
+					<Button.Group >
+						<Button>25%</Button>
+						<Button>50%</Button>
+						<Button>75%</Button>
+						<Button>100%</Button>
+					</Button.Group>
+					<br></br><br></br>
+					Total:    <Input focus placeholder='Total...' />
+					<br></br><br></br>		
+					<Button color='red'>Sell BTC</Button>
+				</Grid.Column>
+			</Grid.Row>
+		</Grid>	
+	</Tab.Pane> 
   },
 ]
 
@@ -172,7 +183,7 @@ class BuySellSetLimit extends Component {
 		return (
 		<div>						
 			<Tab
-				menu={{ color, inverted: true, attached: false, tabular: false }}
+				menu={{ color, inverted: true, attached: false, tabular: true }}
 				panes={panes}
 			/>			
 		</div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TradingViewWidget , { Themes, watchlist } from 'react-tradingview-widget';
 
-class LandingPageChart extends Component {	
+class LandingPageChart extends Component {
     render() {							
         return (
             <div>				
@@ -17,7 +17,7 @@ class LandingPageChart extends Component {
 				watchlist = {[
 					'BINANCE:BTCUSDT',
 					'BINANCE:ETCBTC',
-					'BINANCE:LTEBTC',					
+					'BINANCE:LTCBTC',					
 					'BINANCE:TRXBTC',
 					'BINANCE:XVGBTC',
 					'BINANCE:ICXBTC',
@@ -48,8 +48,7 @@ class LandingPageChart extends Component {
 					'BINANCE:BCCBTC',
 					'BINANCE:LSKBTC',
 					'BINANCE:STRATBTC',
-					'BINANCE:WTCBTC',
-					'BINANCE:PEOBTC',
+					'BINANCE:WTCBTC',				
 					'BINANCE:NEBLBTC',
 					'BINANCE:MTLBTC',
 					'BINANCE:XMRBTC',

@@ -66,12 +66,14 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: 1
       }}
     />
+	
 <div classname = "centerize">
     <LandingPageChart/>
-    <CoinTable/>
+    <br></br>
 	<BuySellSetLimit/>
 	<br></br>
-    </div>
+</div>
+
     <Button primary size='huge'>
     <NavLink exact to={'/login'}>
       Get Started
