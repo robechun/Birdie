@@ -44,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     // TODO: Figure out what to actually put in here.
+    // TODO: Incorporate JWT or OAUTH through Tokens as Opposed to Authorization through each Request
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests() // TODO: csrf disabled for now because if not we get errors

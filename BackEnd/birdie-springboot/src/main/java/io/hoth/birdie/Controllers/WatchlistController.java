@@ -23,6 +23,7 @@ public class WatchlistController {
     }
 
     //Adds to watchlist
+    //TODO: Potentially add checks to ensure that the symbol is a valid symbol
     @PostMapping("/watchlist/add/{id}/{symbol}")
     public List<String> addWatchlistElement(@PathVariable String id, @PathVariable String symbol){
         if(watchlistService.addWatchlistElement(id, symbol))
