@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import static com.binance.api.client.domain.account.NewOrder.limitBuy;
 
 @RestController
-@RequestMapping(value = "/trade")
-public class TradeController {
+@RequestMapping(value = "/tradeTest")
+public class TradeTestController {
+
 
     @PostMapping(value = "/market/{symbol}&{amount}")
-    public NewOrderResponse placeMarketOrder(@PathVariable(value = "symbol") String symbol,
-                                             @PathVariable(value = "amount") String amount) {
+    public void placeMarketOrder(@PathVariable(value = "symbol") String symbol,
+                                 @PathVariable(value = "amount") String amount) {
         // Grab current user
         UserPrincipal currentUser = (UserPrincipal)
                 SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -28,16 +29,16 @@ public class TradeController {
         );
         BinanceApiRestClient client = factory.newRestClient();
 
-
-
         // TODO: return type(?)
-        //client.newOrderTest(NewOrder.marketBuy(request.getSymbol(), request.getAmount()));
-        return client.newOrder(NewOrder.marketBuy(symbol, amount));
+        client.newOrderTest(NewOrder.marketBuy(symbol, amount));
+        //return client.newOrder(NewOrder.marketBuy(symbol, amount));
     }
+
+
     @PostMapping(value = "/limit/{symbol}&{amount}&{price}")
-    public NewOrderResponse placeLimitOrder(@PathVariable(value = "symbol") String symbol,
-                                @PathVariable(value = "amount") String amount,
-                                @PathVariable(value = "price") String price) {
+    public void placeLimitOrder(@PathVariable(value = "symbol") String symbol,
+                                            @PathVariable(value = "amount") String amount,
+                                            @PathVariable(value = "price") String price) {
         // Grab current user
         UserPrincipal currentUser = (UserPrincipal)
                 SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -50,7 +51,7 @@ public class TradeController {
 
 
         // TODO: return type(?)
-        return client.newOrder(NewOrder.limitBuy(symbol, TimeInForce.GTC, amount, price));
+        client.newOrderTest(limitBuy(symbol, TimeInForce.GTC, amount, price));
 
     }
 

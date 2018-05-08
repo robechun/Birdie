@@ -10,6 +10,8 @@ import com.binance.api.client.exception.BinanceApiException;
 import io.hoth.birdie.Config.AvailableSymbols;
 import io.hoth.birdie.Entities.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +33,7 @@ public class WalletController {
     AvailableSymbols availableSymbols;
 
     @GetMapping(value = "/balance")
-    public void getAccountBalance() {
+    public ResponseEntity getAccountBalance() {
         // Grab current user and use the API key and Secret to make new REST calls
         UserPrincipal currentUser = (UserPrincipal)
                 SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -50,6 +52,7 @@ public class WalletController {
             // account.getBalances()
             // --> returns list of AssetBalances
             // --> AssetBalance has: String asset, String free, and String locked
+            return new ResponseEntity(account.getBalances(), HttpStatus.OK);
 
         } catch (BinanceApiException e) {
             System.out.println(e.getError().getCode());
@@ -58,6 +61,7 @@ public class WalletController {
 
 
         // TODO: How to send it to front-end to parse?
+        return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
     }
 
