@@ -21,6 +21,10 @@ import {
   Dropdown,
 } from 'semantic-ui-react'
 
+const coinOptions = [
+  'BTC', 'LTC', 'NEO', 'ETH', 'TRX', 'NANO',
+]
+
 const colors = [
   'red', 'orange', 'yellow', 'olive', 'green', 'teal',
   'blue', 'violet', 'purple', 'pink', 'brown', 'grey',
@@ -176,14 +180,20 @@ const panes = [
 ]
 
 class BuySellSetLimit extends Component {
-	state = { color: colors[5] }
+	state = { color: colors[5], 
+			  coin: coinOptions[5]
+			}
 	handleColorChange = e => this.setState({ color: e.target.value })
-	
+	handleCoinChange = e => this.setState({ coin: e.target.value })
 	render() {
-		const { color } = this.state
+		const { color, coin } = this.state
 		return (
-		<div>						
-			<Tab
+		<div>
+			<select onChange={this.handleCoinChange}>
+				{_.map(coinOptions, c => <option key={c} value={c}>{_.startCase(c)}</option>)}
+			</select>
+						
+			<Tab				
 				menu={{ color, inverted: true, attached: false, tabular: true }}
 				panes={panes}
 			/>			

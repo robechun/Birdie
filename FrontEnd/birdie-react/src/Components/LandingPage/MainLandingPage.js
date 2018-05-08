@@ -69,8 +69,6 @@ const HomepageHeading = ({ mobile }) => (
 	
 <div classname = "centerize">
     <LandingPageChart/>
-    <br></br>
-	<BuySellSetLimit/>
 	<br></br>
 </div>
 

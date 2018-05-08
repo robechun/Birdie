@@ -1,20 +1,23 @@
 import React, { Component } from 'react'
 import {NavLink} from 'react-router-dom'
-
-
 import CoinTable from './CoinTable/CoinTable';
 import LandingPageChart from './LandingPageChart/LandingPageChart'
+import BuySellSetLimit from './../BuySellSetLimit/BuySellSetLimit';
+import axios from 'axios';
 
 import {
   Button,
   Container,
   Divider,
+  Form,
   Grid,
   Header,
   Icon,
+  Input,
   Image,
   List,
   Menu,
+  Table,
   Responsive,
   Segment,
   Sidebar,
@@ -84,20 +87,124 @@ render() {
 
 
 class Watchlist extends Component {
+	state = {
+    rows: [{}]
+  };
+  handleChange = idx => e => {
+    const { name, value } = e.target;
+    const rows = [...this.state.rows];
+    rows[idx] = {
+      [name]: value
+    };
+    this.setState({
+      rows
+    });
+  };
+  handleAddRow = () => {
+    const item = {
+      coinName: "",
+      coinAmount: "",
+	  note: ""
+    };
+    this.setState({
+      rows: [...this.state.rows, item]
+    });
+  };
+  handleRemoveRow = () => {
+    this.setState({
+      rows: this.state.rows.slice(0, -1)
+    });
+  };
+  
   render() {
-    return (
-
-        <div>
-        <NavBar/>
-      <div className="righttable">
-      <CoinTable/>
-      </div>
-      <div className="leftchart">
-        <LandingPageChart/>
-      </div>
-      </div>
-    )
-  }
+    return (	
+		<div>
+				<NavBar/>
+				<br></br>
+				<Grid divided='vertically'>
+					<Grid.Row columns={2}>
+						<Grid.Column>	  
+							<div className="container">
+							  <div className="row clearfix">
+								<div className="col-md-12 column">
+								
+								  <Table celled
+									className="table table-bordered table-hover"
+									id="tab_logic"
+								  >
+								  
+									<Table.Header>
+									  <Table.Row>
+										<Table.HeaderCell className="text-center"> # </Table.HeaderCell>
+										<Table.HeaderCell className="text-center"> Coin Name </Table.HeaderCell>
+										<Table.HeaderCell className="text-center"> Coin Amount </Table.HeaderCell>
+										<Table.HeaderCell className="text-center"> Note </Table.HeaderCell>
+									  </Table.Row>
+									</Table.Header>
+									
+									<Table.Body>
+									
+									  {this.state.rows.map((item, idx) => (
+										<Table.Row id="addr0" key={idx}>
+										  <td>{idx}</td>
+										  
+										  <td>
+											<Input
+											  type="text"
+											  name="coinName"
+											  value={this.state.rows[idx].coinName}
+											  onChange={this.handleChange(idx)}
+											  className="form-control"
+											/>
+										  </td>
+										  
+										  <td>
+											<Input
+											  type="text"
+											  name="coinAmount"
+											  value={this.state.rows[idx].coinAmount}
+											  onChange={this.handleChange(idx)}
+											  className="form-control"
+											/>
+										  </td>
+										  
+										  <td>
+											<Input
+											  type="text"
+											  name="note"
+											  value={this.state.rows[idx].note}
+											  onChange={this.handleChange(idx)}
+											  className="form-control"
+											/>
+										  </td>
+										  
+										  
+										</Table.Row>
+									  ))}
+									  
+									</Table.Body>
+								  </Table>
+								  
+								  <Button onClick={this.handleAddRow} className="btn btn-primary">
+									Add Row
+								  </Button>
+								  
+								  <Button
+									onClick={this.handleRemoveRow}
+									className="btn btn-danger float-right"
+								  >
+									Delete Row
+								  </Button>
+								  
+								</div>
+							  </div>
+							</div>
+						</Grid.Column>
+					</Grid.Row>
+				</Grid>
+		</div>
+    );
+  }	
 }
 
 export default Watchlist;
