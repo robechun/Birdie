@@ -48,20 +48,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests() // TODO: csrf disabled for now because if not we get errors
 
-        //http.authorizeRequests()
+                //http.authorizeRequests()
                 .antMatchers("/publicTest/*").permitAll()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/privateTest").hasRole("ADMIN")
                 .anyRequest()
-                .authenticated()
+                .fullyAuthenticated()
                 .and()
-                .formLogin()
-                    //.loginPage("/login").loginProcessingUrl("/login")
-                    //.failureUrl("/login?error=true").successForwardUrl("/")
-                    //.usernameParameter("username").passwordParameter("password").permitAll()
-                .and()
-                .logout()
-                    .logoutSuccessUrl("/").invalidateHttpSession(true).deleteCookies("JSESSIONID").permitAll();
+                .httpBasic();
+        //.formLogin()
+        //.loginPage("/login").loginProcessingUrl("/login")
+        //.failureUrl("/login?error=true").successForwardUrl("/")
+        //.usernameParameter("username").passwordParameter("password").permitAll()
+//                .and()
+//                .logout()
+//                    .logoutSuccessUrl("/").invalidateHttpSession(true).deleteCookies("JSESSIONID").permitAll();
     }
 
     @Bean
