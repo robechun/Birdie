@@ -14,7 +14,7 @@ public class Watchlist {
 
     //Potentially should change template type to Coin
     //  (may need to include a member in Coin entity called Symbol)
-    private LinkedList<String> watchlist = new LinkedList<String>(); //could include a hash as well or LinkedHashMap (maybe)
+    private LinkedList<String> watchlist;// = new LinkedList<String>(); //could include a hash as well or LinkedHashMap (maybe)
 
     // I guess the method below is uneeded since we'd always grab the entire list
     // public String getWatchlistElement(int pos){
@@ -67,13 +67,13 @@ public class Watchlist {
     // Description: Adds a new element to the watchlist
     // Params: Element being added
     // Returns: Success or Failure
-    public boolean addWatchlistElement(String element){
+    public boolean addWatchlistElement(String symbol){
         // I believe .contains(element) runs in O(n)
         // Could use a Hash with the LL to achieve O(1) run time
 
         //Check if element is already in the list
-        if(!watchlist.contains(element)){
-            watchlist.add(element);
+        if(!watchlist.contains(symbol)){
+            watchlist.add(symbol);
             return true;
         }
         else {
