@@ -89,21 +89,9 @@ render() {
 class Wallet extends Component {
   render() {
     return (
-      <div>
-      <NavBar/>
-    <div className="righttable">
-    <h2>
-    Coin Table
-    </h2>
-    <CoinTable/>
-    </div>
-    <div className="leftchart">
-    <h2>
-    Overall
-    </h2>
-      <LandingPageChart/>
-    </div>
-    </div>
+		<div>
+			<NavBar/>
+		</div>
     )
   }
 }

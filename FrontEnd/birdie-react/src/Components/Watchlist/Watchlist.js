@@ -119,89 +119,96 @@ class Watchlist extends Component {
   render() {
     return (	
 		<div>
-				<NavBar/>
-				<br></br>
-				<Grid divided='vertically'>
-					<Grid.Row columns={2}>
-						<Grid.Column>	  
-							<div className="container">
-							  <div className="row clearfix">
-								<div className="col-md-12 column">
+			<NavBar/>
+			<br></br>
+			<Grid divided='vertically'>
+				<Grid.Row columns={3}>
+					<Grid.Column width={1}>
+					</Grid.Column>	
+					
+					<Grid.Column width={10}>	  
+						<div className="container">
+						  <div className="row clearfix">
+							<div className="col-md-12 column">
+							
+							  <Table 
+								celled
 								
-								  <Table celled
-									className="table table-bordered table-hover"
-									id="tab_logic"
-								  >
-								  
-									<Table.Header>
-									  <Table.Row>
-										<Table.HeaderCell className="text-center"> # </Table.HeaderCell>
-										<Table.HeaderCell className="text-center"> Coin Name </Table.HeaderCell>
-										<Table.HeaderCell className="text-center"> Coin Amount </Table.HeaderCell>
-										<Table.HeaderCell className="text-center"> Note </Table.HeaderCell>
-									  </Table.Row>
-									</Table.Header>
-									
-									<Table.Body>
-									
-									  {this.state.rows.map((item, idx) => (
-										<Table.Row id="addr0" key={idx}>
-										  <td>{idx}</td>
-										  
-										  <td>
-											<Input
-											  type="text"
-											  name="coinName"
-											  value={this.state.rows[idx].coinName}
-											  onChange={this.handleChange(idx)}
-											  className="form-control"
-											/>
-										  </td>
-										  
-										  <td>
-											<Input
-											  type="text"
-											  name="coinAmount"
-											  value={this.state.rows[idx].coinAmount}
-											  onChange={this.handleChange(idx)}
-											  className="form-control"
-											/>
-										  </td>
-										  
-										  <td>
-											<Input
-											  type="text"
-											  name="note"
-											  value={this.state.rows[idx].note}
-											  onChange={this.handleChange(idx)}
-											  className="form-control"
-											/>
-										  </td>
-										  
-										  
-										</Table.Row>
-									  ))}
+								className="table table-bordered table-hover"
+								id="tab_logic"
+								color="teal" inverted
+							  >
+							  
+								<Table.Header>
+								  <Table.Row>
+									<Table.HeaderCell collapsing className="text-center"> # </Table.HeaderCell>
+									<Table.HeaderCell collapsing className="text-center"> Coin Name </Table.HeaderCell>
+									<Table.HeaderCell collapsing className="text-center"> Coin Amount </Table.HeaderCell>
+									<Table.HeaderCell className="text-center"> Note </Table.HeaderCell>
+								  </Table.Row>
+								</Table.Header>
+								
+								<Table.Body>								
+								  {this.state.rows.map((item, idx) => (
+									<Table.Row id="addr0" key={idx}>
+									  <td>{idx}</td>									  
+									  <Table.Cell collapsing>
+										<Input												  
+										  type="text"
+										  name="coinName"
+										  value={this.state.rows[idx].coinName}
+										  onChange={this.handleChange(idx)}
+										  className="form-control"
+										/>
+									  </Table.Cell>
 									  
-									</Table.Body>
-								  </Table>
-								  
-								  <Button onClick={this.handleAddRow} className="btn btn-primary">
-									Add Row
-								  </Button>
-								  
-								  <Button
-									onClick={this.handleRemoveRow}
-									className="btn btn-danger float-right"
-								  >
-									Delete Row
-								  </Button>
-								  
-								</div>
-							  </div>
+									  <Table.Cell collapsing>
+										<Input										  
+										  type="text"
+										  name="coinAmount"
+										  value={this.state.rows[idx].coinAmount}
+										  onChange={this.handleChange(idx)}
+										  className="form-control"
+										/>
+									  </Table.Cell>
+									  
+									  <Table.Cell>
+										<Input
+										  fluid
+										  type="text"
+										  name="note"
+										  value={this.state.rows[idx].note}
+										  onChange={this.handleChange(idx)}
+										  className="form-control"
+										/>
+									  </Table.Cell>									  									  
+									</Table.Row>
+								  ))}								  
+								</Table.Body>
+							  </Table>
+							  
+							  <Button 
+							    color="green" 
+								onClick={this.handleAddRow} 
+								className="btn btn-primary"
+							  >
+								Add Row
+							  </Button>
+							  
+							  <Button
+								color="red"
+								onClick={this.handleRemoveRow}
+								className="btn btn-danger float-right"
+							  >
+								Delete Row
+							  </Button>								  
 							</div>
-						</Grid.Column>
-					</Grid.Row>
-				</Grid>
+						  </div>
+						</div>						
+					</Grid.Column>
+					
+				</Grid.Row>
+			</Grid>
 		</div>
     );
   }	
