@@ -17,35 +17,35 @@ public class WatchlistController {
     WatchlistService watchlistService;
 
     //Gets Watchlist based on ID provided
-    @GetMapping("/watchlist/{id}")
-    public List<String> getWatchlist(@PathVariable String id){
-        return watchlistService.getWatchlist(id).getWatchlist();
+    @GetMapping("/watchlist")
+    public List<String> getWatchlist(){
+        return watchlistService.getWatchlist();
     }
 
     //Adds to watchlist
     //TODO: Potentially add checks to ensure that the symbol is a valid symbol
-    @PostMapping("/watchlist/add/{id}/{symbol}")
-    public List<String> addWatchlistElement(@PathVariable String id, @PathVariable String symbol){
-        if(watchlistService.addWatchlistElement(id, symbol))
-            return watchlistService.getWatchlist(id).getWatchlist();
+    @PostMapping("/watchlist/add/{symbol}")
+    public List<String> addWatchlistElement(@PathVariable String symbol){
+        if(watchlistService.addWatchlistElement(symbol))
+            return watchlistService.getWatchlist();
         else
             return null; //list already contains symbol
     }
 
     //Deletes from the watchlist
-    @DeleteMapping("/watchlist/delete/{id}/{symbol}")
-    public List<String> deleteWatchlistElement(@PathVariable String id, @PathVariable String symbol){
-        if(watchlistService.deleteWatchlistElement(id, symbol))
-            return watchlistService.getWatchlist(id).getWatchlist();
+    @DeleteMapping("/watchlist/delete/{symbol}")
+    public List<String> deleteWatchlistElement(@PathVariable String symbol){
+        if(watchlistService.deleteWatchlistElement(symbol))
+            return watchlistService.getWatchlist();
         else
             return null; //list did not contain symbol
     }
 
     //Clears out the watchlist
-    @DeleteMapping("/watchlist/clear/{id}")
-    public List<String> clearWatchlist(@PathVariable String id){
-        if(watchlistService.clearWatchlist(id)){
-            return watchlistService.getWatchlist(id).getWatchlist();
+    @DeleteMapping("/watchlist/clear")
+    public List<String> clearWatchlist(){
+        if(watchlistService.clearWatchlist()){
+            return watchlistService.getWatchlist();
         }
         else
             return null; //if list is empty...never hit though despite list being empty

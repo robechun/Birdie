@@ -88,7 +88,7 @@ public class UserPrincipal implements org.springframework.security.core.userdeta
         this.id = id;
     }
 
-    public String getWatchListId(String watchListId){
+    public String getWatchListId(){
         return this.watchListId;
     }
 
