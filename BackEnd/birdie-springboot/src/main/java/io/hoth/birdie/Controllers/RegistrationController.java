@@ -34,8 +34,9 @@ public class RegistrationController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
+        //String password = user.getPassword();
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setMatchingPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        //user.setMatchingPassword(bCryptPasswordEncoder.encode(password)); // TODO: DO i even need this?
 
         // Method to save user to the database.
         // If save fails for whatever reason, return an INTERNAL_SERVER_ERROR (500)

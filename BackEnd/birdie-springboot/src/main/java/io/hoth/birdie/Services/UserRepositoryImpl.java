@@ -50,7 +50,8 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
         String newPassword = bCryptPasswordEncoder.encode(password);
 
         update.set("password", newPassword);
-        update.set("matchingPassword", newPassword);
+
+        //update.set("matchingPassword", newPassword);
 
 
         UpdateResult updateResult = mongoTemplate.updateFirst(query, update, "Users");

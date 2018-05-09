@@ -45,6 +45,7 @@ public class ProfileController {
 
     }
 
+    // TODO: HAVE NOT BEEN TESTED!!
     @PutMapping(value = "/newPassword")
     public ResponseEntity changePassword(@RequestBody String password) {
         UserPrincipal currentUser = (UserPrincipal)
