@@ -7,6 +7,8 @@ import com.binance.api.client.domain.account.NewOrder;
 import com.binance.api.client.domain.account.NewOrderResponse;
 import io.hoth.birdie.Entities.MarketOrderRequest;
 import io.hoth.birdie.Entities.UserPrincipal;
+import io.hoth.birdie.Services.TradeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,42 +18,60 @@ import static com.binance.api.client.domain.account.NewOrder.limitBuy;
 @RequestMapping(value = "/trade")
 public class TradeController {
 
-    @PostMapping(value = "/market/{symbol}&{amount}")
-    public NewOrderResponse placeMarketOrder(@PathVariable(value = "symbol") String symbol,
+    @Autowired
+    TradeService tradeService;
+
+    @PostMapping(value = "/market{type}/{symbol}&{amount}")
+    public NewOrderResponse placeMarketOrder(@PathVariable(value = "type") String type,
+                                             @PathVariable(value = "symbol") String symbol,
                                              @PathVariable(value = "amount") String amount) {
-        // Grab current user
-        UserPrincipal currentUser = (UserPrincipal)
-                SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance(
-                currentUser.getApiKey(),
-                currentUser.getSecret()
-        );
-        BinanceApiRestClient client = factory.newRestClient();
 
-
-
-        // TODO: return type(?)
-        //client.newOrderTest(NewOrder.marketBuy(request.getSymbol(), request.getAmount()));
-        return client.newOrder(NewOrder.marketBuy(symbol, amount));
-    }
-    @PostMapping(value = "/limit/{symbol}&{amount}&{price}")
-    public NewOrderResponse placeLimitOrder(@PathVariable(value = "symbol") String symbol,
-                                @PathVariable(value = "amount") String amount,
-                                @PathVariable(value = "price") String price) {
-        // Grab current user
-        UserPrincipal currentUser = (UserPrincipal)
-                SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance(
-                currentUser.getApiKey(),
-                currentUser.getSecret()
-        );
-        BinanceApiRestClient client = factory.newRestClient();
-
-
-
-        // TODO: return type(?)
-        return client.newOrder(NewOrder.limitBuy(symbol, TimeInForce.GTC, amount, price));
+        if (type.equals("Buy"))
+            return tradeService.marketBuy(symbol, amount);
+        else if (type.equals("Sell"))
+            return tradeService.marketSell(symbol, amount);
+        else
+            return new NewOrderResponse();
 
     }
+
+
+
+
+    @PostMapping(value = "/limit{type}/{symbol}&{amount}&{price}")
+    public NewOrderResponse placeLimitOrder(@PathVariable(value = "type") String type,
+                                            @PathVariable(value = "symbol") String symbol,
+                                            @PathVariable(value = "amount") String amount,
+                                            @PathVariable(value = "price") String price) {
+
+        if (type.equals("Buy"))
+            return tradeService.limitBuy(symbol, amount, price);
+        else if (type.equals("Sell"))
+            return tradeService.limitSell(symbol, amount, price);
+        else
+            return new NewOrderResponse();
+
+    }
+
+
+//    @PostMapping(value = "/stopLoss/{symbol}&{amount}&{price}")
+//    public NewOrderResponse placeStopLossOrder(@PathVariable(value = "symbol") String symbol,
+//                                               @PathVariable(value = "amount") String amount,
+//                                               @PathVariable(value = "price") String price) {
+//        // Grab current user
+//        UserPrincipal currentUser = (UserPrincipal)
+//                SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance(
+//                currentUser.getApiKey(),
+//                currentUser.getSecret()
+//        );
+//        BinanceApiRestClient client = factory.newRestClient();
+//
+//
+//        return client.newOrder(NewOrder.(symbol, TimeInForce.GTC, amount, price));
+//
+//    }
+
+    //@PostMapping(value = "/stoplossLimit/{symbol}&{amount}&{price}&{stop")
 
 }
