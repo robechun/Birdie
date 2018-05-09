@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -45,6 +42,18 @@ public class ProfileController {
             return new ResponseEntity(HttpStatus.OK);
 
         return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
+
+    }
+
+    @PutMapping(value = "/newPassword")
+    public ResponseEntity changePassword(@RequestBody String password) {
+        UserPrincipal currentUser = (UserPrincipal)
+                SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (!userRepository.setPassword(currentUser.getUsername(), password))
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity(HttpStatus.OK);
 
     }
 }
