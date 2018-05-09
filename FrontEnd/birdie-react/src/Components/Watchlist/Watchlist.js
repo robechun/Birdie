@@ -122,11 +122,11 @@ class Watchlist extends Component {
 			<NavBar/>
 			<br></br>
 			<Grid divided='vertically'>
-				<Grid.Row columns={3}>
+				<Grid.Row columns={2}>
 					<Grid.Column width={1}>
 					</Grid.Column>	
 					
-					<Grid.Column width={10}>	  
+					<Grid.Column width={14}>	  
 						<div className="container">
 						  <div className="row clearfix">
 							<div className="col-md-12 column">
@@ -187,6 +187,8 @@ class Watchlist extends Component {
 								</Table.Body>
 							  </Table>
 							  
+							  <div style={{display: 'flex', justifyContent: 'center'}}>
+							  
 							  <Button 
 							    color="green" 
 								onClick={this.handleAddRow} 
@@ -201,7 +203,9 @@ class Watchlist extends Component {
 								className="btn btn-danger float-right"
 							  >
 								Delete Row
-							  </Button>								  
+							  </Button>
+							  </div>
+							  
 							</div>
 						  </div>
 						</div>						

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import axios from 'axios';
 import CoinTable from './CoinTable/CoinTable';
 import LandingPageChart from './LandingPageChart/LandingPageChart'
 
@@ -13,6 +13,8 @@ import {
   Grid,
   Header,
   Icon,
+  Input,
+  Table,
   Image,
   List,
   Menu,
@@ -87,10 +89,70 @@ render() {
 
 
 class Wallet extends Component {
+	constructor(props) {
+        super(props);
+        this.state = {
+            coins: []      
+        };
+    }
+	
+	componentDidMount() {
+		const queryURL = "http://localhost:8080/login"
+		axios({
+            method: 'get',
+            url: queryURL,
+            data: this.state.coins,
+            headers: {'Content-Type': 'application/json'},
+        }).then((response) => {
+            console.log(response);
+        }).catch((error) => {
+            console.log(error);
+        });
+	}
+	
   render() {
     return (
 		<div>
 			<NavBar/>
+			<br></br>			
+			<Grid divided='vertically'>
+				<Grid.Row columns={3}>
+					<Grid.Column width={1}>
+					</Grid.Column>						
+					<Grid.Column width={5}>		
+						<Table
+						celled
+						color="blue" inverted
+						>
+							<Table.Header>
+								<Table.Row>
+									<Table.HeaderCell >Asset</Table.HeaderCell>
+									<Table.HeaderCell >Free</Table.HeaderCell>
+									<Table.HeaderCell >Locked</Table.HeaderCell>
+								</Table.Row>
+							</Table.Header>
+
+							<Table.Body>
+								<Table.Row>
+								
+									<Table.Cell>									
+										{ this.state.coins.map(coin => {coin.asset}) }									
+									</Table.Cell>
+									
+									<Table.Cell>
+										{ this.state.coins.map(coin => {coin.free}) }
+									</Table.Cell>
+									
+									<Table.Cell>
+										{ this.state.coins.map(coin => {coin.locked}) }	
+									</Table.Cell>
+
+								</Table.Row>
+							</Table.Body>  
+						</Table>
+					</Grid.Column>		
+				</Grid.Row>
+			</Grid>
 		</div>
     )
   }
