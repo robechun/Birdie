@@ -85,137 +85,65 @@ render() {
 }
 }
 
-
 class Watchlist extends Component {
-	state = {
-    rows: [{}]
-  };
-  handleChange = idx => e => {
-    const { name, value } = e.target;
-    const rows = [...this.state.rows];
-    rows[idx] = {
-      [name]: value
-    };
-    this.setState({
-      rows
-    });
-  };
-  handleAddRow = () => {
-    const item = {
-      coinName: "",
-      coinAmount: "",
-	  note: ""
-    };
-    this.setState({
-      rows: [...this.state.rows, item]
-    });
-  };
-  handleRemoveRow = () => {
-    this.setState({
-      rows: this.state.rows.slice(0, -1)
-    });
-  };
-  
+constructor(props) {
+        super(props);
+        this.state = {
+            watchCoins: []      
+        };
+    }
+	
+	componentDidMount() {
+		const queryURL = "http://localhost:8080/watchlist"
+		axios({
+            method: 'get',
+            url: queryURL,
+            data: this.state.watchCoins,
+            headers: {'Content-Type': 'application/json'},
+        }).then((response) => {
+            console.log(response);
+        }).catch((error) => {
+            console.log(error);
+        });
+	}
+	
   render() {
-    return (	
+    return (
 		<div>
 			<NavBar/>
-			<br></br>
+			<br></br>			
 			<Grid divided='vertically'>
-				<Grid.Row columns={2}>
+				<Grid.Row columns={3}>
 					<Grid.Column width={1}>
-					</Grid.Column>	
-					
-					<Grid.Column width={14}>	  
-						<div className="container">
-						  <div className="row clearfix">
-							<div className="col-md-12 column">
-							
-							  <Table 
-								celled
+					</Grid.Column>						
+					<Grid.Column width={5}>		
+						<Table
+						celled
+						color="blue" inverted
+						>
+							<Table.Header>
+								<Table.Row>
+									<Table.HeaderCell >Watch Coin</Table.HeaderCell>								
+								</Table.Row>
+							</Table.Header>
+
+							<Table.Body>
+								<Table.Row>
 								
-								className="table table-bordered table-hover"
-								id="tab_logic"
-								color="teal" inverted
-							  >
-							  
-								<Table.Header>
-								  <Table.Row>
-									<Table.HeaderCell collapsing className="text-center"> # </Table.HeaderCell>
-									<Table.HeaderCell collapsing className="text-center"> Coin Name </Table.HeaderCell>
-									<Table.HeaderCell collapsing className="text-center"> Coin Amount </Table.HeaderCell>
-									<Table.HeaderCell className="text-center"> Note </Table.HeaderCell>
-								  </Table.Row>
-								</Table.Header>
-								
-								<Table.Body>								
-								  {this.state.rows.map((item, idx) => (
-									<Table.Row id="addr0" key={idx}>
-									  <td>{idx}</td>									  
-									  <Table.Cell collapsing>
-										<Input												  
-										  type="text"
-										  name="coinName"
-										  value={this.state.rows[idx].coinName}
-										  onChange={this.handleChange(idx)}
-										  className="form-control"
-										/>
-									  </Table.Cell>
-									  
-									  <Table.Cell collapsing>
-										<Input										  
-										  type="text"
-										  name="coinAmount"
-										  value={this.state.rows[idx].coinAmount}
-										  onChange={this.handleChange(idx)}
-										  className="form-control"
-										/>
-									  </Table.Cell>
-									  
-									  <Table.Cell>
-										<Input
-										  fluid
-										  type="text"
-										  name="note"
-										  value={this.state.rows[idx].note}
-										  onChange={this.handleChange(idx)}
-										  className="form-control"
-										/>
-									  </Table.Cell>									  									  
-									</Table.Row>
-								  ))}								  
-								</Table.Body>
-							  </Table>
-							  
-							  <div style={{display: 'flex', justifyContent: 'center'}}>
-							  
-							  <Button 
-							    color="green" 
-								onClick={this.handleAddRow} 
-								className="btn btn-primary"
-							  >
-								Add Row
-							  </Button>
-							  
-							  <Button
-								color="red"
-								onClick={this.handleRemoveRow}
-								className="btn btn-danger float-right"
-							  >
-								Delete Row
-							  </Button>
-							  </div>
-							  
-							</div>
-						  </div>
-						</div>						
-					</Grid.Column>
-					
+									<Table.Cell>									
+										{ this.state.watchCoins.map(watchCoin => {watchCoin.asset}) }									
+									</Table.Cell>
+
+								</Table.Row>
+							</Table.Body>  
+						</Table>
+					</Grid.Column>		
 				</Grid.Row>
 			</Grid>
 		</div>
-    );
-  }	
-}
-
+    )
+  }
+} 
 export default Watchlist;
+
+
