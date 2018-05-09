@@ -97,7 +97,7 @@ class Wallet extends Component {
     }
 	
 	componentDidMount() {
-		const queryURL = "http://localhost:8080/login"
+		const queryURL = "http://localhost:3000/wallet"
 		axios({
             method: 'get',
             url: queryURL,
