@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Icon, Table, Button, Modal, Input } from 'semantic-ui-react'
-import CoinRow from './CoinRow'
+import CoinRow from './WatchlistCoinRow'
 import axios from 'axios'
 
 class CoinTable extends Component {
@@ -26,79 +26,82 @@ class CoinTable extends Component {
         const queryURL = "http://localhost:8080/watchlist"
         const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NzQ1MzUsImV4cCI6MTUyNjU3OTMzNX0.qYPcCC8PO76adJvKiThE2lPlcuVwgvVYxMN_6gRuutF2C29l5wdus73uWEL7q30jh1fS_vRKyRQNH0qjZ6RhqQ"
         //GET REQUEST STANDBY
-        // axios({
-        //     method: 'get',
-        //     url: queryURL,
-        //     headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
-        // }).then((response) => {
-        //         console.log("response: " + response.data)
-        //     }
-        // ).catch((error) => {
-        //     console.log(error);
-        // });
+        axios({
+            method: 'get',
+            url: queryURL,
+            headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
+        }).then((response) => {
+                console.log("response: " + response.data)
+                this.setState({
+                    data : response.data
+                })
+            }
+        ).catch((error) => {
+            console.log(error);
+        });
     }
 
     clearWatchlist(){
         //DELETE (CLEAR) REQUEST STANDBY
-        // const queryURL = "http://localhost:8080/watchlist/clear"
-        // const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NTk5NDEsImV4cCI6MTUyNjU2NDc0MX0.xsr5utc8buRqO16RLQnX9JMP3U9N7l6LOkVrse_ya5JpzSciHeGIYFOmgff863kcYtvYmB8iLWxuWS8pKTihWQ";
-        // axios({
-        //     method: 'delete',
-        //     url: queryURL,
-        //     headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
-        // }).then((response) => {
-        //     console.log(response);
-        // }).catch((error) => {
-        //     console.log(error);
-        // });
+        const queryURL = "http://localhost:8080/watchlist/clear"
+        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NTk5NDEsImV4cCI6MTUyNjU2NDc0MX0.xsr5utc8buRqO16RLQnX9JMP3U9N7l6LOkVrse_ya5JpzSciHeGIYFOmgff863kcYtvYmB8iLWxuWS8pKTihWQ";
+        axios({
+            method: 'delete',
+            url: queryURL,
+            headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
+        }).then((response) => {
+            let tempData = this.state.data;
 
-        let tempData = this.state.data;
+            tempData.splice(0,tempData.length);
 
-        tempData.splice(0,tempData.length);
-
-        console.log(tempData);
-        this.setState({
-            data : tempData
-        }, () => {
-            this.toggleClearModal();
-            console.log(this.state.data);
+            console.log(tempData);
+            this.setState({
+                data : tempData
+            }, () => {
+                this.toggleClearModal();
+                console.log(this.state.data);
+            });
+        }).catch((error) => {
+            console.log(error);
         });
+
     }
 
     deleteWatchlist(){
         //DELETE REQUEST STANDBY
-        // const queryURL = "http://localhost:8080/watchlist/delete/" //symbol to append
-        // const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NTk5NDEsImV4cCI6MTUyNjU2NDc0MX0.xsr5utc8buRqO16RLQnX9JMP3U9N7l6LOkVrse_ya5JpzSciHeGIYFOmgff863kcYtvYmB8iLWxuWS8pKTihWQ";
-        // axios({
-        //     method: 'delete',
-        //     url: queryURL + document.getElementById("watchlistDelete").value,
-        //     headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
-        // }).then((response) => {
-        //     console.log(response);
-        // }).catch((error) => {
-        //     console.log(error);
-        // });
-        let tempData = this.state.data;
-        let index = 0;
-        let flag = false;
-        for(let i = 0; i < tempData.length; i++){
-            if(tempData[i] === document.getElementById("delete").value) {
-                flag = true
-                break;
+        const queryURL = "http://localhost:8080/watchlist/delete/" //symbol to append
+        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NTk5NDEsImV4cCI6MTUyNjU2NDc0MX0.xsr5utc8buRqO16RLQnX9JMP3U9N7l6LOkVrse_ya5JpzSciHeGIYFOmgff863kcYtvYmB8iLWxuWS8pKTihWQ";
+        axios({
+            method: 'delete',
+            url: queryURL + document.getElementById("delete").value,
+            headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
+        }).then((response) => {
+            let tempData = this.state.data;
+            let index = 0;
+            let flag = false;
+            for(let i = 0; i < tempData.length; i++){
+                if(tempData[i] === document.getElementById("delete").value) {
+                    flag = true
+                    break;
+                }
+                index = i;
             }
-            index = i;
-        }
-        if(flag) {
-            tempData.splice(index - 1, 1);
-        }
+            if(flag) {
+                console.log("Index: " + index);
+                tempData.splice(index + 1, 1);
+            }
 
-        console.log(tempData);
-        this.setState({
-            data : tempData
-        }, () => {
-            this.toggleDeleteModal();
-            console.log(this.state.data);
+            console.log(tempData);
+            this.setState({
+                data : tempData
+            }, () => {
+                this.toggleDeleteModal();
+                console.log(this.state.data);
+            });
+        }).catch((error) => {
+            console.log(error);
         });
+
     }
 
     addWatchlist(){
@@ -110,35 +113,25 @@ class CoinTable extends Component {
         let url = queryURL + symbol;
         console.log(symbol);
         //POST REQUEST STANDBY
-        // axios({
-        //     method: 'post',
-        //     url: url,
-        //     headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
-        // }).then((response) => {
-        //         let tempData = this.state.data;
-        //         tempData.push(document.getElementById("add").value);
-        //         console.log(tempData);
-        //         this.setState({
-        //            data : tempData
-        //         }, () => {
-        //             this.toggleModal();
-        //             console.log(this.state.data);
-        //         });
-        //     }
-        // ).catch((error) => {
-        //     console.log(error), () => {
-        //         this.toggleModal();
-        //     };
-        // });
-
-        let tempData = this.state.data;
-        tempData.push(document.getElementById("add").value);
-        console.log(tempData);
-        this.setState({
-            data : tempData
-        }, () => {
-            this.toggleAddModal();
-            console.log(this.state.data);
+        axios({
+            method: 'post',
+            url: url,
+            headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
+        }).then((response) => {
+                let tempData = this.state.data;
+                tempData.push(document.getElementById("add").value);
+                console.log(tempData);
+                this.setState({
+                    data : tempData
+                }, () => {
+                    this.toggleAddModal();
+                    console.log(this.state.data);
+                });
+            }
+        ).catch((error) => {
+            console.log(error), () => {
+                this.toggleAddModal();
+            };
         });
     }
 
@@ -199,8 +192,7 @@ class CoinTable extends Component {
                                         <Button positive icon='checkmark' labelPosition='right' content='Add' onClick={this.addWatchlist}/>
                                     </Modal.Actions>
                                 </Modal>
-                            {/*</Table.Cell>*/}
-                            {/*<Table.Cell>*/}
+
                                 <Button negative onClick={this.toggleDeleteModal} content="Delete from Watchlist"/>
                                 <Modal size="mini" open={this.state.openDelete} onClose={this.toggleDeleteModal}>
                                     <Modal.Header>

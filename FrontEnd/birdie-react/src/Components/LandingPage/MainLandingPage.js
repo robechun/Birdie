@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import NavBar from './../NavBar/NavBar';
 import AboutBirdie from './AboutBirdie/AboutBirdie';
 import LandingPageChart from '../LandingPageChart/LandingPageChart';
-import CoinTable from '../CoinTable/CoinTable';
+import CoinTable from '../WatchlistCoinTable/WatchlistCoinTable';
 
 class MainLandingPage extends Component {
   render() {

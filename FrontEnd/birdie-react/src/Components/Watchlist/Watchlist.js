@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {NavLink} from 'react-router-dom'
 
 import NavBar from '../NavBar/NavBar'
-import CoinTable from '../CoinTable/CoinTable';
+import CoinTable from '../WatchlistCoinTable/WatchlistCoinTable';
 import LandingPageChartTwo from '../LandingPageChart/LandingPageChartTwo'
 import { Button, Input } from 'semantic-ui-react'
 import axios from 'axios'
