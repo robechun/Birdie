@@ -19,6 +19,7 @@ public class RegistrationController {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    //TODO MIGHT MOVE TO LOGINCONTROLLER AND RENAME
 
     // Method to register a new user
     // @Receives: all fields of UserPrincipal

@@ -1,22 +1,11 @@
 package io.hoth.birdie.Controllers;
 
-import com.binance.api.client.BinanceApiClientFactory;
-import com.binance.api.client.BinanceApiRestClient;
-import com.binance.api.client.domain.TimeInForce;
-import com.binance.api.client.domain.account.NewOrder;
 import com.binance.api.client.domain.account.NewOrderResponse;
-import io.hoth.birdie.Entities.MarketOrderRequest;
-import io.hoth.birdie.Entities.UserPrincipal;
 import io.hoth.birdie.Services.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import javax.xml.ws.Response;
-
-import static com.binance.api.client.domain.account.NewOrder.limitBuy;
 
 @RestController
 @RequestMapping(value = "/trade")

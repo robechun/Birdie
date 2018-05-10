@@ -1,4 +1,4 @@
-package io.hoth.birdie.Entities;
+package io.hoth.birdie.Payload;
 
 import io.hoth.birdie.CustomAnnotation.PasswordMatches;
 

@@ -1,4 +1,4 @@
-package io.hoth.birdie.Config;
+package io.hoth.birdie.Security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

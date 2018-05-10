@@ -1,4 +1,4 @@
-package io.hoth.birdie.Entities;
+package io.hoth.birdie.Payload;
 
 public class MarketOrderRequest {
 

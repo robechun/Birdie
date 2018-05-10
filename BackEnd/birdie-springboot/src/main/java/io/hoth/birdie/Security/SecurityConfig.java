@@ -1,4 +1,4 @@
-package io.hoth.birdie.Config;
+package io.hoth.birdie.Security;
 
 import io.hoth.birdie.Security.JwtAuthenticationEntryPoint;
 import io.hoth.birdie.Security.JwtAuthenticationFilter;
