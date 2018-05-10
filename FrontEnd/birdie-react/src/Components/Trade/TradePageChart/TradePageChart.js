@@ -2,22 +2,21 @@ import React, { Component } from 'react';
 import TradingViewWidget , { Themes, watchlist } from 'react-tradingview-widget';
 
 class LandingPageChart extends Component {
-    render() {							
+    render() {
         return (
-            <div>				
-		
+      <div classname= 'LandingPageChart'>
 			<TradingViewWidget
 				symbol="BINANCE:BTCUSDT"
-				theme={Themes.LIGHT}
+				theme={Themes.DARK}
 				locale="en"
 				timezone="America/Vancouver"
-				width="1080"
-				height="610"
+				width="610"
+				height="500"
 				withdateranges="true"
 				watchlist = {[
 					'BINANCE:BTCUSDT',
 					'BINANCE:ETCBTC',
-					'BINANCE:LTCBTC',					
+					'BINANCE:LTCBTC',
 					'BINANCE:TRXBTC',
 					'BINANCE:XVGBTC',
 					'BINANCE:ICXBTC',
@@ -34,6 +33,7 @@ class LandingPageChart extends Component {
 					'BINANCE:STORMBTC',
 					'BINANCE:NEOUSDT',
 					'BINANCE:NEOBTC',
+
 					'BINANCE:NCASHBTC',
 					'BINANCE:XLMBTC',
 					'BINANCE:VENBTC',
@@ -48,16 +48,15 @@ class LandingPageChart extends Component {
 					'BINANCE:BCCBTC',
 					'BINANCE:LSKBTC',
 					'BINANCE:STRATBTC',
-					'BINANCE:WTCBTC',				
+					'BINANCE:WTCBTC',
 					'BINANCE:NEBLBTC',
 					'BINANCE:MTLBTC',
 					'BINANCE:XMRBTC',
 					'BINANCE:ELFBTC',
 					'BINANCE:QSPBTC',
 					'BINANCE:QTUMBTC'
-				]}					
-			/>	
-			
+				]}
+			/>
             </div>
         );
     }

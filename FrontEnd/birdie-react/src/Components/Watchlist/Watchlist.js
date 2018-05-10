@@ -89,13 +89,14 @@ class Watchlist extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
-    this.state.filterText = "";
-    this.state.coins = [];         
+    this.state = {
+		filterText: "",
+		coins: [],
+	};
   }
   
 	componentDidMount() {
-		const queryURL = "http://localhost:8080/watchlist/add"
+		const queryURL = "https://api.binance.com/api/v3/ticker/price"
 		axios({
             method: 'get',
             url: queryURL,
@@ -124,31 +125,31 @@ class Watchlist extends React.Component {
     let coin = {
       id: id,
       name: "",
-      note: ""     
+      price: ""     
     }
     this.state.coins.push(coin);
     this.setState(this.state.coins);
   }
 
   handleWatchlistTable(evt) {
-    let item = {
-      id: evt.target.id,
-      name: evt.target.name,
-      value: evt.target.value
-    };
-	
-  let coins = this.state.coins.slice();
-  let newCoins = coins.map(function(coin) {
+		let item = {
+		  id: evt.target.id,
+		  name: evt.target.name,
+		  value: evt.target.value
+		};
+		
+	    let coins = this.state.coins.slice();
+	    let newCoins = coins.map(function(coin) {
 
-    for (let key in coin) {
-      if (key == item.name && coin.id == item.id) {
-        coin[key] = item.value;
+		for (let key in coin) {
+		  if (key == item.name && coin.id == item.id) {
+			coin[key] = item.value;
 
-      }
-    }
-    return coin;
-  });
-    this.setState({coins:newCoins});
+		  }
+		}
+		return coin;
+	  });
+		this.setState({coins:newCoins});
   };
   render() {
 
@@ -158,11 +159,11 @@ class Watchlist extends React.Component {
 		<br></br><br></br>
 		
         <WatchlistTable 
-		onCoinTableUpdate={this.handleWatchlistTable.bind(this)} 
-		onRowAdd={this.handleAddEvent.bind(this)} 
-		onRowDel={this.handleRowDel.bind(this)} 
-		coins={this.state.coins} 
-		filterText={this.state.filterText}
+			onCoinTableUpdate={this.handleWatchlistTable.bind(this)} 
+			onRowAdd={this.handleAddEvent.bind(this)} 
+			onRowDel={this.handleRowDel.bind(this)} 
+			coins={this.state.coins} 
+			filterText={this.state.filterText}
 		/>
 		
       </div>
@@ -172,6 +173,7 @@ class Watchlist extends React.Component {
 
 }
 export default Watchlist;
+
 
 class WatchlistTable extends React.Component {
 
@@ -213,7 +215,7 @@ class WatchlistTable extends React.Component {
 			  <Table.Header>
 				<Table.Row>
 				  <Table.HeaderCell>Coin Name</Table.HeaderCell>
-				  <Table.HeaderCell>Note</Table.HeaderCell>
+				  <Table.HeaderCell>Price</Table.HeaderCell>
 				  <Table.HeaderCell></Table.HeaderCell>
 				</Table.Row>
 			  </Table.Header>
@@ -254,8 +256,8 @@ class CoinRow extends React.Component {
 		<EditableCell 
 		onCoinTableUpdate={this.props.onCoinTableUpdate} 
 			cellData={{
-			  "type": "note",
-			  value: this.props.coin.note,
+			  "type": "price",
+			  value: this.props.coin.price,
 			  id: this.props.coin.id
 			}}
 		/>

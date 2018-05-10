@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 
 import CoinTable from './CoinTable/CoinTable';
-import LandingPageChart from './LandingPageChart/LandingPageChart'
+import LandingPageChart from './TradePageChart/TradePageChart'
+import BuySellSetLimit from './BuySellSetLimit/BuySellSetLimit'
 
 
 import {NavLink} from 'react-router-dom'
@@ -21,6 +22,7 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react'
+
 
 
 class NavBar extends Component {
@@ -55,7 +57,7 @@ render() {
                   <p>Watchlist</p>
               </NavLink>
               </Menu.Item>
-              <Menu.Item as='a' active>
+              <Menu.Item as='a'>
               <NavLink exact to={'/wallet'}>
                   <p>Wallet</p>
               </NavLink>
@@ -63,6 +65,11 @@ render() {
               <Menu.Item as='a'>
               <NavLink exact to={'/profile'}>
                   <p>Profile</p>
+              </NavLink>
+              </Menu.Item>
+              <Menu.Item as='a' active>
+              <NavLink exact to={'/trade'}>
+                  <p>Trade</p>
               </NavLink>
               </Menu.Item>
               <Menu.Item position='right'>
@@ -85,25 +92,33 @@ render() {
 }
 
 
+var bgColors = { "Default": "#81b71a",
+                    "Blue": "#00B1E1",
+                    "Cyan": "#37BC9B",
+                    "Green": "#8CC152",
+                    "Red": "#E9573F",
+                    "Yellow": "#F6BB42",
+};
 
 class Trade extends Component {
   render() {
     return (
-      <div>
+
+    <div>
       <NavBar/>
-    <div className="righttable">
-    <h2>
-    Coin Table
-    </h2>
-    <CoinTable/>
-    </div>
-    <div className="leftchart">
-    <h2>
-    Overall
-    </h2>
+      <Grid divided='vertically'>
+      <Grid.Row columns={2}>
+      <Grid.Column>
+      <BuySellSetLimit/>
+      </Grid.Column>
+      <Grid.Column>
       <LandingPageChart/>
+
+      </Grid.Column>
+      </Grid.Row>
+      </Grid>
     </div>
-    </div>
+
     )
   }
 }
