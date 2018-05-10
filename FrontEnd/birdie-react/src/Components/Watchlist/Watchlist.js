@@ -92,6 +92,7 @@ class Watchlist extends React.Component {
     this.state = {
 		filterText: "",
 		coins: [],
+		BinanceCoins: []
 	};
   }
   
@@ -108,7 +109,24 @@ class Watchlist extends React.Component {
             console.log(error);
         });
 	}
-  
+	
+	componentDidMount() {
+		fetch('https://api.binance.com/api/v3/ticker/price')
+		.then(results => {
+			return results.json();
+		}).then(data => {
+			let BinanceCoins = data.results.map((BinanceCoin) => {
+				return(
+					<div key={BinanceCoin.results}>
+						{BinanceCoin.symbol}
+						{BinanceCoin.price}
+					</div>
+				)	
+			})
+			this.setState({BinanceCoins:BinanceCoins});
+			console.log("state", this.state.BinanceCoins);
+		})
+	}		
   
   handleUserInput(filterText) {
     this.setState({filterText: filterText});
@@ -181,6 +199,7 @@ class WatchlistTable extends React.Component {
     let onCoinTableUpdate = this.props.onCoinTableUpdate;
     let rowDel = this.props.onRowDel;
     let filterText = this.props.filterText;
+	
     let coin = this.props.coins.map(function(coin) {
       if (coin.name.indexOf(filterText) === -1) {
         return;
@@ -194,6 +213,8 @@ class WatchlistTable extends React.Component {
 		  />
 	  )
     });
+	
+	
     return (
       <div>
 
