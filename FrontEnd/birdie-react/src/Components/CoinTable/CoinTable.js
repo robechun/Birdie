@@ -18,8 +18,8 @@ class CoinTable extends Component {
                 <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>Symbol</Table.HeaderCell>
-                    <Table.HeaderCell>Value</Table.HeaderCell>
-                    <Table.HeaderCell>Percentage</Table.HeaderCell>
+                    {/*<Table.HeaderCell>Value</Table.HeaderCell>*/}
+                    {/*<Table.HeaderCell>Percentage</Table.HeaderCell>*/}
                 </Table.Row>
                 </Table.Header>
 
