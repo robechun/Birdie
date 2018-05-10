@@ -12,7 +12,7 @@ class MainLandingPage extends Component {
         <NavBar/>
         <AboutBirdie/>
         <LandingPageChart/>
-        {/*<CoinTable/>*/}
+        {/*<WalletCoinTable/>*/}
       </div>
     )
   }
@@ -68,7 +68,7 @@ export default MainLandingPage;
 //     />
 // <div classname = "centerize">
 //     <LandingPageChart/>
-//     <CoinTable/>
+//     <WalletCoinTable/>
 //     </div>
 //     <Button primary size='huge'>
 //     <NavLink exact to={'/login'}>

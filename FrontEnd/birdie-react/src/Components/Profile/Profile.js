@@ -2,42 +2,96 @@ import React, { Component } from 'react'
 
 import NavBar from './../NavBar/NavBar';
 import CoinTable from './CoinTable/CoinTable';
+import axios from 'axios';
 import {
-  Button,
-  Container,
-  Divider,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  List,
-  Menu,
-  Responsive,
-  Segment,
-  Sidebar,
-  Visibility,
+    Button,
+    Container,
+    Divider,
+    Grid,
+    Header,
+    Icon,
+    Image,
+    List,
+    Menu,
+    Responsive,
+    Segment,
+    Sidebar,
+    Visibility,
+    Input
 } from 'semantic-ui-react'
 
 class Profile extends Component {
-  render() {
-    return (
-      <div>
-        <NavBar/>
-        <div className="righttable">
-        <CoinTable/>
-        </div>
-        <div className="usertext">
-        <h1>User</h1>
-        </div>
-        <div className="user">
-        <Image
-        src='/user.jpg'
-        size='medium'
-        />
-        </div>
-      </div>
-    )
-  }
+
+    modifyPass(){
+        let newPass = document.getElementById("modifyPass").value;
+        const queryURL = "http://localhost:8080/profile/newPassword"
+        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NjA1OTgsImV4cCI6MTUyNjU2NTM5OH0.3opRvaitjj9jY7p5hyi56iRjX4lNLjcsKqWsuNZAnJ5HBA1bYtiquWe9s1eoo01LiIt1wdcRyWi7asusbuUxnA"
+        axios({
+            method: 'put',
+            url: queryURL,
+            data: newPass,
+            headers: {'Content-Type': 'text/plain', 'Authorization': "Bearer " + token},
+        }).then((response) => {
+            console.log(response);
+            console.log("Success");
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+    addAPIKey(){
+        let apiKey = document.getElementById("apiKey").value;
+        const queryURL = "http://localhost:8080/profile/addApiKey"
+        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NjA1OTgsImV4cCI6MTUyNjU2NTM5OH0.3opRvaitjj9jY7p5hyi56iRjX4lNLjcsKqWsuNZAnJ5HBA1bYtiquWe9s1eoo01LiIt1wdcRyWi7asusbuUxnA"
+        axios({
+            method: 'post',
+            url: queryURL,
+            data: apiKey,
+            headers: {'Content-Type': 'text/plain', 'Authorization': "Bearer " + token},
+        }).then((response) => {
+            console.log(response);
+            console.log("Api key added Successfully");
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+    addAPIKey(){
+        let secret = document.getElementById("secret").value;
+        const queryURL = "http://localhost:8080/profile/addSecret"
+        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NjA1OTgsImV4cCI6MTUyNjU2NTM5OH0.3opRvaitjj9jY7p5hyi56iRjX4lNLjcsKqWsuNZAnJ5HBA1bYtiquWe9s1eoo01LiIt1wdcRyWi7asusbuUxnA"
+        axios({
+            method: 'post',
+            url: queryURL,
+            data: secret,
+            headers: {'Content-Type': 'text/plain', 'Authorization': "Bearer " + token},
+        }).then((response) => {
+            console.log(response);
+            console.log("Api key added Successfully");
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <NavBar/>
+                <div className="usertext">
+                    <h1>User</h1>
+                </div>
+                <Button onClick = {this.modifyPass}>Modify Password</Button>
+                <Input id="modifyPass"/>
+
+                <Button onClick={this.addAPIKey}>Add API Key</Button>
+                <Input id="apiKey"/>
+
+                <Button onClick={this.addSecret}>Add Secret</Button>
+                <Input id ="secret"/>
+
+            </div>
+        )
+    }
 }
 
 export default Profile;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import CoinTable from './CoinTable/CoinTable';
+import WalletCoinTable from './WalletCoinTable/WalletCoinTable';
 import LandingPageChart from './LandingPageChart/LandingPageChart'
 import axios from 'axios'
 import NavBar from '../NavBar/NavBar'
@@ -27,7 +27,18 @@ class Wallet extends Component {
 
     componentWillMount(){
         this.state = {
-            data: []
+            data : [
+                {
+                    "asset": "LTC",
+                    "free": "0.00000000",
+                    "locked": "0.00000000"
+                },
+                {
+                    "asset": "ETH",
+                    "free": "0.00000000",
+                    "locked": "0.00000000"
+                }
+            ]
         }
 
         const queryURL = "http://localhost:8080/wallet/balance"
@@ -38,6 +49,9 @@ class Wallet extends Component {
             headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
         }).then((response) => {
             console.log(response);
+            this.setState({
+                data: response.data
+            });
         }).catch((error) => {
             console.log(error);
         });
@@ -51,7 +65,7 @@ class Wallet extends Component {
                 <h2>
                   Coin Table
                 </h2>
-                <CoinTable/>
+                <WalletCoinTable data ={this.state.data}/>
               </div>
               <div className="leftchart">
                 <h2>
