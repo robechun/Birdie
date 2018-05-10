@@ -85,65 +85,207 @@ render() {
 }
 }
 
-class Watchlist extends Component {
-constructor(props) {
-        super(props);
-        this.state = {
-            watchCoins: []      
-        };
+class Watchlist extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+    this.state.filterText = "";
+    this.state.coins = [];     
+    
+  }
+  
+  handleUserInput(filterText) {
+    this.setState({filterText: filterText});
+  };
+  
+  handleRowDel(coin) {
+    var index = this.state.coins.indexOf(coin);
+    this.state.coins.splice(index, 1);
+    this.setState(this.state.coins);
+  };
+
+  handleAddEvent(evt) {
+    var id = (+ new Date() + Math.floor(Math.random() * 999999)).toString(36);
+    var coin = {
+      id: id,
+      name: "",
+      note: ""     
     }
-	
-	componentDidMount() {
-		const queryURL = "http://localhost:8080/watchlist"
-		axios({
-            method: 'get',
-            url: queryURL,
-            data: this.state.watchCoins,
-            headers: {'Content-Type': 'application/json'},
-        }).then((response) => {
-            console.log(response);
-        }).catch((error) => {
-            console.log(error);
-        });
-	}
-	
+    this.state.coins.push(coin);
+    this.setState(this.state.coins);
+  }
+
+  handleWatchlistTable(evt) {
+    var item = {
+      id: evt.target.id,
+      name: evt.target.name,
+      value: evt.target.value
+    };
+var coins = this.state.coins.slice();
+  var newCoins = coins.map(function(coin) {
+
+    for (var key in coin) {
+      if (key == item.name && coin.id == item.id) {
+        coin[key] = item.value;
+
+      }
+    }
+    return coin;
+  });
+    this.setState({coins:newCoins});
+  };
+  render() {
+
+    return (
+      <div>
+		<NavBar/>
+		<br></br><br></br>
+		
+        <SearchBar
+		filterText={this.state.filterText} 
+		onUserInput={this.handleUserInput.bind(this)}
+		/>
+		
+        <WatchlistTable 
+		onProductTableUpdate={this.handleWatchlistTable.bind(this)} 
+		onRowAdd={this.handleAddEvent.bind(this)} 
+		onRowDel={this.handleRowDel.bind(this)} 
+		coins={this.state.coins} 
+		filterText={this.state.filterText}
+		/>
+		
+      </div>
+    );
+
+  }
+
+}
+export default Watchlist;
+
+
+class SearchBar extends React.Component {
+  handleChange() {
+    this.props.onUserInput(this.refs.filterTextInput.value);
+  }
   render() {
     return (
-		<div>
-			<NavBar/>
-			<br></br>			
-			<Grid divided='vertically'>
-				<Grid.Row columns={3}>
-					<Grid.Column width={1}>
-					</Grid.Column>						
-					<Grid.Column width={5}>		
-						<Table
-						celled
-						color="blue" inverted
-						>
-							<Table.Header>
-								<Table.Row>
-									<Table.HeaderCell >Watch Coin</Table.HeaderCell>								
-								</Table.Row>
-							</Table.Header>
+      <div>
+        <input type="text" 
+		placeholder="Search..." 
+		value={this.props.filterText} 
+		ref="filterTextInput" 
+		onChange={this.handleChange.bind(this)}
+		/>
+      </div>
 
-							<Table.Body>
-								<Table.Row>
-								
-									<Table.Cell>									
-										{ this.state.watchCoins.map(watchCoin => {watchCoin.asset}) }									
-									</Table.Cell>
-
-								</Table.Row>
-							</Table.Body>  
-						</Table>
-					</Grid.Column>		
-				</Grid.Row>
-			</Grid>
-		</div>
-    )
+    );
   }
-} 
-export default Watchlist;
+
+}
+
+class WatchlistTable extends React.Component {
+
+  render() {
+    var onProductTableUpdate = this.props.onProductTableUpdate;
+    var rowDel = this.props.onRowDel;
+    var filterText = this.props.filterText;
+    var coin = this.props.coins.map(function(coin) {
+      if (coin.name.indexOf(filterText) === -1) {
+        return;
+      }
+      return (
+		  <ProductRow 
+		  onProductTableUpdate={onProductTableUpdate} 
+		  coin={coin} 
+		  onDelEvent={rowDel.bind(this)} 
+		  key={coin.id}
+		  />
+	  )
+    });
+    return (
+      <div>
+
+      <button 
+	  type="button" 
+	  onClick={this.props.onRowAdd} 
+	  className="btn btn-success pull-right">Add
+	  </button>
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Note</th>              
+            </tr>
+          </thead>
+
+          <tbody>
+            {coin}
+
+          </tbody>
+
+        </table>
+      </div>
+    );
+
+  }
+
+}
+
+class ProductRow extends React.Component {
+  onDelEvent() {
+    this.props.onDelEvent(this.props.coin);
+
+  }
+  render() {
+
+    return (
+      <tr className="eachRow">
+        <EditableCell 
+			onProductTableUpdate={this.props.onProductTableUpdate} 
+			cellData={{
+			  "type": "name",
+			  value: this.props.coin.name,
+			  id: this.props.coin.id
+			}}
+		/>
+		<EditableCell 
+		onProductTableUpdate={this.props.onProductTableUpdate} 
+			cellData={{
+			  "type": "note",
+			  value: this.props.coin.note,
+			  id: this.props.coin.id
+			}}
+		/>
+        <td className="del-cell">
+          <input type="button" 
+		  onClick={this.onDelEvent.bind(this)} 
+		  value="X" className="del-btn"
+		  />
+        </td>
+      </tr>
+    );
+
+  }
+
+}
+class EditableCell extends React.Component {
+
+  render() {
+    return (
+      <td>
+        <input type='text' 
+		name={this.props.cellData.type} 
+		id={this.props.cellData.id} 
+		value={this.props.cellData.value} 
+		onChange={this.props.onProductTableUpdate}
+		/>
+      </td>
+    );
+
+  }
+
+}
 
 

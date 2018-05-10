@@ -150,12 +150,106 @@ class Wallet extends Component {
 
 									<Table.Cell>
 										{ 
-										this.state.coins.map(coin => {coin.free}) +
-										this.state.coins.map(coin => {coin.locked})
+											this.state.coins.map(coin => {coin.free}) +
+											this.state.coins.map(coin => {coin.locked})
 										}	
 									</Table.Cell>	
 								</Table.Row>
 								
+								<Table.Row>
+									<Table.Cell>
+										BTC
+									</Table.Cell>
+									
+									<Table.Cell>
+										0.0167
+									</Table.Cell>
+									
+									<Table.Cell>
+										0.0056
+									</Table.Cell>
+									
+									<Table.Cell>
+										0.0223
+									</Table.Cell>									
+								</Table.Row>
+								
+								
+								<Table.Row>
+									<Table.Cell>
+										ETH
+									</Table.Cell>
+									
+									<Table.Cell>
+										5.7841
+									</Table.Cell>
+									
+									<Table.Cell>
+										4.6913
+									</Table.Cell>
+									
+									<Table.Cell>
+										10.475
+									</Table.Cell>									
+								</Table.Row>
+								
+								
+								<Table.Row>
+									<Table.Cell>
+										LTH
+									</Table.Cell>
+									
+									<Table.Cell>
+										2.5514
+									</Table.Cell>
+									
+									<Table.Cell>
+										12.5607
+									</Table.Cell>
+									
+									<Table.Cell>
+										15.1121
+									</Table.Cell>									
+								</Table.Row>
+								
+								
+								<Table.Row>
+									<Table.Cell>
+										TRX
+									</Table.Cell>
+									
+									<Table.Cell>
+										1.1800
+									</Table.Cell>
+									
+									<Table.Cell>
+										7.5114
+									</Table.Cell>
+									
+									<Table.Cell>
+										8.6914
+									</Table.Cell>									
+								</Table.Row>
+								
+								
+								<Table.Row>
+									<Table.Cell>
+										XRP
+									</Table.Cell>
+									
+									<Table.Cell>
+										12.0011
+									</Table.Cell>
+									
+									<Table.Cell>
+										4.6088
+									</Table.Cell>
+									
+									<Table.Cell>
+										16.6099
+									</Table.Cell>									
+								</Table.Row>
+
 								
 								
 							</Table.Body>  
