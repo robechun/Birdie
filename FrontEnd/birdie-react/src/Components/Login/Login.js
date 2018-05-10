@@ -45,9 +45,10 @@ class LoginForm extends Component {
     }
 
     render() {
-        if(this.state.redirect === true) {
+        let redirect = <div/>
+        if(this.state.redirect == true) {
             console.log("Log-in successful!");
-            <Redirect to={'/'} />
+            redirect = <Redirect to={'/'} />
         }
 
 
@@ -102,6 +103,7 @@ class LoginForm extends Component {
                         </Message>
                     </Grid.Column>
                 </Grid>
+                {redirect}
             </div>
         )
     }

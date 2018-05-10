@@ -41,20 +41,21 @@ class Wallet extends Component {
             ]
         }
 
-        const queryURL = "http://localhost:8080/wallet/balance"
-        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NjA1OTgsImV4cCI6MTUyNjU2NTM5OH0.3opRvaitjj9jY7p5hyi56iRjX4lNLjcsKqWsuNZAnJ5HBA1bYtiquWe9s1eoo01LiIt1wdcRyWi7asusbuUxnA"
-        axios({
-            method: 'get',
-            url: queryURL,
-            headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
-        }).then((response) => {
-            console.log(response);
-            this.setState({
-                data: response.data
-            });
-        }).catch((error) => {
-            console.log(error);
-        });
+        // GET REQUEST ON STANDBY
+        // const queryURL = "http://localhost:8080/wallet/balance"
+        // const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NjA1OTgsImV4cCI6MTUyNjU2NTM5OH0.3opRvaitjj9jY7p5hyi56iRjX4lNLjcsKqWsuNZAnJ5HBA1bYtiquWe9s1eoo01LiIt1wdcRyWi7asusbuUxnA"
+        // axios({
+        //     method: 'get',
+        //     url: queryURL,
+        //     headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
+        // }).then((response) => {
+        //     console.log(response);
+        //     this.setState({
+        //         data: response.data
+        //     });
+        // }).catch((error) => {
+        //     console.log(error);
+        // });
     }
 
     render() {
