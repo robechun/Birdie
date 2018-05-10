@@ -5,15 +5,24 @@ import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @Component
+//@PropertySource("classpath:application.properties")
 public class JwtTokenProvider {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
+
+//    @Bean
+//    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+//        return new PropertySourcesPlaceholderConfigurer();
+//    }
 
     @Value("${app.jwtSecret}")
     private String jwtSecret;

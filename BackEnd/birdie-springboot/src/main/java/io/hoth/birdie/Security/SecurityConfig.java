@@ -79,6 +79,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests() // TODO: csrf disabled for now because if not we get errors
                 .antMatchers("/publicTest/*").permitAll()
                 .antMatchers("/register").permitAll()
+                .antMatchers("/signup").permitAll()
+                .antMatchers("/signin").permitAll()
                 .antMatchers("/privateTest").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated();
