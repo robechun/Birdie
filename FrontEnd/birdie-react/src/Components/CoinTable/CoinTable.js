@@ -1,34 +1,37 @@
 import React, { Component } from 'react'
 import { Icon, Table } from 'semantic-ui-react'
+import CoinRow from './CoinRow'
 
 class CoinTable extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            //data: this.props.coinlist
+            data: this.props.coinlist
+        }
+    }
   render() {
+
     return (
-        <div className="full" >
+        <div className="" >
             <Table celled selectable>
                 <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell>Coin</Table.HeaderCell>
+                    <Table.HeaderCell>Symbol</Table.HeaderCell>
                     <Table.HeaderCell>Value</Table.HeaderCell>
                     <Table.HeaderCell>Percentage</Table.HeaderCell>
                 </Table.Row>
                 </Table.Header>
 
                 <Table.Body>
-                <Table.Row>
-                    <Table.Cell negative>BTC</Table.Cell>
-                    <Table.Cell negative>BTCValue: $11</Table.Cell>
-                    <Table.Cell negative> 
-                    BTCPercentage: <Icon name='minus' /> 12%
-                    </Table.Cell>
-                </Table.Row>
-                <Table.Row positive>
-                    <Table.Cell>ETH</Table.Cell>
-                    <Table.Cell>ETHValue: $10,000</Table.Cell>
-                    <Table.Cell>
-                    ETHPercentage: <Icon name='plus' /> 1000%
-                    </Table.Cell>
-                </Table.Row>
+                    {
+                        this.state.data.map((i) => {
+                            console.log('test');
+                        //for(let i = 0 ; i < this.state.data.length; i++) {
+                            return <CoinRow coinSymbol={i} key={i}>Test</CoinRow>
+                        //}
+                        })
+                    }
                 </Table.Body>
             </Table>
       </div>

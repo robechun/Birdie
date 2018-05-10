@@ -2,13 +2,19 @@ import React, { Component } from 'react'
 import {NavLink} from 'react-router-dom'
 
 import NavBar from '../NavBar/NavBar'
-import CoinTable from './CoinTable/CoinTable';
+import CoinTable from '../CoinTable/CoinTable';
 import LandingPageChartTwo from '../LandingPageChart/LandingPageChartTwo'
 import { Button, Input } from 'semantic-ui-react'
 import axios from 'axios'
 
 class Watchlist extends Component {
 
+    constructor(){
+        super();
+        this.state = {
+            watchlist : ["BTCETH"]
+        }
+    }
     //receiving Internal 500 error (message: "the given id must not be null" via postman)
     componentWillMount(){
         const queryURL = "http://localhost:8080/watchlist/"
@@ -19,6 +25,11 @@ class Watchlist extends Component {
             headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
         }).then((response) => {
             console.log(response);
+            this.setState({
+                watchlist : response.data //set get watchlist response to state's watchlist
+            }, () => {
+                console.log(this.state.watchlist);
+            })
         }).catch((error) => {
             console.log(error);
         });
@@ -85,7 +96,7 @@ class Watchlist extends Component {
                     <Button onClick={this.clearWatchlist}>Clear Watchlist</Button>
                     <Input id="watchlistClear"/>
                     
-                    <CoinTable/>
+                    <CoinTable coinlist={this.state.watchlist}/>
                 </div>
             </div>
         )
