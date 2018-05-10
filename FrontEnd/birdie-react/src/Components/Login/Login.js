@@ -1,229 +1,158 @@
 
 import React, { Component } from 'react'
+import axios from 'axios';
+import { Redirect } from 'react-router-dom'
+import {BrowserRouter, Switch, Route, Link} from 'react-router-dom'
 
 import {NavLink} from 'react-router-dom';
-
-import axios from 'axios';
 
 import NavBar from './../NavBar/NavBar';
 import PropTypes from 'prop-types'
 import {
-  Button,
-  Container,
-  Divider,
-  Grid,
-  Header,
-  Icon,
-  List,
-  Form,
-  Image,
-  Message,
-  Menu,
-  Responsive,
-  Segment,
-  Sidebar,
-  Visibility,
+    Button,
+    Container,
+    Divider,
+    Grid,
+    Header,
+    Icon,
+    List,
+    Form,
+    Image,
+    Message,
+    Menu,
+    Responsive,
+    Segment,
+    Sidebar,
+    Visibility,
 } from 'semantic-ui-react'
 
 
-{/*class LoginForm extends Component {
-constructor (){
-  super()
+class LoginForm extends Component {
+  constructor (props) {
+      super(props);
+      this.state = {
+        email: '',
+        password: '',
+        formErrors: {email: '', password: ''},
+        emailValid: false,
+        passwordValid: false,
+        formValid: false
+      }
+    }
+    handleUserInput = (e) => {
+  const name = e.target.name;
+  const value = e.target.value;
+  this.setState({[name]: value},
+                () => { this.validateField(name, value) });
+}
 
-  this.handleClick = this.handleClick.bind(this)
-}
-handleClick () {
-  console.log('log in')
-}
-  render() {
-    return (
-      <div>
-        <NavBar/>
-        <h1>Hello Login</h1>
-      </div>
-    )
+validateField(fieldName, value) {
+  let fieldValidationErrors = this.state.formErrors;
+  let emailValid = this.state.emailValid;
+  let passwordValid = this.state.passwordValid;
+
+  switch(fieldName) {
+    case 'email':
+      emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+      fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+      break;
+    case 'password':
+      passwordValid = value.length >= 6;
+      fieldValidationErrors.password = passwordValid ? '': ' is too short';
+      break;
+    default:
+      break;
   }
-}*/}
+  this.setState({formErrors: fieldValidationErrors,
+                  emailValid: emailValid,
+                  passwordValid: passwordValid
+                }, this.validateForm);
+}
 
+validateForm() {
+  this.setState({formValid: this.state.emailValid && this.state.passwordValid});
+}
 
-const HomepageHeading = ({ mobile }) => (
-  <Container text>
-  <div className='registerForm-form'>
-    {
-      /*notes*/
+errorClass(error) {
+  return(error.length === 0 ? '' : 'has-error');
+}
+
+    handleLogin(){
+        const queryURL = "http://localhost:8080/login"
+        console.log("Heyo");
+        let user = {
+            username: document.getElementById("username").value,
+            password: document.getElementById("password").value
+        };
+        console.log(user);
+        axios({
+            method: 'post',
+            url: queryURL,
+            data: user,
+            headers: {'Content-Type': 'application/json'},
+        }).then((response) => {
+            console.log(response);
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
-    <style>{`
-      body > div,
-      body > div > div,
-      body > div > div > div.login-form {
-        height: 100%;
-      }
-    `}</style>
-    <Grid
-      textAlign='center'
-      style={{ height: '100%' }}
-      verticalAlign='middle'
-    >
-<Grid.Column style={{ maxWidth: 450 }}>
-          <Header as='h2' color='teal' textAlign='center-left'>
-            <Image src='/logo.png' />
-            {' '}Log-in to your Account
-          </Header>
-          <Form size='large'>
-            <Segment stacked>
-              <Form.Input
-                fluid
-                icon='user'
-                iconPosition='left'
-                placeholder='E-mail address'
-              />
-              <Form.Input
-                fluid
-                icon='lock'
-                iconPosition='left'
-                placeholder='Password'
-                type='password'
-              />
+    render() {
+        return (
+            <div  className='registerForm-form'>
+                {
+                    /*notes*/
+                }
+                <div>
+                    <NavBar/>
+                </div>
+                <style>{`
+                  body > div,
+                  body > div > div,
+                  body > div > div > div.login-form {
+                    height: 100%;
+                   }
+            `}</style>
+                <Grid
+                    textAlign='center'
+                    style={{ height: '100%' }}
+                    verticalAlign='middle'
+                >
+                    <Grid.Column style={{ maxWidth: 450 }}>
+                        <Header as='h2' color='teal' textAlign='center-left'>
+                            <Image src='/logo.png' />
+                            {' '}Log-in to your Account
+                        </Header>
+                        <Form size='large'>
+                            <Segment stacked>
+                                <Form.Input
+                                    fluid
+                                    icon='user'
+                                    iconPosition='left'
+                                    placeholder='username'
+                                    id = "username"
+                                />
+                                <Form.Input
+                                    fluid
+                                    icon='lock'
+                                    iconPosition='left'
+                                    placeholder='Password'
+                                    type='password'
+                                    id = "password"
+                                />
 
-              <Button color='teal' fluid size='large' onClick={this.handleClick}>Login</Button>
-               </Segment>
-          </Form>
-          <Message>
-            New? <a href="/Register">Sign Up</a>
-          </Message>
-        </Grid.Column>
-      </Grid>
-    </div>
-  </Container>
-
-
-)
-
-HomepageHeading.propTypes = {
-  mobile: PropTypes.bool,
-}
-
-/* Heads up!
- * Neither Semantic UI nor Semantic UI React offer a responsive navbar, however, it can be implemented easily.
- * It can be more complicated, but you can create really flexible markup.
- */
-class DesktopContainer extends Component {
-
-  state = {}
-
-  hideFixedMenu = () => this.setState({ fixed: false })
-  showFixedMenu = () => this.setState({ fixed: true })
-
-  render() {
-    const { children } = this.props
-    const { fixed } = this.state
-
-    return (
-      <Responsive {...Responsive.onlyComputer}>
-        <Visibility once={false} onBottomPassed={this.showFixedMenu} onBottomPassedReverse={this.hideFixedMenu}>
-          <Segment inverted textAlign='center'>
-            <Menu
-              fixed={fixed ? 'top' : null}
-              inverted={!fixed}
-              pointing={!fixed}
-              secondary={!fixed}
-              size='medium'
-            >
-              <Container>
-                <Menu.Item as='a' active>
-                <NavLink exact to={'/'}>
-                    <p>Home</p>
-                </NavLink>
-                </Menu.Item>
-                <Menu.Item as='a'>
-                <NavLink exact to={'/watchlist'}>
-                    <p>Watchlist</p>
-                </NavLink>
-                </Menu.Item>
-                <Menu.Item as='a'>
-                <NavLink exact to={'/wallet'}>
-                    <p>Wallet</p>
-                </NavLink>
-                </Menu.Item>
-                <Menu.Item as='a'>
-                <NavLink exact to={'/profile'}>
-                    <p>Profile</p>
-                </NavLink>
-                </Menu.Item>
-                <Menu.Item as='a'>
-                <NavLink exact to={'/trade'}>
-                    <p>Trade</p>
-                </NavLink>
-                </Menu.Item>
-                <Menu.Item position='right'>
-                <NavLink exact to={'/login'}>
-                  <Button as='a' inverted={!fixed}>Log in</Button>
-                  </NavLink>
-                  <NavLink exact to={'/register'}>
-                  <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>Sign Up</Button>
-                  </NavLink>
-                </Menu.Item>
-              </Container>
-            </Menu>
-            <HomepageHeading />
-            </Segment>
-        </Visibility>
-
-        {children}
-      </Responsive>
-    )
-  }
-}
-
-DesktopContainer.propTypes = {
-  children: PropTypes.node,
+                                <Button color='black' text color='white' fluid size='large' onClick={this.handleLogin}><Link to ='/'>Login</Link></Button>
+                            </Segment>
+                        </Form>
+                        <Message>
+                            New? <a href="/Register">Sign Up</a>
+                        </Message>
+                    </Grid.Column>
+                </Grid>
+            </div>
+        )
+    }
 }
 
 
-
-
-const ResponsiveContainer = ({ children }) => (
-  <div>
-    <DesktopContainer>{children}</DesktopContainer>
-  </div>
-)
-
-ResponsiveContainer.propTypes = {
-  children: PropTypes.node,
-}
-
-const HomepageLayout = () => (
-  <ResponsiveContainer>
-
-    <Segment inverted vertical style={{ padding: '5em 0em' }}>
-      <Container>
-        <Grid divided inverted stackable>
-          <Grid.Row>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='About' />
-              <List link inverted>
-                <List.Item as='a'>Sitemap</List.Item>
-                <List.Item as='a'>Contact Us</List.Item>
-              </List>
-            </Grid.Column>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='Learn' />
-              <List link inverted>
-                <List.Item as='a'>Binance</List.Item>
-                <List.Item as='a'>Investing in Crypto</List.Item>
-                <List.Item as='a'>How To Access</List.Item>
-              </List>
-            </Grid.Column>
-            <Grid.Column width={7}>
-              <Header as='h4' inverted>Birdie</Header>
-              <p>Secure your financial future. Create an account now.</p>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Container>
-    </Segment>
-  </ResponsiveContainer>
-
-)
-export default HomepageLayout
+export default LoginForm;

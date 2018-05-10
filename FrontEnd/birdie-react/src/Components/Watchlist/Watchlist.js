@@ -1,20 +1,23 @@
 import React, { Component } from 'react'
 import {NavLink} from 'react-router-dom'
-
-
 import CoinTable from './CoinTable/CoinTable';
 import LandingPageChart from './LandingPageChart/LandingPageChart'
+import BuySellSetLimit from './BuySellSetLimit/BuySellSetLimit';
+import axios from 'axios';
 
 import {
   Button,
   Container,
   Divider,
+  Form,
   Grid,
   Header,
   Icon,
+  Input,
   Image,
   List,
   Menu,
+  Table,
   Responsive,
   Segment,
   Sidebar,
@@ -87,22 +90,235 @@ render() {
 }
 }
 
+class Watchlist extends React.Component {
 
-class Watchlist extends Component {
-  render() {
-    return (
-
-        <div>
-        <NavBar/>
-      <div className="righttable">
-      <CoinTable/>
-      </div>
-      <div className="leftchart">
-        <LandingPageChart/>
-      </div>
-      </div>
-    )
+  constructor(props) {
+    super(props);
+    this.state = {
+		filterText: "",
+		coins: [],
+		BinanceCoins: []
+	};
   }
+
+	componentDidMount() {
+		const queryURL = "https://api.binance.com/api/v3/ticker/price"
+		axios({
+            method: 'get',
+            url: queryURL,
+            data: this.state.coins,
+            headers: {'Content-Type': 'application/json'},
+        }).then((response) => {
+            console.log(response);
+        }).catch((error) => {
+            console.log(error);
+        });
+	}
+
+	componentDidMount() {
+		fetch('https://api.binance.com/api/v3/ticker/price')
+		.then(results => {
+			return results.json();
+		}).then(data => {
+			let BinanceCoins = data.results.map((BinanceCoin) => {
+				return(
+					<div key={BinanceCoin.results}>
+						{BinanceCoin.symbol}
+						{BinanceCoin.price}
+					</div>
+				)
+			})
+			this.setState({BinanceCoins:BinanceCoins});
+			console.log("state", this.state.BinanceCoins);
+		})
+	}
+
+  handleUserInput(filterText) {
+    this.setState({filterText: filterText});
+  };
+
+  handleRowDel(coin) {
+    let index = this.state.coins.indexOf(coin);
+    this.state.coins.splice(index, 1);
+    this.setState(this.state.coins);
+  };
+
+  handleAddEvent(evt) {
+    let id = (+ new Date() + Math.floor(Math.random() * 999999)).toString(36);
+    let coin = {
+      id: id,
+      name: "",
+      price: ""
+    }
+    this.state.coins.push(coin);
+    this.setState(this.state.coins);
+  }
+
+  handleWatchlistTable(evt) {
+		let item = {
+		  id: evt.target.id,
+		  name: evt.target.name,
+		  value: evt.target.value
+		};
+
+	    let coins = this.state.coins.slice();
+	    let newCoins = coins.map(function(coin) {
+
+		for (let key in coin) {
+		  if (key == item.name && coin.id == item.id) {
+			coin[key] = item.value;
+
+		  }
+		}
+		return coin;
+	  });
+		this.setState({coins:newCoins});
+  };
+  render() {
+
+    return (
+      <div>
+		<NavBar/>
+		<br></br><br></br>
+
+        <WatchlistTable
+			onCoinTableUpdate={this.handleWatchlistTable.bind(this)}
+			onRowAdd={this.handleAddEvent.bind(this)}
+			onRowDel={this.handleRowDel.bind(this)}
+			coins={this.state.coins}
+			filterText={this.state.filterText}
+		/>
+
+      </div>
+    );
+
+  }
+
+}
+export default Watchlist;
+
+
+class WatchlistTable extends React.Component {
+
+  render() {
+    let onCoinTableUpdate = this.props.onCoinTableUpdate;
+    let rowDel = this.props.onRowDel;
+    let filterText = this.props.filterText;
+
+    let coin = this.props.coins.map(function(coin) {
+      if (coin.name.indexOf(filterText) === -1) {
+        return;
+      }
+      return (
+		  <CoinRow
+		  onCoinTableUpdate={onCoinTableUpdate}
+		  coin={coin}
+		  onDelEvent={rowDel.bind(this)}
+		  key={coin.id}
+		  />
+	  )
+    });
+
+
+    return (
+      <div>
+
+
+
+<Grid divided='vertically'>
+    <Grid.Row columns={3}>
+
+		<Grid.Column width="1">
+		</Grid.Column>
+
+		<Grid.Column width="7">
+			<BuySellSetLimit/>
+		</Grid.Column>
+
+		<Grid.Column width="5">
+
+			<Button color="green"
+		    onClick={this.props.onRowAdd}>Add
+		    </Button>
+
+			<Table celled color="purple" inverted>
+			  <Table.Header>
+				<Table.Row>
+				  <Table.HeaderCell>Coin Name</Table.HeaderCell>
+				  <Table.HeaderCell>Price</Table.HeaderCell>
+				  <Table.HeaderCell></Table.HeaderCell>
+				</Table.Row>
+			  </Table.Header>
+
+
+			  <Table.Body>
+					{coin}
+			  </Table.Body>
+			</Table>
+		</Grid.Column>
+
+	</Grid.Row>
+</Grid>
+      </div>
+    );
+
+  }
+
 }
 
-export default Watchlist;
+class CoinRow extends React.Component {
+  onDelEvent() {
+    this.props.onDelEvent(this.props.coin);
+
+  }
+  render() {
+
+    return (
+      <tr className="eachRow">
+        <EditableCell
+			onCoinTableUpdate={this.props.onCoinTableUpdate}
+			cellData={{
+			  "type": "name",
+			  value: this.props.coin.name,
+			  id: this.props.coin.id
+			}}
+		/>
+		<EditableCell
+		onCoinTableUpdate={this.props.onCoinTableUpdate}
+			cellData={{
+			  "type": "price",
+			  value: this.props.coin.price,
+			  id: this.props.coin.id
+			}}
+		/>
+        <td className="del-cell">
+
+        <Button
+		negative
+		onClick={this.onDelEvent.bind(this)}>Remove
+		</Button>
+
+        </td>
+      </tr>
+    );
+
+  }
+
+}
+class EditableCell extends React.Component {
+
+  render() {
+    return (
+      <td>
+        <Input
+		name={this.props.cellData.type}
+		id={this.props.cellData.id}
+		value={this.props.cellData.value}
+		onChange={this.props.onCoinTableUpdate}
+		/>
+      </td>
+    );
+
+  }
+
+}

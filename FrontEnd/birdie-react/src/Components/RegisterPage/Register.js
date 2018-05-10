@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import {NavLink} from 'react-router-dom';
+import {BrowserRouter, Switch, Route, Link} from 'react-router-dom'
 
 import NavBar from './../NavBar/NavBar';
 
@@ -32,7 +33,7 @@ class LoginForm extends Component {
               lastname: document. getElementById("lastname").value,
              username: document.getElementById("username").value,
              phonenumber: document.getElementById("phonenumber").value,
-             email: document.getElementById("email").value, 
+             email: document.getElementById("email").value,
              password: document.getElementById("password").value
 
          };
@@ -132,7 +133,7 @@ render() {
               id = "password"
             />
 
-            <Button color='black' fluid size='large' onClick={this.handleLogin}><NavLink exact to={'/'}/>Create Account</Button>
+            <Button color='black' color='white' fluid size='large' onClick={this.handleLogin}><Link to ='/'>Create Account</Link></Button>
              </Segment>
         </Form>
       </Grid.Column>

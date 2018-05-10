@@ -43,7 +43,7 @@ import {
  * such things.
  */
 const HomepageHeading = ({ mobile }) => (
-  
+
   <Container text>
     <Header
       as='h1'
@@ -66,10 +66,8 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: 1
       }}
     />
-<div style={{display: 'flex', justifyContent: 'center'}}>
-
+ <div style={{display: 'flex', justifyContent: 'center'}}>
     <LandingPageChart/>
-
     </div>
     <Button fluid primary size='huge'>
     <NavLink exact to={'/login'}>
