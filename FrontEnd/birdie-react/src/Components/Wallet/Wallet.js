@@ -116,8 +116,8 @@ class Wallet extends Component {
 			<NavBar/>
 			<br></br>			
 			<Grid divided='vertically'>
-				<Grid.Row columns={3}>
-					<Grid.Column width={1}>
+				<Grid.Row columns={2}>
+					<Grid.Column width={5}>
 					</Grid.Column>						
 					<Grid.Column width={5}>		
 						<Table

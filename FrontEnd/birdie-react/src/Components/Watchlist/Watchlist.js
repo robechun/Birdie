@@ -89,26 +89,39 @@ class Watchlist extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {};
     this.state.filterText = "";
-    this.state.coins = [];     
-    
+    this.state.coins = [];         
   }
+  
+	componentDidMount() {
+		const queryURL = "http://localhost:8080/watchlist/add"
+		axios({
+            method: 'get',
+            url: queryURL,
+            data: this.state.coins,
+            headers: {'Content-Type': 'application/json'},
+        }).then((response) => {
+            console.log(response);
+        }).catch((error) => {
+            console.log(error);
+        });
+	}
+  
   
   handleUserInput(filterText) {
     this.setState({filterText: filterText});
   };
   
   handleRowDel(coin) {
-    var index = this.state.coins.indexOf(coin);
+    let index = this.state.coins.indexOf(coin);
     this.state.coins.splice(index, 1);
     this.setState(this.state.coins);
   };
 
   handleAddEvent(evt) {
-    var id = (+ new Date() + Math.floor(Math.random() * 999999)).toString(36);
-    var coin = {
+    let id = (+ new Date() + Math.floor(Math.random() * 999999)).toString(36);
+    let coin = {
       id: id,
       name: "",
       note: ""     
@@ -118,15 +131,16 @@ class Watchlist extends React.Component {
   }
 
   handleWatchlistTable(evt) {
-    var item = {
+    let item = {
       id: evt.target.id,
       name: evt.target.name,
       value: evt.target.value
     };
-var coins = this.state.coins.slice();
-  var newCoins = coins.map(function(coin) {
+	
+  let coins = this.state.coins.slice();
+  let newCoins = coins.map(function(coin) {
 
-    for (var key in coin) {
+    for (let key in coin) {
       if (key == item.name && coin.id == item.id) {
         coin[key] = item.value;
 
@@ -143,13 +157,8 @@ var coins = this.state.coins.slice();
 		<NavBar/>
 		<br></br><br></br>
 		
-        <SearchBar
-		filterText={this.state.filterText} 
-		onUserInput={this.handleUserInput.bind(this)}
-		/>
-		
         <WatchlistTable 
-		onProductTableUpdate={this.handleWatchlistTable.bind(this)} 
+		onCoinTableUpdate={this.handleWatchlistTable.bind(this)} 
 		onRowAdd={this.handleAddEvent.bind(this)} 
 		onRowDel={this.handleRowDel.bind(this)} 
 		coins={this.state.coins} 
@@ -164,40 +173,19 @@ var coins = this.state.coins.slice();
 }
 export default Watchlist;
 
-
-class SearchBar extends React.Component {
-  handleChange() {
-    this.props.onUserInput(this.refs.filterTextInput.value);
-  }
-  render() {
-    return (
-      <div>
-        <input type="text" 
-		placeholder="Search..." 
-		value={this.props.filterText} 
-		ref="filterTextInput" 
-		onChange={this.handleChange.bind(this)}
-		/>
-      </div>
-
-    );
-  }
-
-}
-
 class WatchlistTable extends React.Component {
 
   render() {
-    var onProductTableUpdate = this.props.onProductTableUpdate;
-    var rowDel = this.props.onRowDel;
-    var filterText = this.props.filterText;
-    var coin = this.props.coins.map(function(coin) {
+    let onCoinTableUpdate = this.props.onCoinTableUpdate;
+    let rowDel = this.props.onRowDel;
+    let filterText = this.props.filterText;
+    let coin = this.props.coins.map(function(coin) {
       if (coin.name.indexOf(filterText) === -1) {
         return;
       }
       return (
-		  <ProductRow 
-		  onProductTableUpdate={onProductTableUpdate} 
+		  <CoinRow 
+		  onCoinTableUpdate={onCoinTableUpdate} 
 		  coin={coin} 
 		  onDelEvent={rowDel.bind(this)} 
 		  key={coin.id}
@@ -207,25 +195,38 @@ class WatchlistTable extends React.Component {
     return (
       <div>
 
-      <button 
-	  type="button" 
-	  onClick={this.props.onRowAdd} 
-	  className="btn btn-success pull-right">Add
-	  </button>
-        <table className="table table-bordered">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Note</th>              
-            </tr>
-          </thead>
-
-          <tbody>
-            {coin}
-
-          </tbody>
-
-        </table>
+      
+	  
+<Grid divided='vertically'>
+    <Grid.Row columns={2}>
+		
+		<Grid.Column width="5">
+		</Grid.Column>
+		
+		<Grid.Column width="5">	 
+		
+			<Button color="green"	   
+		    onClick={this.props.onRowAdd}>Add
+		    </Button>
+		    	  
+			<Table celled color="teal" inverted>
+			  <Table.Header>
+				<Table.Row>
+				  <Table.HeaderCell>Coin Name</Table.HeaderCell>
+				  <Table.HeaderCell>Note</Table.HeaderCell>
+				  <Table.HeaderCell></Table.HeaderCell>
+				</Table.Row>
+			  </Table.Header>
+				  
+				
+			  <Table.Body>
+					{coin}				  	
+			  </Table.Body>
+			</Table>
+		</Grid.Column>		
+		
+	</Grid.Row>
+</Grid>
       </div>
     );
 
@@ -233,7 +234,7 @@ class WatchlistTable extends React.Component {
 
 }
 
-class ProductRow extends React.Component {
+class CoinRow extends React.Component {
   onDelEvent() {
     this.props.onDelEvent(this.props.coin);
 
@@ -243,7 +244,7 @@ class ProductRow extends React.Component {
     return (
       <tr className="eachRow">
         <EditableCell 
-			onProductTableUpdate={this.props.onProductTableUpdate} 
+			onCoinTableUpdate={this.props.onCoinTableUpdate} 
 			cellData={{
 			  "type": "name",
 			  value: this.props.coin.name,
@@ -251,7 +252,7 @@ class ProductRow extends React.Component {
 			}}
 		/>
 		<EditableCell 
-		onProductTableUpdate={this.props.onProductTableUpdate} 
+		onCoinTableUpdate={this.props.onCoinTableUpdate} 
 			cellData={{
 			  "type": "note",
 			  value: this.props.coin.note,
@@ -259,10 +260,12 @@ class ProductRow extends React.Component {
 			}}
 		/>
         <td className="del-cell">
-          <input type="button" 
-		  onClick={this.onDelEvent.bind(this)} 
-		  value="X" className="del-btn"
-		  />
+		
+        <Button 
+		negative 
+		onClick={this.onDelEvent.bind(this)}>Remove
+		</Button>	  		  
+		  
         </td>
       </tr>
     );
@@ -275,11 +278,11 @@ class EditableCell extends React.Component {
   render() {
     return (
       <td>
-        <input type='text' 
+        <Input 
 		name={this.props.cellData.type} 
 		id={this.props.cellData.id} 
 		value={this.props.cellData.value} 
-		onChange={this.props.onProductTableUpdate}
+		onChange={this.props.onCoinTableUpdate}
 		/>
       </td>
     );
