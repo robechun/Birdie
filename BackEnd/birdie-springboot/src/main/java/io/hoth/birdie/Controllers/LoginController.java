@@ -1,7 +1,9 @@
 package io.hoth.birdie.Controllers;
 
 import io.hoth.birdie.DAO.UserRepository;
+import io.hoth.birdie.DAO.WatchlistRepository;
 import io.hoth.birdie.Entities.UserPrincipal;
+import io.hoth.birdie.Entities.Watchlist;
 import io.hoth.birdie.Payload.ApiResponse;
 import io.hoth.birdie.Payload.JwtAuthenticationResponse;
 import io.hoth.birdie.Payload.LoginDetails;
@@ -39,6 +41,9 @@ public class LoginController {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    WatchlistRepository watchlistRepository;
+
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginDetails loginDetails) {
@@ -67,6 +72,9 @@ public class LoginController {
                     HttpStatus.BAD_REQUEST);
         }
 
+        Watchlist watchlist = new Watchlist();
+        watchlistRepository.save(watchlist);
+        user.setWatchListId(watchlist.getId());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
 
