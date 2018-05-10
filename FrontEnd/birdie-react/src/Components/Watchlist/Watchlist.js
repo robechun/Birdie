@@ -94,7 +94,7 @@ constructor(props) {
     }
 	
 	componentDidMount() {
-		const queryURL = "http://localhost:3000/watchlist"
+		const queryURL = "http://localhost:8080/watchlist"
 		axios({
             method: 'get',
             url: queryURL,

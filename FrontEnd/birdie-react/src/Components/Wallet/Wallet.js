@@ -97,7 +97,7 @@ class Wallet extends Component {
     }
 	
 	componentDidMount() {
-		const queryURL = "http://localhost:3000/wallet"
+		const queryURL = "http://localhost:8080/wallet"
 		axios({
             method: 'get',
             url: queryURL,
@@ -129,12 +129,13 @@ class Wallet extends Component {
 									<Table.HeaderCell >Asset</Table.HeaderCell>
 									<Table.HeaderCell >Free</Table.HeaderCell>
 									<Table.HeaderCell >Locked</Table.HeaderCell>
+									<Table.HeaderCell >Total</Table.HeaderCell>
 								</Table.Row>
 							</Table.Header>
 
 							<Table.Body>
 								<Table.Row>
-								
+							
 									<Table.Cell>									
 										{ this.state.coins.map(coin => {coin.asset}) }									
 									</Table.Cell>
@@ -147,7 +148,16 @@ class Wallet extends Component {
 										{ this.state.coins.map(coin => {coin.locked}) }	
 									</Table.Cell>
 
+									<Table.Cell>
+										{ 
+										this.state.coins.map(coin => {coin.free}) +
+										this.state.coins.map(coin => {coin.locked})
+										}	
+									</Table.Cell>	
 								</Table.Row>
+								
+								
+								
 							</Table.Body>  
 						</Table>
 					</Grid.Column>		

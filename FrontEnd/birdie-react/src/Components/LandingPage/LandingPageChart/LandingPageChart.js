@@ -8,7 +8,7 @@ class LandingPageChart extends Component {
 		
 			<TradingViewWidget
 				symbol="BINANCE:BTCUSDT"
-				theme={Themes.LIGHT}
+				theme={Themes.DARK}
 				locale="en"
 				timezone="America/Vancouver"
 				width="1080"
