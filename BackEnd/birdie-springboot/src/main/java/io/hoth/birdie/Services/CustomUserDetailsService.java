@@ -43,7 +43,8 @@ public class CustomUserDetailsService implements UserDetailsService {
                 () -> new UsernameNotFoundException("User not found with id : " + id)
         );
 
-        return UserPrincipal.create(user);
+        return user;
+        //return UserPrincipal.create(user);
     }
 
 }

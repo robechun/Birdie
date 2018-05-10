@@ -51,11 +51,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-// TODO
-//    @Bean
-//    public JwtAuthenticationFilter jwtAuthenticationFilter() {
-//        return new JwtAuthenticationFilter();
-//    }
 
     // This configuration tells the application to use a custom Authentication Manager
     // We use mongodb instead of the default in-memory store.
