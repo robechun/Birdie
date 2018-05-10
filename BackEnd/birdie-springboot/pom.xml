@@ -82,6 +82,12 @@ R
             <version>${jjwt.version}</version>
         </dependency>
 
+        <!-- For Java 8 Date/Time Support -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+
     </dependencies>
     <repositories>
         <repository>

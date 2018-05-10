@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.transaction.annotation.Transactional;
 
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -35,11 +36,14 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     }
 
+    // This method is used by JWTAuthenticationFilter
+    @Transactional
     public UserDetails loadUserById(String id) {
-        UserPrincipal user = userRepository.findById(id).orElseThrow(
+        UserDetails user = userRepository.findById(id).orElseThrow(
                 () -> new UsernameNotFoundException("User not found with id : " + id)
         );
 
-        return user;
+        return UserPrincipal.create(user);
     }
+
 }

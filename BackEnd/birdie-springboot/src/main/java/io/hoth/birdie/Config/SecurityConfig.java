@@ -1,5 +1,7 @@
 package io.hoth.birdie.Config;
 
+import io.hoth.birdie.Security.JwtAuthenticationEntryPoint;
+import io.hoth.birdie.Security.JwtAuthenticationFilter;
 import io.hoth.birdie.Services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

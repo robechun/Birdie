@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -57,6 +58,9 @@ public class UserPrincipal implements org.springframework.security.core.userdeta
     private boolean isCredentialNonExpired = true;
     private boolean isEnabled = true;
 
+    private Collection<? extends GrantedAuthority> authorities;
+
+
     // Default constructor needed for when post requests are made so that it can instantiate a new UserPrincipal object
     public UserPrincipal() {
 
@@ -77,6 +81,20 @@ public class UserPrincipal implements org.springframework.security.core.userdeta
         this.username = email.substring(0,email.indexOf("@")-1); // TODO: care for edge cases
         this.role = role;
     }
+
+    // TODO: might be wrong, could screw up CustomUserDetailsService
+    public static UserPrincipal create(UserDetails user) {
+
+        return new UserPrincipal(
+                "Dummy",
+                "Dumdum",
+                "2061231234",
+                "dummy@dumdum.com",
+                "testing",
+                "USER"
+        );
+    }
+
 
     public String getId() {
         return id;
@@ -159,7 +177,7 @@ public class UserPrincipal implements org.springframework.security.core.userdeta
     // Implementing Interface from here
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
     @Override
