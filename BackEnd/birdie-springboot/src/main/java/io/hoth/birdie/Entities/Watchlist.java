@@ -71,8 +71,14 @@ public class Watchlist {
         // I believe .contains(element) runs in O(n)
         // Could use a Hash with the LL to achieve O(1) run time
 
+        if (watchlist == null) {
+            watchlist = new LinkedList<>();
+            watchlist.add(symbol);
+            return true;
+        }
+
         //Check if element is already in the list
-        if(!watchlist.contains(symbol)){
+        else if(!watchlist.contains(symbol)){
             watchlist.add(symbol);
             return true;
         }
