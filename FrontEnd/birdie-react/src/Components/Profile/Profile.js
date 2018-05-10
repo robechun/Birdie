@@ -30,7 +30,7 @@ class Profile extends Component {
             method: 'put',
             url: queryURL,
             data: newPass,
-            headers: {'Content-Type': 'text/plain', 'Authorization': "Bearer " + token},
+            headers: {'Content-Type': 'text', 'Authorization': "Bearer " + token},
         }).then((response) => {
             console.log(response);
             console.log("Success");
@@ -43,6 +43,7 @@ class Profile extends Component {
         let apiKey = document.getElementById("apiKey").value;
         const queryURL = "http://localhost:8080/profile/addApiKey"
         const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NjA1OTgsImV4cCI6MTUyNjU2NTM5OH0.3opRvaitjj9jY7p5hyi56iRjX4lNLjcsKqWsuNZAnJ5HBA1bYtiquWe9s1eoo01LiIt1wdcRyWi7asusbuUxnA"
+        console.log("apikey: |" + apiKey)
         axios({
             method: 'post',
             url: queryURL,
@@ -56,10 +57,11 @@ class Profile extends Component {
         });
     }
 
-    addAPIKey(){
+    addSecret(){
         let secret = document.getElementById("secret").value;
         const queryURL = "http://localhost:8080/profile/addSecret"
         const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NjA1OTgsImV4cCI6MTUyNjU2NTM5OH0.3opRvaitjj9jY7p5hyi56iRjX4lNLjcsKqWsuNZAnJ5HBA1bYtiquWe9s1eoo01LiIt1wdcRyWi7asusbuUxnA"
+        console.log("secret: |" + secret)
         axios({
             method: 'post',
             url: queryURL,
@@ -67,7 +69,7 @@ class Profile extends Component {
             headers: {'Content-Type': 'text/plain', 'Authorization': "Bearer " + token},
         }).then((response) => {
             console.log(response);
-            console.log("Api key added Successfully");
+            console.log("Secret added Successfully");
         }).catch((error) => {
             console.log(error);
         });
@@ -82,10 +84,10 @@ class Profile extends Component {
                 </div>
                 <Button onClick = {this.modifyPass}>Modify Password</Button>
                 <Input id="modifyPass"/>
-
+                <hr/>
                 <Button onClick={this.addAPIKey}>Add API Key</Button>
                 <Input id="apiKey"/>
-
+                <hr/>
                 <Button onClick={this.addSecret}>Add Secret</Button>
                 <Input id ="secret"/>
 

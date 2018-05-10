@@ -25,40 +25,36 @@ import {
 
 class Wallet extends Component {
 
-    componentWillMount(){
+    constructor(props){
+        super(props);
         this.state = {
-            data : [
-                {
-                    "asset": "LTC",
-                    "free": "0.00000000",
-                    "locked": "0.00000000"
-                },
-                {
-                    "asset": "ETH",
-                    "free": "0.00000000",
-                    "locked": "0.00000000"
-                }
-            ]
+            data : []
         }
 
+    }
+    componentWillMount(){
         // GET REQUEST ON STANDBY
-        // const queryURL = "http://localhost:8080/wallet/balance"
-        // const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NjA1OTgsImV4cCI6MTUyNjU2NTM5OH0.3opRvaitjj9jY7p5hyi56iRjX4lNLjcsKqWsuNZAnJ5HBA1bYtiquWe9s1eoo01LiIt1wdcRyWi7asusbuUxnA"
-        // axios({
-        //     method: 'get',
-        //     url: queryURL,
-        //     headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
-        // }).then((response) => {
-        //     console.log(response);
-        //     this.setState({
-        //         data: response.data
-        //     });
-        // }).catch((error) => {
-        //     console.log(error);
-        // });
+        const queryURL = "http://localhost:8080/wallet/balance"
+        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NjA1OTgsImV4cCI6MTUyNjU2NTM5OH0.3opRvaitjj9jY7p5hyi56iRjX4lNLjcsKqWsuNZAnJ5HBA1bYtiquWe9s1eoo01LiIt1wdcRyWi7asusbuUxnA"
+        axios({
+            method: 'get',
+            url: queryURL,
+            headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
+        }).then((response) => {
+           // console.log(response.data);
+            let tempData = response.data;
+            this.setState({
+                data: tempData
+            });
+            //console.log(tempData);
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     render() {
+        // console.log("_____________");
+        // console.log(this.state.data);
         return (
             <div>
               <NavBar/>
@@ -66,7 +62,7 @@ class Wallet extends Component {
                 <h2>
                   Coin Table
                 </h2>
-                <WalletCoinTable data ={this.state.data}/>
+                <WalletCoinTable data={this.state.data}/>
               </div>
               <div className="leftchart">
                 <h2>
