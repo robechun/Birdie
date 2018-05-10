@@ -4,7 +4,7 @@ import { Icon, Table } from 'semantic-ui-react'
 class CoinTable extends Component {
   render() {
     return (
-        <div className="CoinTable" >
+        <div className="full" >
             <Table celled selectable>
                 <Table.Header>
                 <Table.Row>

@@ -41,7 +41,7 @@ class LoginForm extends Component {
 
     handleNewUser(){
         //e.preventDefault();
-        const queryURL = "http://localhost:8080/register";
+        const queryURL = "http://localhost:8080/signup";
         if(document.getElementById("pass").value === document.getElementById("re-pass").value) {
             const user = {
                 firstName: document.getElementById("fName").value,
