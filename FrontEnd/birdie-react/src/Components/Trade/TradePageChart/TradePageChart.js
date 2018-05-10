@@ -10,8 +10,8 @@ class LandingPageChart extends Component {
 				theme={Themes.DARK}
 				locale="en"
 				timezone="America/Vancouver"
-				width="1180"
-				height="610"
+				width="610"
+				height="500"
 				withdateranges="true"
 				watchlist = {[
 					'BINANCE:BTCUSDT',

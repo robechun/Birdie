@@ -43,6 +43,7 @@ import {
  * such things.
  */
 const HomepageHeading = ({ mobile }) => (
+  
   <Container text>
     <Header
       as='h1'
@@ -65,13 +66,14 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: 1
       }}
     />
-<div classname = "centerize">
+<div style={{display: 'flex', justifyContent: 'center'}}>
+
     <LandingPageChart/>
-    <CoinTable/>
+
     </div>
-    <Button primary size='huge'>
+    <Button fluid primary size='huge'>
     <NavLink exact to={'/login'}>
-      Get Started
+        Get Started
       </NavLink>
       <Icon name='right arrow' />
     </Button>
@@ -128,6 +130,11 @@ class DesktopContainer extends Component {
                 <Menu.Item as='a'>
                 <NavLink exact to={'/profile'}>
                     <p>Profile</p>
+                </NavLink>
+                </Menu.Item>
+                <Menu.Item as='a'>
+                <NavLink exact to={'/trade'}>
+                    <p>Trade</p>
                 </NavLink>
                 </Menu.Item>
                 <Menu.Item position='right'>

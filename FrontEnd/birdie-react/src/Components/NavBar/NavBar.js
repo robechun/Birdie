@@ -59,7 +59,11 @@ class NavBar extends Component {
                     <p>Profile</p>
                 </NavLink>
                 </Menu.Item>
-
+                <Menu.Item as='a'>
+                <NavLink exact to={'/trade'}>
+                    <p>Trade</p>
+                </NavLink>
+                </Menu.Item>
                 <Menu.Item position='right'>
                 <NavLink exact to={'/login'}>
                   <Button as='a' inverted={!fixed}>Log in</Button>

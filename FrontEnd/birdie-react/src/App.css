@@ -21,6 +21,10 @@ a:hover{
   left: 100px;
 
 }
+.whitespace{
+  color: white;
+  margin: 0;
+}
 .usertext{
   left: 215px;
   position: fixed;
@@ -46,10 +50,18 @@ a:hover{
   top: 100px
 }
 .LandingPageChart{
-  vertical-align: top;
-  display: inline-block;
-  width: 70%;
+  padding-left: 60px;
+  padding-right: 200px;
 }
+.Dropdown{
+  left: 100px;
+}
+.HomePageChart{
+  vertical-align: top;
+  width: 70%;
+
+}
+
 
 .CoinTable{
   display: inline-block;
