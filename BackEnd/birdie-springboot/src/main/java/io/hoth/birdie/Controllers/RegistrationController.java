@@ -1,7 +1,9 @@
 package io.hoth.birdie.Controllers;
 
 import io.hoth.birdie.DAO.UserRepository;
+import io.hoth.birdie.DAO.WatchlistRepository;
 import io.hoth.birdie.Entities.UserPrincipal;
+import io.hoth.birdie.Entities.Watchlist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,9 @@ public class RegistrationController {
 
     //TODO MIGHT MOVE TO LOGINCONTROLLER AND RENAME
 
+    @Autowired
+    private WatchlistRepository watchlistRepository;
+
     // Method to register a new user
     // @Receives: all fields of UserPrincipal
     // @Returns: HttpStatus on fail/success
@@ -35,7 +40,11 @@ public class RegistrationController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
-        //String password = user.getPassword();
+
+        //Create a new Watchlist per user
+        Watchlist watchlist = new Watchlist();
+        watchlistRepository.save(watchlist);
+        user.setWatchListId(watchlist.getId());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         //user.setMatchingPassword(bCryptPasswordEncoder.encode(password)); // TODO: DO i even need this?
 

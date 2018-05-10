@@ -9,5 +9,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CoinRepository extends MongoRepository<Coin, String>, CoinRepositoryCustom {
     Coin findByName(String name);
-
 }
