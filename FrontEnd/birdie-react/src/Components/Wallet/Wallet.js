@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import CoinTable from './CoinTable/CoinTable';
-import LandingPageChart from './LandingPageChart/LandingPageChart'
-
+import LandingPageChart from './LandingPageChart/LandingPageChart';
+import BuySellSetLimit from './../BuySellSetLimit/BuySellSetLimit';
 
 import {NavLink} from 'react-router-dom'
 
@@ -114,11 +114,17 @@ class Wallet extends Component {
     return (
 		<div>
 			<NavBar/>
-			<br></br>			
+			<br></br><br></br>			
 			<Grid divided='vertically'>
-				<Grid.Row columns={2}>
-					<Grid.Column width={5}>
-					</Grid.Column>						
+				<Grid.Row columns={3}>
+				
+					<Grid.Column width={1}>
+					</Grid.Column>		
+					
+					<Grid.Column width={7}>
+						<BuySellSetLimit/>
+					</Grid.Column>		
+					
 					<Grid.Column width={5}>		
 						<Table
 						celled
@@ -249,9 +255,7 @@ class Wallet extends Component {
 										16.6099
 									</Table.Cell>									
 								</Table.Row>
-
-								
-								
+																
 							</Table.Body>  
 						</Table>
 					</Grid.Column>		

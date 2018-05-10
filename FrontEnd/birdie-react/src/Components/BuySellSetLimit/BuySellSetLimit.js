@@ -188,10 +188,7 @@ class BuySellSetLimit extends Component {
 	render() {
 		const { color, coin } = this.state
 		return (
-		<div>
-			<select onChange={this.handleCoinChange}>
-				{_.map(coinOptions, c => <option key={c} value={c}>{_.startCase(c)}</option>)}
-			</select>
+		<div>			
 						
 			<Tab				
 				menu={{ color, inverted: true, attached: false, tabular: true }}

@@ -221,9 +221,13 @@ class WatchlistTable extends React.Component {
       
 	  
 <Grid divided='vertically'>
-    <Grid.Row columns={2}>
+    <Grid.Row columns={3}>
 		
-		<Grid.Column width="5">
+		<Grid.Column width="1">
+		</Grid.Column>
+		
+		<Grid.Column width="7">
+			<BuySellSetLimit/>
 		</Grid.Column>
 		
 		<Grid.Column width="5">	 
@@ -232,7 +236,7 @@ class WatchlistTable extends React.Component {
 		    onClick={this.props.onRowAdd}>Add
 		    </Button>
 		    	  
-			<Table celled color="teal" inverted>
+			<Table celled color="purple" inverted>
 			  <Table.Header>
 				<Table.Row>
 				  <Table.HeaderCell>Coin Name</Table.HeaderCell>
