@@ -12,7 +12,8 @@ class LoginForm extends Component {
     constructor(){
         super();
         this.state = {
-            redirect : false
+            redirect : false,
+            accessToken : ""
         };
 
         this.handleLogin = this.handleLogin.bind(this);
@@ -34,7 +35,8 @@ class LoginForm extends Component {
             console.log(response.data.accessToken);
             //Console.logs the users' access Token
             this.setState({
-                redirect : true
+                redirect : true,
+                accessToken: response.data.accessToken
             }, () => {
                 console.log(response.data.accessToken);
                 console.log(this.state.redirect);
@@ -48,7 +50,7 @@ class LoginForm extends Component {
         let redirect = <div/>
         if(this.state.redirect == true) {
             console.log("Log-in successful!");
-            redirect = <Redirect to={'/'} />
+            redirect = <Redirect to={{pathname : '/', state : {accessToken : this.state.accessToken}}} />
         }
 
 

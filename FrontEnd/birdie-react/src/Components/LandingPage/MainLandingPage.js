@@ -7,6 +7,8 @@ import CoinTable from '../WatchlistCoinTable/WatchlistCoinTable';
 
 class MainLandingPage extends Component {
   render() {
+      console.log("MainLandingPage");
+      console.log("accessToken: |" + this.props.location.state.accessToken)
     return (
       <div className="blackout centerize">
         <NavBar/>
