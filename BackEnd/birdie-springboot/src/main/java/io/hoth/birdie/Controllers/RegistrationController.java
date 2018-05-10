@@ -1,7 +1,9 @@
 package io.hoth.birdie.Controllers;
 
 import io.hoth.birdie.DAO.UserRepository;
+import io.hoth.birdie.DAO.WatchlistRepository;
 import io.hoth.birdie.Entities.UserPrincipal;
+import io.hoth.birdie.Entities.Watchlist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ public class RegistrationController {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private WatchlistRepository watchlistRepository;
 
     // Method to register a new user
     // @Receives: all fields of UserPrincipal
@@ -33,6 +37,12 @@ public class RegistrationController {
         if (userRepository.existsByUsername(user.getUsername()) || userRepository.existsByEmail(user.getEmail())) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
+
+        //Create a new Watchlist per user
+        Watchlist watchlist = new Watchlist();
+        watchlistRepository.save(watchlist);
+        user.setWatchListId(watchlist.getId());
+
 
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setMatchingPassword(bCryptPasswordEncoder.encode(user.getPassword()));
