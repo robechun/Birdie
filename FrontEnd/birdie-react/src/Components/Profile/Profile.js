@@ -30,10 +30,10 @@ class Profile extends Component {
             method: 'put',
             url: queryURL,
             data: newPass,
-            headers: {'Content-Type': 'text', 'Authorization': "Bearer " + token},
+            headers: {'Content-Type': 'text/plain', 'Authorization': "Bearer " + token},
         }).then((response) => {
             console.log(response);
-            console.log("Success");
+            console.log("Successful change of password");
         }).catch((error) => {
             console.log(error);
         });
