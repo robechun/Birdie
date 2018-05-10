@@ -21,6 +21,8 @@ public class RegistrationController {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    //TODO MIGHT MOVE TO LOGINCONTROLLER AND RENAME
+
     @Autowired
     private WatchlistRepository watchlistRepository;
 
@@ -38,14 +40,13 @@ public class RegistrationController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
+
         //Create a new Watchlist per user
         Watchlist watchlist = new Watchlist();
         watchlistRepository.save(watchlist);
         user.setWatchListId(watchlist.getId());
-
-
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setMatchingPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        //user.setMatchingPassword(bCryptPasswordEncoder.encode(password)); // TODO: DO i even need this?
 
         // Method to save user to the database.
         // If save fails for whatever reason, return an INTERNAL_SERVER_ERROR (500)

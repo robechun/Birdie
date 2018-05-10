@@ -6,10 +6,14 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserRepositoryImpl implements UserRepositoryCustom {
+
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     MongoTemplate mongoTemplate;
@@ -32,6 +36,23 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
         Update update = new Update();
 
         update.set("secret", secret);
+
+        UpdateResult updateResult = mongoTemplate.updateFirst(query, update, "Users");
+
+        return updateResult.wasAcknowledged();
+    }
+
+    @Override
+    public boolean setPassword(String username, String password) {
+        Query query = new Query(Criteria.where("username").is(username));
+        Update update = new Update();
+
+        String newPassword = bCryptPasswordEncoder.encode(password);
+
+        update.set("password", newPassword);
+
+        //update.set("matchingPassword", newPassword);
+
 
         UpdateResult updateResult = mongoTemplate.updateFirst(query, update, "Users");
 
