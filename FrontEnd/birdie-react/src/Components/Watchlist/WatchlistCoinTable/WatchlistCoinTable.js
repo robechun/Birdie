@@ -204,7 +204,7 @@ class CoinTable extends Component {
                                         Delete from Watchlist
                                     </Modal.Header>
                                     <Modal.Content>
-                                        <p>Input a coin symbol to add to your watchlist</p>
+                                        <p>Input a coin symbol to delete from your watchlist</p>
                                         <Input id = "delete"/>
                                     </Modal.Content>
                                     <Modal.Actions>

@@ -14,7 +14,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Watchlist.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Watchlist.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Components/Watchlist/Watchlist.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="483">
@@ -26,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WatchlistCoinTable.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WatchlistCoinTable.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/Watchlist/WatchlistCoinTable/WatchlistCoinTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="192" column="87" lean-forward="true" selection-start-line="192" selection-start-column="87" selection-end-line="192" selection-end-column="87" />
+            <state relative-caret-position="1953">
+              <caret line="207" column="62" lean-forward="true" selection-start-line="207" selection-start-column="62" selection-end-line="207" selection-end-column="62" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -226,12 +226,12 @@
       <workItem from="1525645970278" duration="10000" />
       <workItem from="1525936084891" duration="7892000" />
       <workItem from="1525959272542" duration="18083000" />
-      <workItem from="1525984525480" duration="18334000" />
+      <workItem from="1525984525480" duration="18685000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48906000" />
+    <option name="totallyTimeSpent" value="49257000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1513" height="973" extended-state="6" />
@@ -642,16 +642,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Watchlist/Watchlist.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="27" column="41" lean-forward="true" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Watchlist/WatchlistCoinTable/WebsocketCoins.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
@@ -680,8 +670,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Watchlist/WatchlistCoinTable/WatchlistCoinTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="192" column="87" lean-forward="true" selection-start-line="192" selection-start-column="87" selection-end-line="192" selection-end-column="87" />
+        <state relative-caret-position="1953">
+          <caret line="207" column="62" lean-forward="true" selection-start-line="207" selection-start-column="62" selection-end-line="207" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Watchlist/Watchlist.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="27" column="41" lean-forward="true" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
