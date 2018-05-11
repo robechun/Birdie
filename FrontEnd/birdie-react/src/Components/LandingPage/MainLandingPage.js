@@ -3,21 +3,40 @@ import React, { Component } from 'react'
 import NavBar from './../NavBar/NavBar';
 import AboutBirdie from './AboutBirdie/AboutBirdie';
 import LandingPageChart from '../LandingPageChart/LandingPageChart';
-import CoinTable from '../WatchlistCoinTable/WatchlistCoinTable';
+import CoinTable from '../Watchlist/WatchlistCoinTable/WatchlistCoinTable';
 
 class MainLandingPage extends Component {
-  render() {
-      console.log("MainLandingPage");
-      console.log("accessToken: |" + this.props.location.state.accessToken)
-    return (
-      <div className="blackout centerize">
-        <NavBar/>
-        <AboutBirdie/>
-        <LandingPageChart/>
-        {/*<WalletCoinTable/>*/}
-      </div>
-    )
-  }
+    constructor(){
+        super();
+        this.state = {
+            redirect : false
+        }
+    }
+    render() {
+        //Checks if redirection has occurred
+        if(this.props.location.state !== undefined) {
+            console.log("MainLandingPage accessToken: |" + this.props.location.state.accessToken)
+            return (
+                <div className="blackout centerize">
+                    <NavBar accessToken = {this.props.location.state.accessToken}/>
+                    <AboutBirdie/>
+                    <LandingPageChart/>
+                    {/*<WalletCoinTable/>*/}
+                </div>
+            );
+        }
+        else {
+            console.log("No Access Token as User has not Logged in")
+            return (
+                <div className="blackout centerize">
+                    <NavBar/>
+                    <AboutBirdie/>
+                    <LandingPageChart/>
+                    {/*<WalletCoinTable/>*/}
+                </div>
+            )
+        }
+    }
 }
 
 export default MainLandingPage;

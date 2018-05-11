@@ -53,6 +53,13 @@ class Wallet extends Component {
     }
 
     render() {
+        // if(this.props.location.state !== undefined){
+        //     console.log("Wallet Access Token: |" + this.props.location.state.accessToken);
+        // }
+        // else{
+        //     console.log("No Wallet Access Token Found: |");
+        // }
+
         // console.log("_____________");
         // console.log(this.state.data);
         return (

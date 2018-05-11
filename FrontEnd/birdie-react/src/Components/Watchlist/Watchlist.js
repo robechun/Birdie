@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {NavLink} from 'react-router-dom'
 
 import NavBar from '../NavBar/NavBar'
-import CoinTable from '../WatchlistCoinTable/WatchlistCoinTable';
+import WatchlistCoinTable from './WatchlistCoinTable/WatchlistCoinTable';
 import LandingPageChartTwo from '../LandingPageChart/LandingPageChartTwo'
 import { Button, Input } from 'semantic-ui-react'
 import axios from 'axios'
@@ -10,6 +10,12 @@ import axios from 'axios'
 class Watchlist extends Component {
 
     render() {
+        // if(this.props.location.state !== undefined){
+        //     console.log("Watchlist Access Token: |" + this.props.location.state);
+        // }
+        // else{
+        //     console.log("No Watchlist Access Token Found: |");
+        // }
         return (
 
             <div className="blackout">
@@ -19,7 +25,7 @@ class Watchlist extends Component {
                 </div>
 
                 <div className="right CoinTable">
-                    <CoinTable/>
+                    <WatchlistCoinTable/>
                 </div>
             </div>
         )

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Icon, Table, Button, Modal, Input } from 'semantic-ui-react'
 import CoinRow from './WatchlistCoinRow'
 import axios from 'axios'
+import Websocket from 'react-websocket';
 
 class CoinTable extends Component {
     constructor(props){
@@ -11,7 +12,7 @@ class CoinTable extends Component {
             data:[],
             openAdd: false,
             openDelete: false,
-            openClear: false
+            openClear: false,
         }
 
         this.addWatchlist = this.addWatchlist.bind(this);
@@ -156,13 +157,13 @@ class CoinTable extends Component {
     render() {
 
         return (
-            <div className="" >
-                <Table celled selectable>
+            <div>
+                <Table celled inverted>
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell>Symbol</Table.HeaderCell>
-                            {/*<Table.HeaderCell>Value</Table.HeaderCell>*/}
-                            {/*<Table.HeaderCell>Percentage</Table.HeaderCell>*/}
+                            <Table.HeaderCell>Value</Table.HeaderCell>
+                            <Table.HeaderCell>24hr % Change</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
 
@@ -170,13 +171,16 @@ class CoinTable extends Component {
                         {
                             this.state.data.map((i) => {
                                 //for(let i = 0 ; i < this.state.data.length; i++) {
-                                return <CoinRow coinSymbol={i} key={i}>Test</CoinRow>
+                                return (
+
+                                        <CoinRow coinSymbol={i}  key={i}>Test</CoinRow>
+                                )
                                 //}
                             })
                         }
                         <Table.Row>
-                            <Table.Cell negative>
-                                <Button positive onClick={this.toggleAddModal} content="Add to Watchlist"/>
+                            <Table.Cell>
+                                <Button positive onClick={this.toggleAddModal} content="Add Coin"/>
                                 <Modal size="mini" open={this.state.openAdd} onClose={this.toggleAddModal}>
                                     <Modal.Header>
                                         Add to Watchlist
@@ -192,8 +196,9 @@ class CoinTable extends Component {
                                         <Button positive icon='checkmark' labelPosition='right' content='Add' onClick={this.addWatchlist}/>
                                     </Modal.Actions>
                                 </Modal>
-
-                                <Button negative onClick={this.toggleDeleteModal} content="Delete from Watchlist"/>
+                                </Table.Cell>
+                                <Table.Cell>
+                                <Button negative onClick={this.toggleDeleteModal} content="Delete Coin"/>
                                 <Modal size="mini" open={this.state.openDelete} onClose={this.toggleDeleteModal}>
                                     <Modal.Header>
                                         Delete from Watchlist
@@ -210,12 +215,10 @@ class CoinTable extends Component {
                                     </Modal.Actions>
                                 </Modal>
                             </Table.Cell>
-                        </Table.Row>
 
-                        <Table.Row>
                             <Table.Cell>
                                 <div>
-                                    <Button negative onClick={this.toggleClearModal} content="Clear from Watchlist"/>
+                                    <Button negative onClick={this.toggleClearModal} content="Clear List"/>
                                     <Modal size="mini" open={this.state.openClear} onClose={this.toggleClearModal}>
                                         <Modal.Header>
                                             Clear Watchlist

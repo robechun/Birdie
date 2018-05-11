@@ -32,14 +32,14 @@ class LoginForm extends Component {
             data: user,
             headers: {'Content-Type': 'application/json'},
         }).then((response) => {
-            console.log(response.data.accessToken);
+            //console.log(response.data.accessToken);
             //Console.logs the users' access Token
             this.setState({
                 redirect : true,
                 accessToken: response.data.accessToken
             }, () => {
-                console.log(response.data.accessToken);
-                console.log(this.state.redirect);
+                //console.log(response.data.accessToken);
+                //console.log(this.state.redirect);
             });
         }).catch((error) => {
             console.log(error);
@@ -50,7 +50,7 @@ class LoginForm extends Component {
         let redirect = <div/>
         if(this.state.redirect == true) {
             console.log("Log-in successful!");
-            redirect = <Redirect to={{pathname : '/', state : {accessToken : this.state.accessToken}}} />
+            redirect = <Redirect to={{pathname : '/', state : {accessToken : this.state.accessToken, redirect : true}}} />
         }
 
 
