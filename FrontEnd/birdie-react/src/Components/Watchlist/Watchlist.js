@@ -95,6 +95,7 @@ class Watchlist extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      
 		filterText: "",
 		coins: [],
 		BinanceCoins: []
