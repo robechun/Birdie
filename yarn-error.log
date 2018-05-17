@@ -1,0 +1,32 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\valde\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js start
+
+PATH: 
+  C:\Users\valde\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\valde\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files\nodejs;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm;C:\Program Files\Microsoft SQL Server\120\Tools\Binn;C:\Program Files\Microsoft SQL Server\130\Tools\Binn;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit;C:\Program Files\Git\cmd;C:\Program Files\PuTTY;C:\Users\valde\AppData\Local\Programs\Python\Python36\Scripts;C:\Users\valde\AppData\Local\Programs\Python\Python36;C:\Users\valde\AppData\Local\Microsoft\WindowsApps;C:\Users\valde\AppData\Roaming\npm;C:\Users\valde\AppData\Local\atom\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\valde\AppData\Local\Microsoft\WindowsApps;C:\Program Files\MongoDB\Server\3.4\bin;C:\Program Files\Maven\apache-maven-3.5.2-bin\apache-maven-3.5.2\bin;C:\Program Files (x86)\Vim\vim80;C:\MinGW\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  8.5.0
+
+Platform: 
+  win32 x64
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: Couldn't find a package.json file in "C:\\Users\\valde\\Desktop\\temp\\Birdie"
+      at new MessageError (C:\Users\valde\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
+      at C:\Users\valde\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:40048:15
+      at Generator.next (<anonymous>)
+      at step (C:\Users\valde\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:98:30)
+      at C:\Users\valde\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:109:13
+      at <anonymous>

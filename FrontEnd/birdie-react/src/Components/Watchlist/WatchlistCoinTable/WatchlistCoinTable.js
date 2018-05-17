@@ -25,7 +25,7 @@ class CoinTable extends Component {
 
     componentWillMount(){
         const queryURL = "http://localhost:8080/watchlist"
-        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NzQ1MzUsImV4cCI6MTUyNjU3OTMzNX0.qYPcCC8PO76adJvKiThE2lPlcuVwgvVYxMN_6gRuutF2C29l5wdus73uWEL7q30jh1fS_vRKyRQNH0qjZ6RhqQ"
+        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjY1NzQzNjUsImV4cCI6MTUyNzE3OTE2NX0.HYr-Rrs7qUMeHf2RxNz3xdrZ360B54xBTBnVKkcFt-Dh49didBOeIpAWfU452kbStbvqFlAgBzJrx-7vtMzoDg"
         //GET REQUEST STANDBY
         axios({
             method: 'get',
@@ -45,7 +45,7 @@ class CoinTable extends Component {
     clearWatchlist(){
         //DELETE (CLEAR) REQUEST STANDBY
         const queryURL = "http://localhost:8080/watchlist/clear"
-        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NTk5NDEsImV4cCI6MTUyNjU2NDc0MX0.xsr5utc8buRqO16RLQnX9JMP3U9N7l6LOkVrse_ya5JpzSciHeGIYFOmgff863kcYtvYmB8iLWxuWS8pKTihWQ";
+        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjY1NzQzNjUsImV4cCI6MTUyNzE3OTE2NX0.HYr-Rrs7qUMeHf2RxNz3xdrZ360B54xBTBnVKkcFt-Dh49didBOeIpAWfU452kbStbvqFlAgBzJrx-7vtMzoDg";
         axios({
             method: 'delete',
             url: queryURL,
@@ -70,22 +70,23 @@ class CoinTable extends Component {
 
     deleteWatchlist(){
         //DELETE REQUEST STANDBY
+        console.log("Deleting");
         const queryURL = "http://localhost:8080/watchlist/delete/" //symbol to append
-        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NTk5NDEsImV4cCI6MTUyNjU2NDc0MX0.xsr5utc8buRqO16RLQnX9JMP3U9N7l6LOkVrse_ya5JpzSciHeGIYFOmgff863kcYtvYmB8iLWxuWS8pKTihWQ";
+        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjY1NzQzNjUsImV4cCI6MTUyNzE3OTE2NX0.HYr-Rrs7qUMeHf2RxNz3xdrZ360B54xBTBnVKkcFt-Dh49didBOeIpAWfU452kbStbvqFlAgBzJrx-7vtMzoDg";
         axios({
             method: 'delete',
             url: queryURL + document.getElementById("delete").value,
             headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
         }).then((response) => {
             let tempData = this.state.data;
-            let index = 0;
+            let index = -1;
             let flag = false;
             for(let i = 0; i < tempData.length; i++){
                 if(tempData[i] === document.getElementById("delete").value) {
                     flag = true
                     break;
                 }
-                index = i;
+                index++;
             }
             if(flag) {
                 console.log("Index: " + index);
@@ -109,7 +110,7 @@ class CoinTable extends Component {
         // TODO: make sure the coin being added is valid
 
         const queryURL = "http://localhost:8080/watchlist/add/" //symbol to append
-        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NTk5NDEsImV4cCI6MTUyNjU2NDc0MX0.xsr5utc8buRqO16RLQnX9JMP3U9N7l6LOkVrse_ya5JpzSciHeGIYFOmgff863kcYtvYmB8iLWxuWS8pKTihWQ";
+        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjY1NzQzNjUsImV4cCI6MTUyNzE3OTE2NX0.HYr-Rrs7qUMeHf2RxNz3xdrZ360B54xBTBnVKkcFt-Dh49didBOeIpAWfU452kbStbvqFlAgBzJrx-7vtMzoDg";
         let symbol = document.getElementById("add").value;
         let url = queryURL + symbol;
         console.log(symbol);

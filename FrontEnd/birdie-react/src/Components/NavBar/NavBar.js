@@ -27,9 +27,9 @@ class NavBar extends Component {
         const { children } = this.props
         const { fixed } = this.state
 
-        if(this.props.accessToken !== undefined){
-            console.log("NavBar receiving AccessToken: |" + this.props.location.state.accessToken);
-        }
+        // if(this.props.accessToken !== undefined){
+        //     console.log("NavBar receiving AccessToken: |" + this.props.location.state.accessToken);
+        // }
 
         return (
             <Responsive {...Responsive.onlyComputer}>
