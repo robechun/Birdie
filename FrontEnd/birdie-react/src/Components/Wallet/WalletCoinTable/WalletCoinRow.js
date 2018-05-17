@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Icon, Table } from 'semantic-ui-react'
 
+//TODO: Don't make them all negative (red)
 class WalletCoinRow extends Component {
     render() {
         return (

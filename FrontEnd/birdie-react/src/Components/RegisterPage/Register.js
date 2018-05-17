@@ -4,24 +4,7 @@ import axios from 'axios';
 import {Redirect} from 'react-router-dom'
 import NavBar from './../NavBar/NavBar';
 
-import {
-    Button,
-    Container,
-    Divider,
-    Grid,
-    Header,
-    Icon,
-    List,
-    Form,
-    Image,
-    Message,
-    Menu,
-    Responsive,
-    Segment,
-    Sidebar,
-    Visibility,
-    Popup
-} from 'semantic-ui-react'
+import {Button, Grid, Header, Form, Image, Segment,} from 'semantic-ui-react'
 
 class LoginForm extends Component {
 

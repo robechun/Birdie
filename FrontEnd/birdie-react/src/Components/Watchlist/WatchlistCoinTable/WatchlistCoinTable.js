@@ -7,7 +7,6 @@ class CoinTable extends Component {
     constructor(props){
         super(props);
         this.state = {
-            //data: this.props.coinlist
             data:[],
             openAdd: false,
             openDelete: false,

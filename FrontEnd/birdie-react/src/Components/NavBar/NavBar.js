@@ -1,22 +1,6 @@
 import {NavLink} from 'react-router-dom'
-import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import {
-    Button,
-    Container,
-    Divider,
-    Grid,
-    Header,
-    Icon,
-    Image,
-    List,
-    Menu,
-    Responsive,
-    Segment,
-    Sidebar,
-    Visibility,
-} from 'semantic-ui-react'
-{/*add*/}
+import {Button, Container, Menu, Responsive, Segment, Visibility,} from 'semantic-ui-react'
 class NavBar extends Component {
     state = {}
 
@@ -26,10 +10,6 @@ class NavBar extends Component {
     render() {
         const { children } = this.props
         const { fixed } = this.state
-
-        // if(this.props.accessToken !== undefined){
-        //     console.log("NavBar receiving AccessToken: |" + this.props.location.state.accessToken);
-        // }
 
         return (
             <Responsive {...Responsive.onlyComputer}>

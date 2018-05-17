@@ -14,12 +14,7 @@ class WatchlistCoinRow extends Component {
         this.handleData = this.handleData.bind(this);
     }
 
-    componentWillMount(){
-        console.log("comp Mounted");
-    }
-
     handleData(data){
-        //console.log("onMessage:")
         let bestPrice = JSON.parse(data).a;
         let priceChange24hr = JSON.parse(data).P;
         let changeflag;
@@ -36,7 +31,7 @@ class WatchlistCoinRow extends Component {
         });
     }
 
-    websocketOpened(){
+    webSocketOpened(){
         console.log("opened");
     }
 
@@ -49,12 +44,8 @@ class WatchlistCoinRow extends Component {
                 <Table.Cell >{this.state.priceChange}</Table.Cell>
                 <Websocket url={'wss://stream.binance.com:9443/ws/'+ this.props.coinSymbol.toLowerCase() + '@ticker'}
                            onMessage={this.handleData.bind(this)}
-                           onOpen={this.websocketOpened}
+                           onOpen={this.webSocketOpened}
                 />
-                {/*<Table.Cell negative>*/}
-                    {/*BTCPercentage: <Icon name='minus' /> 12%*/}
-                {/*</Table.Cell>*/}
-
             </Table.Row>
 
         )

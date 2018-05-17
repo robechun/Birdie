@@ -32,14 +32,9 @@ class LoginForm extends Component {
             data: user,
             headers: {'Content-Type': 'application/json'},
         }).then((response) => {
-            //console.log(response.data.accessToken);
-            //Console.logs the users' access Token
             this.setState({
                 redirect : true,
                 accessToken: response.data.accessToken
-            }, () => {
-                //console.log(response.data.accessToken);
-                //console.log(this.state.redirect);
             });
         }).catch((error) => {
             console.log(error);

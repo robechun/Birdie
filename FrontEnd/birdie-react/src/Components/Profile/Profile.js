@@ -1,24 +1,8 @@
 import React, { Component } from 'react'
 
 import NavBar from './../NavBar/NavBar';
-import CoinTable from './CoinTable/CoinTable';
 import axios from 'axios';
-import {
-    Button,
-    Container,
-    Divider,
-    Grid,
-    Header,
-    Icon,
-    Image,
-    List,
-    Menu,
-    Responsive,
-    Segment,
-    Sidebar,
-    Visibility,
-    Input
-} from 'semantic-ui-react'
+import {Button, Input} from 'semantic-ui-react'
 
 class Profile extends Component {
 

@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 export const Currencies = [
     { key: 'BTC', value: 'BTC', text: 'Bitcoin' },
     { key: 'ETC', value: 'ETC', text: 'Ethereum' },

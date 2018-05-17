@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import TradingViewWidget , { Themes, watchlist } from 'react-tradingview-widget';
 
 class LandingPageChart extends Component {	
     render() {							

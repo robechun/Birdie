@@ -87,6 +87,14 @@ HomepageHeading.propTypes = {
 /* Heads up!
  * Neither Semantic UI nor Semantic UI React offer a responsive navbar, however, it can be implemented easily.
  * It can be more complicated, but you can create really flexible markup.
+ *
+ *
+ * This NavBar can become responsive through overwriting the semantic UI code. The redundancy of having so many navbars
+ * DEFEATS the purpose of using React. Let's aim to write code cleanly and effectively as opposed to just copying
+ * components over and over again. Use props and state to manage the components as opposed to changing one or two lines
+ * repetitively. -Raf
+ *
+ *
  */
 class DesktopContainer extends Component {
     state = {}
