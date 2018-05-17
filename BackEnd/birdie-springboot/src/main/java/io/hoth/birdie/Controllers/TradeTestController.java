@@ -35,8 +35,8 @@ public class TradeTestController {
 
     @PostMapping(value = "/limit/{symbol}&{amount}&{price}")
     public void placeLimitOrder(@PathVariable(value = "symbol") String symbol,
-                                            @PathVariable(value = "amount") String amount,
-                                            @PathVariable(value = "price") String price) {
+                                @PathVariable(value = "amount") String amount,
+                                @PathVariable(value = "price") String price) {
         // Grab current user
         UserPrincipal currentUser = (UserPrincipal)
                 SecurityContextHolder.getContext().getAuthentication().getPrincipal();

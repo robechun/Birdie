@@ -14,7 +14,7 @@ public class TradeController {
     @Autowired
     TradeService tradeService;
 
-    @PostMapping(value = "/market{type}/{symbol}&{amount}")
+    @PostMapping(value = "/market?type={type}&symbol={symbol}&amt={amount}")
     public NewOrderResponse placeMarketOrder(@PathVariable(value = "type") String type,
                                              @PathVariable(value = "symbol") String symbol,
                                              @PathVariable(value = "amount") String amount) {
@@ -31,7 +31,7 @@ public class TradeController {
 
 
 
-    @PostMapping(value = "/limit{type}/{symbol}&{amount}&{price}")
+    @PostMapping(value = "/limit?type={type}&symbol={symbol}&amt={amount}&price={price}")
     public NewOrderResponse placeLimitOrder(@PathVariable(value = "type") String type,
                                             @PathVariable(value = "symbol") String symbol,
                                             @PathVariable(value = "amount") String amount,
@@ -48,7 +48,7 @@ public class TradeController {
 
 
 
-    @PostMapping(value = "/both/{symbol}&{limitAmount}&{limitPrice}&{stopAmount}&{stopPrice}&{threshold}")
+    @PostMapping(value = "/both?symbol={symbol}&la={limitAmount}&lp={limitPrice}&sa={stopAmount}&sp={stopPrice}&threshold={threshold}")
     public ResponseEntity placeBoth(@PathVariable(value = "symbol") String symbol,
                                       @PathVariable(value = "limitAmount") String limitAmount,
                                       @PathVariable(value = "limitPrice") String limitPrice,
@@ -61,11 +61,20 @@ public class TradeController {
 
 
         // TODO: PERHAPS NOT THE RIGHT RESPONSE
+
         return new ResponseEntity(HttpStatus.OK);
 
         //wss://stream.binance.com:9443/ws/ethbtc@trade
     }
 
+
+
+    @PostMapping(value = "/cancelAll?symbol={symbol}")
+    public ResponseEntity cancelAllOrders(@PathVariable(value = "symbol") String symbol) {
+        tradeService.cancelAll(symbol);
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
 
 
     // TODO: Cancel and Modify

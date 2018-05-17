@@ -89,7 +89,7 @@ public class LoginController {
 
 
     // TODO: TEST
-    @GetMapping(value="/logout")
+    @GetMapping(value="/signout")
     public ResponseEntity logout(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
