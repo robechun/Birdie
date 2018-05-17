@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import axios from 'axios';
-
+import {Redirect} from 'react-router-dom'
 import NavBar from './../NavBar/NavBar';
 
 import {
@@ -20,28 +20,23 @@ import {
     Segment,
     Sidebar,
     Visibility,
+    Popup
 } from 'semantic-ui-react'
 
 class LoginForm extends Component {
 
-    //Example payload:
-    // {
-    //   "firstName":"fname",
-    //   "lastName": "lname",
-    //   "phoneNumber": 1231231230,
-    //   "email": "garbage@garbage.com",
-    //   "password":"password",
-    //   "role":"USER",
-    //   "username":"username",
-    //   "isAccountNonLocked":true,
-    //   "isAccountNonExpired":true,
-    //   "isCredentialNonExpired": true,
-    //   "isEnabled": true
-    // }
+    constructor(){
+        super();
+        this.state = {
+            res : 0
+        }
+
+        this.handleNewUser = this.handleNewUser.bind(this);
+    }
 
     handleNewUser(){
         //e.preventDefault();
-        const queryURL = "http://localhost:8080/register";
+        const queryURL = "http://localhost:8080/signup";
         if(document.getElementById("pass").value === document.getElementById("re-pass").value) {
             const user = {
                 firstName: document.getElementById("fName").value,
@@ -79,9 +74,13 @@ class LoginForm extends Component {
                 data: user,
                 headers: {'Content-Type': 'application/json'},
             }).then((response) => {
-                console.log(response);
+                this.setState({
+                    res : 1
+                })
             }).catch((error) => {
-                console.log(error);
+                this.setState({
+                    res : -1
+                });
             });
         }
         else{
@@ -90,6 +89,14 @@ class LoginForm extends Component {
     }
 
     render(){
+        let msg = <p/>;
+        if(this.state.res == -1){
+            msg = <p>Something went wrong...check your inputs again</p>;
+        }
+        else if (this.state.res == 1){
+            msg = <Redirect to="/"/>
+        }
+
         return (
             <div className='registerForm-form'>
                 {
@@ -173,6 +180,7 @@ class LoginForm extends Component {
                                 />
 
                                 <Button color='black' fluid size='large' onClick={this.handleNewUser}>Create Account</Button>
+                                {msg}
                             </Segment>
                         </Form>
                     </Grid.Column>

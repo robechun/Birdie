@@ -1,53 +1,59 @@
 
 import React, { Component } from 'react'
 import axios from 'axios';
-
-import {NavLink} from 'react-router-dom';
-
 import NavBar from './../NavBar/NavBar';
-import PropTypes from 'prop-types'
-import {
-    Button,
-    Container,
-    Divider,
-    Grid,
-    Header,
-    Icon,
-    List,
-    Form,
-    Image,
-    Message,
-    Menu,
-    Responsive,
-    Segment,
-    Sidebar,
-    Visibility,
-} from 'semantic-ui-react'
+
+import {Redirect} from 'react-router-dom'
+import {Button, Grid, Header, Form, Image, Message, Segment} from 'semantic-ui-react'
 
 
 class LoginForm extends Component {
 
+    constructor(){
+        super();
+        this.state = {
+            redirect : false,
+            accessToken : ""
+        };
+
+        this.handleLogin = this.handleLogin.bind(this);
+    }
+
     handleLogin(){
-        const queryURL = "http://localhost:8080/login"
-        console.log("Heyo");
+        const queryURL = "http://localhost:8080/signin"
         let user = {
             username: document.getElementById("username").value,
             password: document.getElementById("password").value
         };
-        console.log(user);
+        //Request to backend to grab a token
         axios({
             method: 'post',
             url: queryURL,
             data: user,
             headers: {'Content-Type': 'application/json'},
         }).then((response) => {
-            console.log(response);
+            //console.log(response.data.accessToken);
+            //Console.logs the users' access Token
+            this.setState({
+                redirect : true,
+                accessToken: response.data.accessToken
+            }, () => {
+                //console.log(response.data.accessToken);
+                //console.log(this.state.redirect);
+            });
         }).catch((error) => {
             console.log(error);
         });
     }
 
     render() {
+        let redirect = <div/>
+        if(this.state.redirect == true) {
+            console.log("Log-in successful!");
+            redirect = <Redirect to={{pathname : '/', state : {accessToken : this.state.accessToken, redirect : true}}} />
+        }
+
+
         return (
             <div className='registerForm-form'>
                 {
@@ -99,6 +105,7 @@ class LoginForm extends Component {
                         </Message>
                     </Grid.Column>
                 </Grid>
+                {redirect}
             </div>
         )
     }

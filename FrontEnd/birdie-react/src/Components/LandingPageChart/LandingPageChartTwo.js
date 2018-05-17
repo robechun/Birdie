@@ -4,7 +4,7 @@ import TradingViewWidget, { Themes } from 'react-tradingview-widget';
 class LandingPageChart extends Component {
     render() {
         return (
-            <div classname = "center">
+            <div className="full">
 				<TradingViewWidget
 					symbol="BINANCE:BTCUSDT"
 					theme={Themes.DARK}

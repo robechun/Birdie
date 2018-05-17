@@ -6983,6 +6983,10 @@ react-tradingview-widget@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/react-tradingview-widget/-/react-tradingview-widget-1.2.5.tgz#76118a4e5586368f60135f4a17820ffd52111d1c"
 
+react-websocket@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-websocket/-/react-websocket-2.0.0.tgz#efc72f3e841ee1befe78efe634c9982fae16348a"
+
 react@^16.3.0:
   version "16.3.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.3.0.tgz#fc5a01c68f91e9b38e92cf83f7b795ebdca8ddff"
