@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Icon, Table, Button, Modal, Input } from 'semantic-ui-react'
 import CoinRow from './WatchlistCoinRow'
 import axios from 'axios'
-import Websocket from 'react-websocket';
 
 class CoinTable extends Component {
     constructor(props){
