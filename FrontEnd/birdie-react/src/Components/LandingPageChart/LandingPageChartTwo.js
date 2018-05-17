@@ -24,3 +24,6 @@ class LandingPageChart extends Component {
 }
 
 export default LandingPageChart;
+
+
+
