@@ -36,10 +36,9 @@ import {
     Visibility,
 } from 'semantic-ui-react'
 
-/* eslint-disable react/no-multi-comp */
-/* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
- * such things.
- */
+
+
+
 const HomepageHeading = ({ mobile }) => (
     <Container text>
         <Header
@@ -64,12 +63,12 @@ const HomepageHeading = ({ mobile }) => (
             }}
         />
 
-        <div classname = "centerize">
+        <div style = {{display: 'flex', justifyContent: 'center'}}>
             <LandingPageChartThree/>
             <br></br>
         </div>
 
-        <Button primary size='huge'>
+        <Button fluid primary size='huge'>
             <NavLink exact to={'/login'}>
                 Get Started
             </NavLink>
@@ -137,6 +136,11 @@ class DesktopContainer extends Component {
                                     <NavLink exact to={'/profile'}>
                                         <p>Profile</p>
                                     </NavLink>
+                                </Menu.Item>
+                                <Menu.Item as='a'>
+                                <NavLink exact to={'/trade'}>
+                                <p>Trade</p>
+                                </NavLink>
                                 </Menu.Item>
                                 <Menu.Item position='right'>
                                     <NavLink exact to={'/login'}>
@@ -243,7 +247,7 @@ const HomepageLayout = () => (
                 <p style={{ fontSize: '1.33em' }}>
                     Blockchain is the tech of the future
                 </p>
-                <Button as='a' size='large'>Learn More</Button>
+                <Button as='a' size='large'  Link to ="https://blockgeeks.com/guides/what-is-blockchain-technology/">Learn More </Button>
             </Container>
         </Segment>
         <Segment inverted vertical style={{ padding: '5em 0em' }}>
