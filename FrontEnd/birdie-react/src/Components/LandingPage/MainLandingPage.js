@@ -17,9 +17,10 @@ class MainLandingPage extends Component {
   }
 }
 export default MainLandingPage; */
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+
 import {
     Button,
     Container,
@@ -96,6 +97,10 @@ HomepageHeading.propTypes = {
  *
  */
 class DesktopContainer extends Component {
+  handleCurrencies(){
+    const queryURL = "http://localhost:3000/profile"
+  };
+
     state = {}
 
     hideFixedMenu = () => this.setState({ fixed: false })
@@ -205,7 +210,7 @@ const HomepageLayout = () => (
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column textAlign='center'>
-                        <Button size='huge'>Currencies</Button>
+                        <Button circular loading size='huge'>Currencies</Button>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
@@ -234,7 +239,7 @@ const HomepageLayout = () => (
                     Investing in crytocurrencies can be hard and confusing, but here at Birdie we
                     have put together a comprehensize guide on how to get started.
                 </p>
-                <Button as='a' size='large'>Read More</Button>
+                <Button  circular loading as='a' size='large'>Read More</Button>
                 <Divider
                     as='h4'
                     className='header'
@@ -247,7 +252,7 @@ const HomepageLayout = () => (
                 <p style={{ fontSize: '1.33em' }}>
                     Blockchain is the tech of the future
                 </p>
-                <Button as='a' size='large'  Link to ="https://blockgeeks.com/guides/what-is-blockchain-technology/">Learn More </Button>
+                <Button loading circular as='a' size='large'><Link to={'https://blockgeeks.com/guides/what-is-blockchain-technology/'}>Learn More</Link></Button>
             </Container>
         </Segment>
         <Segment inverted vertical style={{ padding: '5em 0em' }}>

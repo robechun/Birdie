@@ -79,7 +79,7 @@ class Profile extends Component {
 
                 id="modifyPass"/>
                 <br></br>
-                <Button color = 'teal' fluid onClick = {this.modifyPass}>Modify Password</Button>
+                <Button  circular color = 'teal' fluid onClick = {this.modifyPass}>Modify Password</Button>
                 <hr/>
                 <Divider horizontal></Divider>
                 <Form.Input
@@ -88,7 +88,7 @@ class Profile extends Component {
 
                 id="apiKey"/>
                 <br></br>
-                <Button color = 'teal' fluid onClick={this.addAPIKey}>Add API Key</Button>
+                <Button circular color = 'teal' fluid onClick={this.addAPIKey}>Add API Key</Button>
                 <hr/>
                 <Divider horizontal></Divider>
                 <Form.Input
@@ -97,7 +97,7 @@ class Profile extends Component {
 
                 id ="secret"/>
                 <br></br>
-                <Button color = 'teal' fluid onClick={this.addSecret}>Add Secret</Button>
+                <Button circular color = 'teal' fluid onClick={this.addSecret}>Add Secret</Button>
                 </Segment>
                 </div>
                 </Grid.Column>
