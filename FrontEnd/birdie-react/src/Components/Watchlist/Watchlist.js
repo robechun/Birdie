@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import NavBar from '../NavBar/NavBar'
+import NavBar from '../NavBar/NavBarWatchlist'
 import WatchlistCoinTable from './WatchlistCoinTable/WatchlistCoinTable';
 import LandingPageChartTwo from '../LandingPageChart/LandingPageChartTwo'
 

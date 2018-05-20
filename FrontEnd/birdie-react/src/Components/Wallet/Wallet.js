@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import WalletCoinTable from './WalletCoinTable/WalletCoinTable';
 import LandingPageChartTwo from '../LandingPageChart/LandingPageChartTwo'
 import axios from 'axios'
-import NavBar from '../NavBar/NavBar'
+import NavBar from '../NavBar/NavBarWallet'
 
 class Wallet extends Component {
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import NavBar from './../NavBar/NavBar';
+import NavBarProfile from './../NavBar/NavBarProfile';
 import axios from 'axios';
 import {Button, Input, Divider, Segment, Rail, Grid, Card, Image, Icon} from 'semantic-ui-react'
 
@@ -62,8 +62,8 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                <NavBar/>
-            
+                <NavBarProfile/>
+
                 <Grid divided = 'vertically'>
                 <Grid.Row columns = {2}>
                 <Grid.Column>
