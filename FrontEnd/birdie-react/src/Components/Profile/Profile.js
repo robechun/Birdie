@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 
 import NavBarProfile from './../NavBar/NavBarProfile';
 import axios from 'axios';
-import {Button, Input, Divider, Segment, Rail, Grid, Card, Image, Icon} from 'semantic-ui-react'
+import Card1 from './usercard'
+import {Button, Form, Input, Divider, Segment, Rail, Grid, Card, Image, Icon, Container, Header, List} from 'semantic-ui-react'
 
 class Profile extends Component {
 
@@ -61,56 +62,77 @@ class Profile extends Component {
 
     render() {
         return (
-            <div>
+            <div className = "blackout">
                 <NavBarProfile/>
 
-                <Grid divided = 'vertically'>
+                <Grid align = 'center'>
                 <Grid.Row columns = {2}>
                 <Grid.Column>
+                <div className = "profileleft">
                 <Segment>
-                <Input fluid id="modifyPass"/>
+                <h3>
+                Modify Account Information
+                </h3>
+                <Form.Input
+                fluid
+                icon = 'lock'
+
+                id="modifyPass"/>
                 <br></br>
-                <Button primary fluid onClick = {this.modifyPass}>Modify Password</Button>
+                <Button color = 'teal' fluid onClick = {this.modifyPass}>Modify Password</Button>
                 <hr/>
                 <Divider horizontal></Divider>
-                <Input fluid id="apiKey"/>
+                <Form.Input
+                fluid
+                icon = 'lock'
+
+                id="apiKey"/>
                 <br></br>
-                <Button primary fluid onClick={this.addAPIKey}>Add API Key</Button>
+                <Button color = 'teal' fluid onClick={this.addAPIKey}>Add API Key</Button>
                 <hr/>
                 <Divider horizontal></Divider>
-                <Input fluid id ="secret"/>
+                <Form.Input
+                fluid
+                icon = 'lock'
+
+                id ="secret"/>
                 <br></br>
-                <Button primary fluid onClick={this.addSecret}>Add Secret</Button>
+                <Button color = 'teal' fluid onClick={this.addSecret}>Add Secret</Button>
                 </Segment>
+                </div>
                 </Grid.Column>
                 <Grid.Column>
-                <Card>
-
-                <Image src='/user.jpg' />
-                <Card.Content>
-                <Card.Header>
-                User
-                </Card.Header>
-                <Card.Meta>
-                <span className='date'>
-                Joined in xxx
-                </span>
-                </Card.Meta>
-                <Card.Description>
-                Profile
-                </Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                <a>
-                <Icon name='user' />
-                Birdie User
-                </a>
-                </Card.Content>
-                </Card>
+                  <Card1/>
                 </Grid.Column>
                 </Grid.Row>
                 </Grid>
-
+                <Segment inverted vertical style={{ padding: '5em 0em' }}>
+                <Container>
+                    <Grid divided inverted stackable>
+                        <Grid.Row>
+                            <Grid.Column width={3}>
+                                <Header inverted as='h4' content='About' />
+                                <List link inverted>
+                                    <List.Item as='a'>Sitemap</List.Item>
+                                    <List.Item as='a'>Contact Us</List.Item>
+                                </List>
+                            </Grid.Column>
+                            <Grid.Column width={3}>
+                                <Header inverted as='h4' content='Learn' />
+                                <List link inverted>
+                                    <List.Item as='a'>Binance</List.Item>
+                                    <List.Item as='a'>Investing in Crypto</List.Item>
+                                    <List.Item as='a'>How To Access</List.Item>
+                                </List>
+                            </Grid.Column>
+                            <Grid.Column width={7}>
+                                <Header as='h4' inverted>Profile Page</Header>
+                                <p>Change your password. Add an api key. Add a secret question</p>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Container>
+              </Segment>
             </div>
         )
     }

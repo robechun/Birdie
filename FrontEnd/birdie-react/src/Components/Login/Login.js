@@ -4,7 +4,7 @@ import axios from 'axios';
 import NavBar from './../NavBar/NavBar';
 
 import {Redirect} from 'react-router-dom'
-import {Button, Grid, Header, Form, Image, Message, Segment} from 'semantic-ui-react'
+import {Button, Grid, Header, Form, Image, Message, Segment, Container, List} from 'semantic-ui-react'
 
 
 class LoginForm extends Component {
@@ -50,6 +50,7 @@ class LoginForm extends Component {
 
 
         return (
+          <div className = "blackout">
             <div className='registerForm-form'>
                 {
                     /*notes*/
@@ -92,7 +93,7 @@ class LoginForm extends Component {
                                     id = "password"
                                 />
 
-                                <Button color='black' fluid size='large' onClick={this.handleLogin}>Login</Button>
+                                <Button color='teal' fluid size='large' onClick={this.handleLogin}>Login</Button>
                             </Segment>
                         </Form>
                         <Message>
@@ -101,6 +102,34 @@ class LoginForm extends Component {
                     </Grid.Column>
                 </Grid>
                 {redirect}
+            </div>
+            <Segment inverted vertical style={{ padding: '5em 0em' }}>
+            <Container>
+                <Grid divided inverted stackable>
+                    <Grid.Row>
+                        <Grid.Column width={3}>
+                            <Header inverted as='h4' content='About' />
+                            <List link inverted>
+                                <List.Item as='a'>Sitemap</List.Item>
+                                <List.Item as='a'>Contact Us</List.Item>
+                            </List>
+                        </Grid.Column>
+                        <Grid.Column width={3}>
+                            <Header inverted as='h4' content='Learn' />
+                            <List link inverted>
+                                <List.Item as='a'>Binance</List.Item>
+                                <List.Item as='a'>Investing in Crypto</List.Item>
+                                <List.Item as='a'>How To Access</List.Item>
+                            </List>
+                        </Grid.Column>
+                        <Grid.Column width={7}>
+                            <Header as='h4' inverted>Birdie</Header>
+                            <p>Secure your financial future. Create an account now.</p>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+            </Container>
+        </Segment>
             </div>
         )
     }

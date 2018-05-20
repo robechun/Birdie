@@ -12,7 +12,7 @@ a:hover{
 }
 
 .blackout {
-    background-color: black;
+    background-color: #1c1c19;
 }
 
 .full{
@@ -46,6 +46,9 @@ a:hover{
 .left{
     text-align: left;
     padding-left: 50px;
+}
+.profileleft{
+  padding-left: 100px;
 }
 .righttable{
     position: fixed;

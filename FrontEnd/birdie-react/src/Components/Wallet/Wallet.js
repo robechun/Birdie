@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
+import {Segment, Container, Grid, Header, List } from 'semantic-ui-react'
 
 import WalletCoinTable from './WalletCoinTable/WalletCoinTable';
 import LandingPageChartTwo from '../LandingPageChart/LandingPageChartTwo'
 import axios from 'axios'
 import NavBar from '../NavBar/NavBarWallet'
+import footer from '../footer/footer'
 
 class Wallet extends Component {
 
-    constructor(props){
+  constructor(props){
         super(props);
         this.state = {
             data : []
@@ -34,20 +36,17 @@ class Wallet extends Component {
 
     render() {
         return (
+          <div className = "blackout">
             <div>
               <NavBar/>
               <div className="righttable">
-                <h2>
-                  Coin Table
-                </h2>
                 <WalletCoinTable data={this.state.data}/>
               </div>
               <div className="leftchart">
-                <h2>
-                  Overall
-                </h2>
                 <LandingPageChartTwo/>
               </div>
+              <footer/>
+            </div>
             </div>
         )
     }
