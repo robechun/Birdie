@@ -3,7 +3,6 @@ import './App.css';
 import React, { Component } from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import {createStore, applyMiddleware} from 'redux';
 
 import MainLandingPage from "./Components/LandingPage/MainLandingPage";
 import Login from "./Components/Login/Login"
@@ -13,12 +12,13 @@ import Watchlist from "./Components/Watchlist/Watchlist";
 import Register from "./Components/RegisterPage/Register";
 import Trade from "./Components/Trade/Trade";
 
-const store = createStore(() => [], {}, applyMiddleware());
+import Store from './Store';
+//const store = createStore(() => [], {}, applyMiddleware());
 
 class App extends Component {
     render() {
         return (
-            <Provider store ={store}>
+            <Provider store ={Store}>
                 <div className="App">
                     <BrowserRouter>
                         <Switch>

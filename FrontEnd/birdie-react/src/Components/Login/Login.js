@@ -2,6 +2,8 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import NavBar from './../NavBar/NavBar';
+import {connect} from 'react-redux';
+import {fetchToken} from "../../Actions/loginActions";
 
 import {Redirect} from 'react-router-dom'
 import {Button, Grid, Header, Form, Image, Message, Segment} from 'semantic-ui-react'
@@ -26,19 +28,20 @@ class LoginForm extends Component {
             password: document.getElementById("password").value
         };
         //Request to backend to grab a token
-        axios({
-            method: 'post',
-            url: queryURL,
-            data: user,
-            headers: {'Content-Type': 'application/json'},
-        }).then((response) => {
-            this.setState({
-                redirect : true,
-                accessToken: response.data.accessToken
-            });
-        }).catch((error) => {
-            console.log(error);
-        });
+        // axios({
+        //     method: 'post',
+        //     url: queryURL,
+        //     data: user,
+        //     headers: {'Content-Type': 'application/json'},
+        // }).then((response) => {
+        //     this.setState({
+        //         redirect : true,
+        //         accessToken: response.data.accessToken
+        //     });
+        // }).catch((error) => {
+        //     console.log(error);
+        // });
+        this.props.fetchToken();
     }
 
     render() {
@@ -107,4 +110,4 @@ class LoginForm extends Component {
 }
 
 
-export default LoginForm;
+export default connect(null, {fetchToken})(LoginForm);
