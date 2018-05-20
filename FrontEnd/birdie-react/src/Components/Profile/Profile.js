@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import NavBar from './../NavBar/NavBar';
 import axios from 'axios';
-import {Button, Input} from 'semantic-ui-react'
+import {Button, Input, Divider, Segment, Rail, Grid, Card, Image, Icon} from 'semantic-ui-react'
 
 class Profile extends Component {
 
@@ -63,17 +63,53 @@ class Profile extends Component {
         return (
             <div>
                 <NavBar/>
-                <div className="usertext">
-                    <h1>User</h1>
-                </div>
-                <Button onClick = {this.modifyPass}>Modify Password</Button>
-                <Input id="modifyPass"/>
+            
+                <Grid divided = 'vertically'>
+                <Grid.Row columns = {2}>
+                <Grid.Column>
+                <Segment>
+                <Input fluid id="modifyPass"/>
+                <br></br>
+                <Button primary fluid onClick = {this.modifyPass}>Modify Password</Button>
                 <hr/>
-                <Button onClick={this.addAPIKey}>Add API Key</Button>
-                <Input id="apiKey"/>
+                <Divider horizontal></Divider>
+                <Input fluid id="apiKey"/>
+                <br></br>
+                <Button primary fluid onClick={this.addAPIKey}>Add API Key</Button>
                 <hr/>
-                <Button onClick={this.addSecret}>Add Secret</Button>
-                <Input id ="secret"/>
+                <Divider horizontal></Divider>
+                <Input fluid id ="secret"/>
+                <br></br>
+                <Button primary fluid onClick={this.addSecret}>Add Secret</Button>
+                </Segment>
+                </Grid.Column>
+                <Grid.Column>
+                <Card>
+
+                <Image src='/user.jpg' />
+                <Card.Content>
+                <Card.Header>
+                User
+                </Card.Header>
+                <Card.Meta>
+                <span className='date'>
+                Joined in xxx
+                </span>
+                </Card.Meta>
+                <Card.Description>
+                Profile
+                </Card.Description>
+                </Card.Content>
+                <Card.Content extra>
+                <a>
+                <Icon name='user' />
+                Birdie User
+                </a>
+                </Card.Content>
+                </Card>
+                </Grid.Column>
+                </Grid.Row>
+                </Grid>
 
             </div>
         )
