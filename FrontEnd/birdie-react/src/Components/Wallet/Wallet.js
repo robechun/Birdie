@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+import {connect} from 'react-redux';
+import {newToken} from "../../Actions/loginActions";
+
 import WalletCoinTable from './WalletCoinTable/WalletCoinTable';
 import LandingPageChartTwo from '../LandingPageChart/LandingPageChartTwo'
 import axios from 'axios'
@@ -14,10 +17,32 @@ class Wallet extends Component {
         }
 
     }
+
+    // componentWillReceiveProps(nextProps){
+    //     console.log(nextProps);
+    //     if(nextProps.accessToken){
+    //         this.setState({
+    //             token : nextProps.accessToken.data.accessToken
+    //         }, () => {
+    //             this.componentWillMount();
+    //         })
+    //         //this.props.accessToken.data;
+    //     }
+    // }
+
     componentWillMount(){
+        let token = "";
+        try {
+            token = this.props.accessToken.data.accessToken
+        }
+        catch (exception){
+            console.log("User Needs to Login");
+        }
+
+
         // GET REQUEST ON STANDBY
         const queryURL = "http://localhost:8080/wallet/balance"
-        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjY1NzQzNjUsImV4cCI6MTUyNzE3OTE2NX0.HYr-Rrs7qUMeHf2RxNz3xdrZ360B54xBTBnVKkcFt-Dh49didBOeIpAWfU452kbStbvqFlAgBzJrx-7vtMzoDg"
+        //const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjY1NzQzNjUsImV4cCI6MTUyNzE3OTE2NX0.HYr-Rrs7qUMeHf2RxNz3xdrZ360B54xBTBnVKkcFt-Dh49didBOeIpAWfU452kbStbvqFlAgBzJrx-7vtMzoDg"
         axios({
             method: 'get',
             url: queryURL,
@@ -53,4 +78,10 @@ class Wallet extends Component {
     }
 }
 
-export default Wallet;
+const mapStateToProps = state => ({
+    accessToken : state.loginRed.accessToken
+});
+
+
+
+export default connect(mapStateToProps, {newToken})(Wallet);
