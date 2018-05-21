@@ -1,15 +1,37 @@
 import React, { Component } from 'react'
 
+import {connect} from 'react-redux';
+import {newToken} from "../../Actions/loginActions";
+
 import NavBar from './../NavBar/NavBar';
 import axios from 'axios';
 import {Button, Input} from 'semantic-ui-react'
 
 class Profile extends Component {
 
+    constructor(props){
+        super(props);
+        this.state = {
+            token : ""
+        }
+
+        this.modifyPass = this.modifyPass.bind(this);
+        this.addAPIKey = this.addAPIKey.bind(this);
+        this.addSecret = this.addSecret.bind(this);
+    }
+
     modifyPass(){
+        let token = "";
+        //console.log(this.props.accessToken);
+        try {
+            token = this.props.accessToken.data.accessToken
+        }
+        catch (exception){
+            console.log("User Needs to Login");
+        }
+
         let newPass = document.getElementById("modifyPass").value;
         const queryURL = "http://localhost:8080/profile/newPassword"
-        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NjA1OTgsImV4cCI6MTUyNjU2NTM5OH0.3opRvaitjj9jY7p5hyi56iRjX4lNLjcsKqWsuNZAnJ5HBA1bYtiquWe9s1eoo01LiIt1wdcRyWi7asusbuUxnA"
         axios({
             method: 'put',
             url: queryURL,
@@ -24,9 +46,16 @@ class Profile extends Component {
     }
 
     addAPIKey(){
+        let token = "";
+        try {
+            token = this.props.accessToken.data.accessToken
+        }
+        catch (exception){
+            console.log("User Needs to Login");
+        }
+
         let apiKey = document.getElementById("apiKey").value;
         const queryURL = "http://localhost:8080/profile/addApiKey"
-        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NjA1OTgsImV4cCI6MTUyNjU2NTM5OH0.3opRvaitjj9jY7p5hyi56iRjX4lNLjcsKqWsuNZAnJ5HBA1bYtiquWe9s1eoo01LiIt1wdcRyWi7asusbuUxnA"
         console.log("apikey: |" + apiKey)
         axios({
             method: 'post',
@@ -42,9 +71,16 @@ class Profile extends Component {
     }
 
     addSecret(){
+        let token = "";
+        try {
+            token = this.props.accessToken.data.accessToken
+        }
+        catch (exception){
+            console.log("User Needs to Login");
+        }
+
         let secret = document.getElementById("secret").value;
         const queryURL = "http://localhost:8080/profile/addSecret"
-        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjU5NjA1OTgsImV4cCI6MTUyNjU2NTM5OH0.3opRvaitjj9jY7p5hyi56iRjX4lNLjcsKqWsuNZAnJ5HBA1bYtiquWe9s1eoo01LiIt1wdcRyWi7asusbuUxnA"
         console.log("secret: |" + secret)
         axios({
             method: 'post',
@@ -80,4 +116,9 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+const mapStateToProps = state => ({
+    accessToken : state.loginRed.accessToken
+});
+
+
+export default connect(mapStateToProps, {newToken})(Profile);

@@ -12,7 +12,6 @@ class Watchlist extends Component {
     componentWillMount(){
         console.log("componentWillMount");
         if(this.props.accessToken){
-            //console.log(this.props.accessToken);
             console.log(this.props.accessToken.data);
         }
     }
@@ -37,8 +36,5 @@ class Watchlist extends Component {
 const mapStateToProps = state => ({
     accessToken : state.loginRed.accessToken
 });
-
-
-
 
 export default connect(mapStateToProps, {newToken})(Watchlist);
