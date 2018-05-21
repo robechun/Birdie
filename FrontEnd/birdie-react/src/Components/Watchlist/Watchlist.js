@@ -10,7 +10,6 @@ import LandingPageChartTwo from '../LandingPageChart/LandingPageChartTwo'
 class Watchlist extends Component {
 
     componentWillMount(){
-        console.log("componentWillMount");
         if(this.props.accessToken){
             console.log(this.props.accessToken.data);
         }
@@ -25,7 +24,7 @@ class Watchlist extends Component {
                     <LandingPageChartTwo accessTokenObj = {this.props.accessToken.data}/>
                 </div>
 
-                <div className="right CoinTable">
+                <div className="right WatchlistCoinTable">
                     <WatchlistCoinTable accessTokenObj = {this.props.accessToken.data}/>
                 </div>
             </div>

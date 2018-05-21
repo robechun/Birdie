@@ -62,6 +62,14 @@ a:hover{
     width: 70%;
 }
 
+.WatchlistCoinTable{
+    display: inline-block;
+    vertical-align: top;
+    height: 50%;
+    width: 30%;
+    overflow-y: scroll;
+}
+
 .WalletCoinTable{
     height: 50%;
     width: 100%;
