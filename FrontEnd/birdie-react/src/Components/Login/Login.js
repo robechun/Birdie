@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import NavBar from './../NavBar/NavBar';
 import {connect} from 'react-redux';
-import {fetchToken} from "../../Actions/loginActions";
+import {newToken} from "../../Actions/loginActions";
 
 import {Redirect} from 'react-router-dom'
 import {Button, Grid, Header, Form, Image, Message, Segment} from 'semantic-ui-react'
@@ -41,7 +41,7 @@ class LoginForm extends Component {
         // }).catch((error) => {
         //     console.log(error);
         // });
-        this.props.fetchToken();
+        this.props.newToken(user);
     }
 
     render() {
@@ -109,5 +109,11 @@ class LoginForm extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    accessToken : state.accessToken
+});
 
-export default connect(null, {fetchToken})(LoginForm);
+
+
+
+export default connect(null, {newToken})(LoginForm);

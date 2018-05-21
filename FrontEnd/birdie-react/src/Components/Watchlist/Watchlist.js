@@ -1,10 +1,21 @@
 import React, { Component } from 'react'
 
+import {connect} from 'react-redux';
+import {newToken} from "../../Actions/loginActions";
+
 import NavBar from '../NavBar/NavBar'
 import WatchlistCoinTable from './WatchlistCoinTable/WatchlistCoinTable';
 import LandingPageChartTwo from '../LandingPageChart/LandingPageChartTwo'
 
 class Watchlist extends Component {
+
+    componentWillMount(){
+        console.log("componentWillMount");
+        if(this.props.accessToken){
+            //console.log(this.props.accessToken);
+            console.log(this.props.accessToken.data);
+        }
+    }
 
     render() {
         return (
@@ -12,15 +23,22 @@ class Watchlist extends Component {
             <div className="blackout">
                 <NavBar/>
                 <div className="left LandingPageChart">
-                    <LandingPageChartTwo/>
+                    <LandingPageChartTwo accessTokenObj = {this.props.accessToken.data}/>
                 </div>
 
                 <div className="right CoinTable">
-                    <WatchlistCoinTable/>
+                    <WatchlistCoinTable accessTokenObj = {this.props.accessToken.data}/>
                 </div>
             </div>
         )
     }
 }
 
-export default Watchlist;
+const mapStateToProps = state => ({
+    accessToken : state.loginRed.accessToken
+});
+
+
+
+
+export default connect(mapStateToProps, {newToken})(Watchlist);

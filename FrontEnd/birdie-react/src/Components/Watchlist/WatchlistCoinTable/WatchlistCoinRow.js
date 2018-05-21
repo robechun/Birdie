@@ -32,7 +32,7 @@ class WatchlistCoinRow extends Component {
     }
 
     webSocketOpened(){
-        console.log("opened");
+        //console.log("opened");
     }
 
 

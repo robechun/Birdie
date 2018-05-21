@@ -23,14 +23,17 @@ class CoinTable extends Component {
 
     componentWillMount(){
         const queryURL = "http://localhost:8080/watchlist"
-        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjY1NzQzNjUsImV4cCI6MTUyNzE3OTE2NX0.HYr-Rrs7qUMeHf2RxNz3xdrZ360B54xBTBnVKkcFt-Dh49didBOeIpAWfU452kbStbvqFlAgBzJrx-7vtMzoDg"
+        let token = "";
+        if(this.props.accessTokenObj) {
+            token = this.props.accessTokenObj.accessToken;
+        }
         //GET REQUEST STANDBY
         axios({
             method: 'get',
             url: queryURL,
             headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
         }).then((response) => {
-                console.log("response: " + response.data)
+                //console.log("response: " + response.data)
                 this.setState({
                     data : response.data
                 })
@@ -43,7 +46,10 @@ class CoinTable extends Component {
     clearWatchlist(){
         //DELETE (CLEAR) REQUEST STANDBY
         const queryURL = "http://localhost:8080/watchlist/clear"
-        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjY1NzQzNjUsImV4cCI6MTUyNzE3OTE2NX0.HYr-Rrs7qUMeHf2RxNz3xdrZ360B54xBTBnVKkcFt-Dh49didBOeIpAWfU452kbStbvqFlAgBzJrx-7vtMzoDg";
+        let token = "";
+        if(this.props.accessTokenObj) {
+            token = this.props.accessTokenObj.accessToken;
+        }
         axios({
             method: 'delete',
             url: queryURL,
@@ -70,7 +76,10 @@ class CoinTable extends Component {
         //DELETE REQUEST STANDBY
         console.log("Deleting");
         const queryURL = "http://localhost:8080/watchlist/delete/" //symbol to append
-        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjY1NzQzNjUsImV4cCI6MTUyNzE3OTE2NX0.HYr-Rrs7qUMeHf2RxNz3xdrZ360B54xBTBnVKkcFt-Dh49didBOeIpAWfU452kbStbvqFlAgBzJrx-7vtMzoDg";
+        let token = "";
+        if(this.props.accessTokenObj) {
+            token = this.props.accessTokenObj.accessToken;
+        }
         axios({
             method: 'delete',
             url: queryURL + document.getElementById("delete").value,
@@ -108,7 +117,10 @@ class CoinTable extends Component {
         // TODO: make sure the coin being added is valid
 
         const queryURL = "http://localhost:8080/watchlist/add/" //symbol to append
-        const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjY1NzQzNjUsImV4cCI6MTUyNzE3OTE2NX0.HYr-Rrs7qUMeHf2RxNz3xdrZ360B54xBTBnVKkcFt-Dh49didBOeIpAWfU452kbStbvqFlAgBzJrx-7vtMzoDg";
+        let token = "";
+        if(this.props.accessTokenObj) {
+            token = this.props.accessTokenObj.accessToken;
+        }
         let symbol = document.getElementById("add").value;
         let url = queryURL + symbol;
         console.log(symbol);

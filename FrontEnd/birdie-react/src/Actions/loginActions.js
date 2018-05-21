@@ -1,25 +1,47 @@
 import {FETCH_TOKEN, NEW_TOKEN} from "./types";
 import axios from 'axios';
 
+// //Get
+// export const fetchToken = () => dispatch => {
+//     console.log("action called here");
+//     const queryURL = "http://localhost:8080/signin"
+//     let user = {
+//         username: "tester",
+//         password: "password"
+//     };
+//     axios({
+//             method: 'post',
+//             url: queryURL,
+//             data: user,
+//             headers: {'Content-Type': 'application/json'},
+//         }).then((response) => {
+//             dispatch({
+//                 type : FETCH_TOKEN,
+//                 payload : response
+//             })
+//         }).catch((error) => {
+//             console.log(error);
+//         });
+//
+// }
 
-export const fetchToken = () => dispatch => {
-    console.log("jank");
+// Post
+export const newToken = (userData) => dispatch => {
+    console.log("action called here");
+    console.log(userData);
     const queryURL = "http://localhost:8080/signin"
-    let user = {};
     axios({
             method: 'post',
             url: queryURL,
-            data: user,
+            data: userData,
             headers: {'Content-Type': 'application/json'},
         }).then((response) => {
             dispatch({
-                type : FETCH_TOKEN,
+                type : NEW_TOKEN,
                 payload : response
             })
         }).catch((error) => {
             console.log(error);
         });
-
 }
-
 
