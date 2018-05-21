@@ -80,10 +80,12 @@ public class TradeService {
 
     // TODO: TEST
     // STOP LOSS
-    public NewOrderResponse stopLoss(String symbol, String amount, String price) {
+    public NewOrderResponse stopLoss(String symbol, String amount, String threshold, String price) {
         BinanceApiRestClient client = getCurrentClient();
 
-        NewOrder newStopLoss = new NewOrder(symbol, OrderSide.SELL, OrderType.STOP_LOSS, TimeInForce.GTC, amount, price);
+        NewOrder newStopLoss = new NewOrder(symbol, OrderSide.SELL, OrderType.STOP_LOSS_LIMIT, TimeInForce.GTC, amount, threshold);
+        newStopLoss.stopPrice(price);
+
         return client.newOrder(newStopLoss);
     }
 
@@ -119,7 +121,7 @@ public class TradeService {
                     System.out.println("NEW STOP LOSS1");
                     client.cancelOrder(new CancelOrderRequest(symbol, originalOrderId));
                     System.out.println("NEW STOP LOSS2");
-                    originalOrderId = stopLoss(symbol, stopAmount, stopPrice).getClientOrderId();
+                    originalOrderId = stopLoss(symbol, stopAmount, threshold, stopPrice).getClientOrderId();
                     System.out.println("NEW STOP LOSS3");
                 }
                 else if (price >= thresh && order.getType() == STOP_LOSS) {
@@ -187,6 +189,12 @@ public class TradeService {
             client.cancelOrder(new CancelOrderRequest(symbol,order.getOrderId()));
         }
 
+    }
+
+    public List<Order> openOrders(String symbol) {
+        BinanceApiRestClient client = getCurrentClient();
+
+        return client.getOpenOrders(new OrderRequest(symbol));
     }
 
 }

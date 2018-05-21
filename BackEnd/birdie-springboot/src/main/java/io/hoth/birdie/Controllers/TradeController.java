@@ -1,6 +1,7 @@
 package io.hoth.birdie.Controllers;
 
 import com.binance.api.client.domain.account.NewOrderResponse;
+import io.hoth.birdie.Payload.ApiResponse;
 import io.hoth.birdie.Services.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,13 +49,14 @@ public class TradeController {
 
 
 
-    @PostMapping(value = "/both?symbol={symbol}&la={limitAmount}&lp={limitPrice}&sa={stopAmount}&sp={stopPrice}&threshold={threshold}")
-    public ResponseEntity placeBoth(@PathVariable(value = "symbol") String symbol,
-                                      @PathVariable(value = "limitAmount") String limitAmount,
-                                      @PathVariable(value = "limitPrice") String limitPrice,
-                                      @PathVariable(value = "stopAmount") String stopAmount,
-                                      @PathVariable(value = "stopPrice") String stopPrice,
-                                      @PathVariable(value = "threshold") String threshold) {
+    // ?symbol={symbol}&la={limitAmount}&lp={limitPrice}&sa={stopAmount}&sp={stopPrice}&threshold={threshold}
+    @PostMapping(value = "/both")
+    public ResponseEntity placeBoth(@RequestParam(value = "symbol") String symbol,
+                                    @RequestParam(value = "la") String limitAmount,
+                                    @RequestParam(value = "lp") String limitPrice,
+                                    @RequestParam(value = "sa") String stopAmount,
+                                    @RequestParam(value = "sp") String stopPrice,
+                                    @RequestParam(value = "threshold") String threshold) {
 
         if (!tradeService.bothOrders(symbol, limitAmount, limitPrice, stopAmount, stopPrice, threshold))
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -68,16 +70,36 @@ public class TradeController {
     }
 
 
-
-    @PostMapping(value = "/cancelAll?symbol={symbol}")
-    public ResponseEntity cancelAllOrders(@PathVariable(value = "symbol") String symbol) {
+    // ?symbol={symbol}
+    @PostMapping(value = "/cancelAll")
+    public ResponseEntity cancelAllOrders(@RequestParam(value = "symbol") String symbol) {
         tradeService.cancelAll(symbol);
 
         return new ResponseEntity(HttpStatus.OK);
     }
 
 
-    // TODO: Cancel and Modify
+    // ?symbol={symbol}&amt={amount}&price={price}&threshold={threshold}
+    @PostMapping(value = "/stopLoss")
+    public NewOrderResponse placeStopLoss(@RequestParam(value = "symbol") String symbol,
+                                          @RequestParam(value = "amt") String amount,
+                                          @RequestParam(value = "price") String price,
+                                          @RequestParam(value = "threshold") String threshold) {
+
+        return tradeService.stopLoss(symbol,amount,threshold,price);
+
+    }
+
+
+    // ?symbol={symbol}
+    @GetMapping(value = "/openOrders")
+    public ResponseEntity getOpenOrders(@RequestParam(value = "symbol") String symbol) {
+
+        return new ResponseEntity<Object>(tradeService.openOrders(symbol), HttpStatus.OK);
+    }
+
+
+        // TODO: Cancel and Modify
 
 //    @PostMapping(value = "/stopLoss/{symbol}&{amount}&{price}")
 //    public NewOrderResponse placeStopLossOrder(@PathVariable(value = "symbol") String symbol,
