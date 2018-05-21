@@ -11,9 +11,6 @@ class Profile extends Component {
 
     constructor(props){
         super(props);
-        this.state = {
-            token : ""
-        }
 
         this.modifyPass = this.modifyPass.bind(this);
         this.addAPIKey = this.addAPIKey.bind(this);
@@ -97,7 +94,7 @@ class Profile extends Component {
 
     render() {
         return (
-            <div>
+            <div className="full blackout">
                 <NavBar/>
                 <div className="usertext">
                     <h1>User</h1>

@@ -45,7 +45,7 @@ class Wallet extends Component {
 
     render() {
         return (
-            <div>
+            <div className="full blackout">
               <NavBar/>
               <div className="righttable Wallet">
                 <WalletCoinTable data={this.state.data}/>

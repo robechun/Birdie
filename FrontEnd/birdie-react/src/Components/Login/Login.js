@@ -27,20 +27,7 @@ class LoginForm extends Component {
             username: document.getElementById("username").value,
             password: document.getElementById("password").value
         };
-        //Request to backend to grab a token
-        // axios({
-        //     method: 'post',
-        //     url: queryURL,
-        //     data: user,
-        //     headers: {'Content-Type': 'application/json'},
-        // }).then((response) => {
-        //     this.setState({
-        //         redirect : true,
-        //         accessToken: response.data.accessToken
-        //     });
-        // }).catch((error) => {
-        //     console.log(error);
-        // });
+        //Redux Action
         this.props.newToken(user);
     }
 
@@ -53,67 +40,59 @@ class LoginForm extends Component {
 
 
         return (
-            <div className='registerForm-form'>
-                {
-                    /*notes*/
-                }
-                <div>
-                    <NavBar/>
-                </div>
-                <style>{`
-                  body > div,
-                  body > div > div,
-                  body > div > div > div.login-form {
-                    height: 100%;
-                   }
-            `}</style>
-                <Grid
-                    textAlign='center'
-                    style={{ height: '100%' }}
-                    verticalAlign='middle'
-                >
-                    <Grid.Column style={{ maxWidth: 450 }}>
-                        <Header as='h2' color='teal' textAlign='center-left'>
-                            <Image src='/logo.png' />
-                            {' '}Log-in to your Account
-                        </Header>
-                        <Form size='large'>
-                            <Segment stacked>
-                                <Form.Input
-                                    fluid
-                                    icon='user'
-                                    iconPosition='left'
-                                    placeholder='username'
-                                    id = "username"
-                                />
-                                <Form.Input
-                                    fluid
-                                    icon='lock'
-                                    iconPosition='left'
-                                    placeholder='Password'
-                                    type='password'
-                                    id = "password"
-                                />
+            <div className="full blackout">
+                <div className='registerForm-form'>
+                    <div>
+                        <NavBar/>
+                    </div>
+                    <style>{`
+                      body > div,
+                      body > div > div,
+                      body > div > div > div.login-form {
+                        height: 100%;
+                       }
+                `}</style>
+                    <Grid
+                        textAlign='center'
+                        style={{ height: '100%' }}
+                        verticalAlign='middle'
+                    >
+                        <Grid.Column style={{ maxWidth: 450 }}>
+                            <Header as='h2' color='teal' textAlign='center-left'>
+                                <Image src='/logo.png' />
+                                {' '}Log-in to your Account
+                            </Header>
+                            <Form size='large'>
+                                <Segment stacked>
+                                    <Form.Input
+                                        fluid
+                                        icon='user'
+                                        iconPosition='left'
+                                        placeholder='username'
+                                        id = "username"
+                                    />
+                                    <Form.Input
+                                        fluid
+                                        icon='lock'
+                                        iconPosition='left'
+                                        placeholder='Password'
+                                        type='password'
+                                        id = "password"
+                                    />
 
-                                <Button color='black' fluid size='large' onClick={this.handleLogin}>Login</Button>
-                            </Segment>
-                        </Form>
-                        <Message>
-                            New? <a href="/Register">Sign Up</a>
-                        </Message>
-                    </Grid.Column>
-                </Grid>
-                {redirect}
+                                    <Button color='black' fluid size='large' onClick={this.handleLogin}>Login</Button>
+                                </Segment>
+                            </Form>
+                            <Message>
+                                New? <a href="/Register">Sign Up</a>
+                            </Message>
+                        </Grid.Column>
+                    </Grid>
+                    {redirect}
+                </div>
             </div>
         )
     }
 }
-
-const mapStateToProps = state => ({
-    accessToken : state.accessToken
-});
-
-
-
 
 export default connect(null, {newToken})(LoginForm);

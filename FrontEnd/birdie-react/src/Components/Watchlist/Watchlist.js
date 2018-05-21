@@ -18,7 +18,7 @@ class Watchlist extends Component {
     render() {
         return (
 
-            <div className="blackout">
+            <div className="full blackout">
                 <NavBar/>
                 <div className="left LandingPageChart">
                     <LandingPageChartTwo accessTokenObj = {this.props.accessToken.data}/>

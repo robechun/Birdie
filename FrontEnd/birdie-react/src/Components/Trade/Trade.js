@@ -8,7 +8,7 @@ class Trade extends Component {
     render() {
         return (
 
-            <div>
+            <div className="full blackout">
                 <NavBar/>
                 <Grid divided='vertically'>
                     <Grid.Row columns={2}>

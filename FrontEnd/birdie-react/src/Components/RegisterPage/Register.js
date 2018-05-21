@@ -35,7 +35,6 @@ class LoginForm extends Component {
                 isCredentialNonExpired: true,
                 isEnabled: true
             };
-
             // {
             //     "firstName":"Raf",
             //     "lastName": "Valdez",
@@ -81,93 +80,95 @@ class LoginForm extends Component {
         }
 
         return (
-            <div className='registerForm-form'>
-                {
-                    /*notes*/
-                }
-                <div>
-                    <NavBar/>
-                </div>
-                <style>
-                    {`
-                    body > div,
-                    body > div > div,
-                    body > div > div > div.login-form {
-                      height: 100%;
+            <div className="full blackout">
+                <div className='registerForm-form'>
+                    {
+                        /*notes*/
                     }
-                  `}
-                </style>
-                <Grid
-                    textAlign='center'
-                    style={{ height: '100%' }}
-                    verticalAlign='middle'
-                >
-                    <Grid.Column style={{ maxWidth: 450 }}>
-                        <Header as='h2' color='teal' textAlign='center-left'>
-                            <Image src='/logo.png' />
-                            {' '}Create New Account
-                        </Header>
-                        <Form size='large'>
-                            <Segment stacked>
-                                <Form.Input
-                                    fluid
-                                    icon='user'
-                                    iconPosition='left'
-                                    placeholder='First Name'
-                                    id = "fName"
-                                />
-                                <Form.Input
-                                    fluid
-                                    icon='user'
-                                    iconPosition='left'
-                                    placeholder='Last Name'
-                                    id = "lName"
-                                />
-                                <Form.Input
-                                    fluid
-                                    icon='user'
-                                    iconPosition='left'
-                                    placeholder='Username'
-                                    id = "userName"
-                                />
+                    <div>
+                        <NavBar/>
+                    </div>
+                    <style>
+                        {`
+                        body > div,
+                        body > div > div,
+                        body > div > div > div.login-form {
+                          height: 100%;
+                        }
+                      `}
+                    </style>
+                    <Grid
+                        textAlign='center'
+                        style={{ height: '100%' }}
+                        verticalAlign='middle'
+                    >
+                        <Grid.Column style={{ maxWidth: 450 }}>
+                            <Header as='h2' color='teal' textAlign='center-left'>
+                                <Image src='/logo.png' />
+                                {' '}Create New Account
+                            </Header>
+                            <Form size='large'>
+                                <Segment stacked>
+                                    <Form.Input
+                                        fluid
+                                        icon='user'
+                                        iconPosition='left'
+                                        placeholder='First Name'
+                                        id = "fName"
+                                    />
+                                    <Form.Input
+                                        fluid
+                                        icon='user'
+                                        iconPosition='left'
+                                        placeholder='Last Name'
+                                        id = "lName"
+                                    />
+                                    <Form.Input
+                                        fluid
+                                        icon='user'
+                                        iconPosition='left'
+                                        placeholder='Username'
+                                        id = "userName"
+                                    />
 
-                                <Form.Input
-                                    fluid
-                                    icon='user'
-                                    iconPosition='left'
-                                    placeholder='Phone Number'
-                                    id = "phoneNum"
-                                />
-                                <Form.Input
-                                    fluid
-                                    icon='user'
-                                    iconPosition='left'
-                                    placeholder='E-mail address'
-                                    id = "email"
-                                />
-                                <Form.Input
-                                    fluid
-                                    icon='lock'
-                                    iconPosition='left'
-                                    placeholder='Password'
-                                    type='password'
-                                    id = "pass"
-                                />
-                                <Form.Input
-                                    fluid
-                                    icon='lock'
-                                    iconPosition='left'
-                                    placeholder='Confirm Password'
-                                    type='password'
-                                    id = "re-pass"
-                                />
+                                    <Form.Input
+                                        fluid
+                                        icon='user'
+                                        iconPosition='left'
+                                        placeholder='Phone Number'
+                                        id = "phoneNum"
+                                    />
+                                    <Form.Input
+                                        fluid
+                                        icon='user'
+                                        iconPosition='left'
+                                        placeholder='E-mail address'
+                                        id = "email"
+                                    />
+                                    <Form.Input
+                                        fluid
+                                        icon='lock'
+                                        iconPosition='left'
+                                        placeholder='Password'
+                                        type='password'
+                                        id = "pass"
+                                    />
+                                    <Form.Input
+                                        fluid
+                                        icon='lock'
+                                        iconPosition='left'
+                                        placeholder='Confirm Password'
+                                        type='password'
+                                        id = "re-pass"
+                                    />
 
-                                <Button color='black' fluid size='large' onClick={this.handleNewUser}>Create Account</Button>
-                                {msg}
-                            </Segment>
-                        </Form>
-                    </Grid.Column>
-                </Grid>
+                                    <Button color='black' fluid size='large' onClick={this.handleNewUser}>Create Account</Button>
+                                    {msg}
+                                </Segment>
+                            </Form>
+                        </Grid.Column>
+                    </Grid>
+                </div>
             </div>
         )
     }
