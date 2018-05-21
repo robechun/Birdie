@@ -18,18 +18,6 @@ class Wallet extends Component {
 
     }
 
-    // componentWillReceiveProps(nextProps){
-    //     console.log(nextProps);
-    //     if(nextProps.accessToken){
-    //         this.setState({
-    //             token : nextProps.accessToken.data.accessToken
-    //         }, () => {
-    //             this.componentWillMount();
-    //         })
-    //         //this.props.accessToken.data;
-    //     }
-    // }
-
     componentWillMount(){
         let token = "";
         try {
@@ -39,10 +27,8 @@ class Wallet extends Component {
             console.log("User Needs to Login");
         }
 
-
         // GET REQUEST ON STANDBY
         const queryURL = "http://localhost:8080/wallet/balance"
-        //const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1YWYzZjM1ZTVlYjE5NzEwMGNhNDQ3OGUiLCJpYXQiOjE1MjY1NzQzNjUsImV4cCI6MTUyNzE3OTE2NX0.HYr-Rrs7qUMeHf2RxNz3xdrZ360B54xBTBnVKkcFt-Dh49didBOeIpAWfU452kbStbvqFlAgBzJrx-7vtMzoDg"
         axios({
             method: 'get',
             url: queryURL,
@@ -61,16 +47,10 @@ class Wallet extends Component {
         return (
             <div>
               <NavBar/>
-              <div className="righttable">
-                <h2>
-                  Coin Table
-                </h2>
+              <div className="righttable Wallet">
                 <WalletCoinTable data={this.state.data}/>
               </div>
               <div className="leftchart">
-                <h2>
-                  Overall
-                </h2>
                 <LandingPageChartTwo/>
               </div>
             </div>

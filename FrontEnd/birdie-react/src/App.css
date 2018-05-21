@@ -55,17 +55,22 @@ a:hover{
 .leftchart{
     left: 30px;
     position: fixed;
-    top: 100px
+    top: 150px
 }
 .LandingPageChart{
     display: inline-block;
     width: 70%;
 }
 
-.CoinTable{
-    display: inline-block;
-    vertical-align: top;
-    width: 30%;
+.WalletCoinTable{
+    height: 50%;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.Wallet {
+    height : 100%;
+    width : 50%;
 }
 
 .center{
