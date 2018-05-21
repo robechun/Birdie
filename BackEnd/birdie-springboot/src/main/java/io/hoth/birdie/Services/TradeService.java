@@ -5,6 +5,7 @@ import com.binance.api.client.BinanceApiClientFactory;
 import com.binance.api.client.BinanceApiRestClient;
 import com.binance.api.client.BinanceApiWebSocketClient;
 import com.binance.api.client.domain.OrderSide;
+import com.binance.api.client.domain.OrderStatus;
 import com.binance.api.client.domain.OrderType;
 import com.binance.api.client.domain.TimeInForce;
 import com.binance.api.client.domain.account.NewOrder;
@@ -78,13 +79,35 @@ public class TradeService {
         return client.newOrder(NewOrder.limitSell(symbol, TimeInForce.GTC, amount, price));
     }
 
-    // TODO: TEST
+    public NewOrderResponse limitSell(String symbol, String amount, String price, BinanceApiRestClient client) {
+
+        return client.newOrder(NewOrder.limitSell(symbol, TimeInForce.GTC, amount, price));
+    }
+
     // STOP LOSS
-    public NewOrderResponse stopLoss(String symbol, String amount, String threshold, String price) {
+    public NewOrderResponse stopLoss(String symbol, String amount, String price) {
         BinanceApiRestClient client = getCurrentClient();
 
-        NewOrder newStopLoss = new NewOrder(symbol, OrderSide.SELL, OrderType.STOP_LOSS_LIMIT, TimeInForce.GTC, amount, threshold);
+        NewOrder newStopLoss = new NewOrder(symbol, OrderSide.SELL, OrderType.STOP_LOSS, TimeInForce.GTC, amount);
         newStopLoss.stopPrice(price);
+        newStopLoss.timeInForce(null);
+
+        return client.newOrder(newStopLoss);
+    }
+    public NewOrderResponse stopLoss(String symbol, String amount, String price, BinanceApiRestClient client) {
+
+        NewOrder newStopLoss = new NewOrder(symbol, OrderSide.SELL, OrderType.STOP_LOSS, TimeInForce.GTC, amount);
+        newStopLoss.stopPrice(price);
+        newStopLoss.timeInForce(null);
+
+        return client.newOrder(newStopLoss);
+    }
+
+    public NewOrderResponse stopLossLimit(String symbol, String amount, String price, String trigger) {
+        BinanceApiRestClient client = getCurrentClient();
+
+        NewOrder newStopLoss = new NewOrder(symbol, OrderSide.SELL, OrderType.STOP_LOSS, TimeInForce.GTC, amount, price);
+        newStopLoss.stopPrice(trigger);
 
         return client.newOrder(newStopLoss);
     }
@@ -100,18 +123,22 @@ public class TradeService {
         // Websocket client
         BinanceApiWebSocketClient wsClient = BinanceApiClientFactory.newInstance().newWebSocketClient();
 
-        // Create order with LIMIT BUY
+        // Create order with LIMIT SELL
         originalOrderId = limitSell(symbol, limitAmount, limitPrice).getClientOrderId();
 
 
 
-        // TODO: DO I NEED CONCURRENCY HERE???
         Closeable ws = wsClient.onAggTradeEvent(symbol.toLowerCase(), new BinanceApiCallback<AggTradeEvent>() {
             @Override
             public void onResponse(final AggTradeEvent response) {
 
-                // While order is not fulfilled
+                // TODO: THIS GIVES ERROR
+                // If order is fulfilled, stop websocket
                 Order order = client.getOrderStatus(new OrderStatusRequest(symbol, originalOrderId));
+//                if (order.getStatus() == OrderStatus.FILLED)
+//                   ws.close();
+
+
                 double price = Double.parseDouble(response.getPrice());
                 double thresh = Double.parseDouble(threshold);
                 System.out.println(response.getPrice());
@@ -119,16 +146,16 @@ public class TradeService {
 
                 if (price < thresh && order.getType() == LIMIT) {
                     System.out.println("NEW STOP LOSS1");
-                    client.cancelOrder(new CancelOrderRequest(symbol, originalOrderId));
+                    cancel(symbol, originalOrderId, client);
                     System.out.println("NEW STOP LOSS2");
-                    originalOrderId = stopLoss(symbol, stopAmount, threshold, stopPrice).getClientOrderId();
+                    originalOrderId = stopLoss(symbol, stopAmount, stopPrice, client).getClientOrderId();
                     System.out.println("NEW STOP LOSS3");
                 }
                 else if (price >= thresh && order.getType() == STOP_LOSS) {
                     System.out.println("NEW LIMIT1");
-                    client.cancelOrder(new CancelOrderRequest(symbol, originalOrderId));
+                    cancel(symbol, originalOrderId, client);
                     System.out.println("NEW LIMIT2");
-                    originalOrderId = limitSell(symbol, limitAmount, limitPrice).getClientOrderId();
+                    originalOrderId = limitSell(symbol, limitAmount, limitPrice, client).getClientOrderId();
                     System.out.println("NEW LIMIT3");
                 }
             }
@@ -140,29 +167,6 @@ public class TradeService {
             }
         });
 
-//        // TODO: STOPS AFTER NEW STOP LOSS 2. DOESNT EVEN REGISTER STOP LOSS I THINK (?)
-//        Closeable ws = wsClient.onAggTradeEvent(symbol.toLowerCase(), (AggTradeEvent response) ->  {
-//            // While order is not fulfilled
-//            Order order = client.getOrderStatus(new OrderStatusRequest(symbol, originalOrderId));
-//            double price = Double.parseDouble(response.getPrice());
-//            double thresh = Double.parseDouble(threshold);
-//            System.out.println(response.getPrice());
-//
-//            if (price < thresh && order.getType() == LIMIT) {
-//                System.out.println("NEW STOP LOSS1");
-//                client.cancelOrder(new CancelOrderRequest(symbol, originalOrderId));
-//                System.out.println("NEW STOP LOSS2");
-//                originalOrderId = stopLoss(symbol, stopAmount, stopPrice).getClientOrderId();
-//                System.out.println("NEW STOP LOSS3");
-//            }
-//            else if (price >= thresh && order.getType() == STOP_LOSS) {
-//                System.out.println("NEW LIMIT1");
-//                client.cancelOrder(new CancelOrderRequest(symbol, originalOrderId));
-//                System.out.println("NEW LIMIT2");
-//                originalOrderId = limitSell(symbol, limitAmount, limitPrice).getClientOrderId();
-//                System.out.println("NEW LIMIT3");
-//            }
-//        });
 
 
         return true;
@@ -175,6 +179,10 @@ public class TradeService {
         BinanceApiRestClient client = getCurrentClient();
         client.cancelOrder(new CancelOrderRequest(symbol,orderID));
 
+    }
+
+    public void cancel(String symbol, String orderID, BinanceApiRestClient client) {
+        client.cancelOrder(new CancelOrderRequest(symbol,orderID));
     }
 
 
