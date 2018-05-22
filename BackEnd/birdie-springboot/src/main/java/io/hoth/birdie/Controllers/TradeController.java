@@ -14,11 +14,11 @@ public class TradeController {
 
     @Autowired
     TradeService tradeService;
-
-    @PostMapping(value = "/market?type={type}&symbol={symbol}&amt={amount}")
-    public NewOrderResponse placeMarketOrder(@PathVariable(value = "type") String type,
-                                             @PathVariable(value = "symbol") String symbol,
-                                             @PathVariable(value = "amount") String amount) {
+    // ?type={type}&symbol={symbol}&amt={amount}")
+    @PostMapping(value = "/market")
+    public NewOrderResponse placeMarketOrder(@RequestParam(value = "type") String type,
+                                             @RequestParam(value = "symbol") String symbol,
+                                             @RequestParam(value = "amt") String amount) {
 
         if (type.equals("Buy"))
             return tradeService.marketBuy(symbol, amount);
@@ -31,12 +31,12 @@ public class TradeController {
 
 
 
-
-    @PostMapping(value = "/limit?type={type}&symbol={symbol}&amt={amount}&price={price}")
-    public NewOrderResponse placeLimitOrder(@PathVariable(value = "type") String type,
-                                            @PathVariable(value = "symbol") String symbol,
-                                            @PathVariable(value = "amount") String amount,
-                                            @PathVariable(value = "price") String price) {
+    // ?type={type}&symbol={symbol}&amt={amount}&price={price}
+    @PostMapping(value = "/limit")
+    public NewOrderResponse placeLimitOrder(@RequestParam(value = "type") String type,
+                                            @RequestParam(value = "symbol") String symbol,
+                                            @RequestParam(value = "amt") String amount,
+                                            @RequestParam(value = "price") String price) {
 
         if (type.equals("Buy"))
             return tradeService.limitBuy(symbol, amount, price);
@@ -90,6 +90,7 @@ public class TradeController {
 
     }
 
+    // ?symbol={symbol}&amt={amount}&price={price}
     @PostMapping(value = "/stopLoss")
     public NewOrderResponse placeStopLossLimit(@RequestParam(value = "symbol") String symbol,
                                                @RequestParam(value = "amt") String amount,
