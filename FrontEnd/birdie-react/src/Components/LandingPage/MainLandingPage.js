@@ -1,7 +1,6 @@
 import NavBar from './../NavBar/NavBar';
-import AboutBirdie from './AboutBirdie/AboutBirdie';
 import LandingPageChartThree from '../LandingPageChart/LandingPageChartThree';
-//import CoinTable from './CoinTable/CoinTable';
+
 import BuySellSetLimit from './../Trade/BuySellSetLimit/BuySellSetLimit';
 /*
 class MainLandingPage extends Component {
@@ -107,53 +106,60 @@ class DesktopContainer extends Component {
         const { fixed } = this.state
 
         return (
-            <Responsive {...Responsive.onlyComputer}>
-                <Visibility once={false} onBottomPassed={this.showFixedMenu} onBottomPassedReverse={this.hideFixedMenu}>
-                    <Segment inverted textAlign='center'>
-                        <Menu
-                            fixed={fixed ? 'top' : null}
-                            inverted={!fixed}
-                            pointing={!fixed}
-                            secondary={!fixed}
-                            size='medium'
-                        >
-                            <Container>
-                                <Menu.Item as='a' active>
-                                    <NavLink exact to={'/'}>
-                                        <p>Home</p>
-                                    </NavLink>
-                                </Menu.Item>
-                                <Menu.Item as='a'>
-                                    <NavLink exact to={'/watchlist'}>
-                                        <p>Watchlist</p>
-                                    </NavLink>
-                                </Menu.Item>
-                                <Menu.Item as='a'>
-                                    <NavLink exact to={'/wallet'}>
-                                        <p>Wallet</p>
-                                    </NavLink>
-                                </Menu.Item>
-                                <Menu.Item as='a'>
-                                    <NavLink exact to={'/profile'}>
-                                        <p>Profile</p>
-                                    </NavLink>
-                                </Menu.Item>
-                                <Menu.Item position='right'>
-                                    <NavLink exact to={'/login'}>
-                                        <Button as='a' inverted={!fixed}>Log in</Button>
-                                    </NavLink>
-                                    <NavLink exact to={'/register'}>
-                                        <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>Sign Up</Button>
-                                    </NavLink>
-                                </Menu.Item>
-                            </Container>
-                        </Menu>
-                        <HomepageHeading />
-                    </Segment>
-                </Visibility>
-
+            <div>
+                <div className="blackout">
+                    <NavBar/>
+                    <HomepageHeading />
+                </div>
                 {children}
-            </Responsive>
+            </div>
+        //     <Responsive {...Responsive.onlyComputer}>
+        //         <Visibility once={false} onBottomPassed={this.showFixedMenu} onBottomPassedReverse={this.hideFixedMenu}>
+        //             <Segment inverted textAlign='center'>
+        //                 <Menu
+        //                     fixed={fixed ? 'top' : null}
+        //                     inverted={!fixed}
+        //                     pointing={!fixed}
+        //                     secondary={!fixed}
+        //                     size='medium'
+        //                 >
+        //                     <Container>
+        //                         <Menu.Item as='a' active>
+        //                             <NavLink exact to={'/'}>
+        //                                 <p>Home</p>
+        //                             </NavLink>
+        //                         </Menu.Item>
+        //                         <Menu.Item as='a'>
+        //                             <NavLink exact to={'/watchlist'}>
+        //                                 <p>Watchlist</p>
+        //                             </NavLink>
+        //                         </Menu.Item>
+        //                         <Menu.Item as='a'>
+        //                             <NavLink exact to={'/wallet'}>
+        //                                 <p>Wallet</p>
+        //                             </NavLink>
+        //                         </Menu.Item>
+        //                         <Menu.Item as='a'>
+        //                             <NavLink exact to={'/profile'}>
+        //                                 <p>Profile</p>
+        //                             </NavLink>
+        //                         </Menu.Item>
+        //                         <Menu.Item position='right'>
+        //                             <NavLink exact to={'/login'}>
+        //                                 <Button as='a' inverted={!fixed}>Log in</Button>
+        //                             </NavLink>
+        //                             <NavLink exact to={'/register'}>
+        //                                 <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>Sign Up</Button>
+        //                             </NavLink>
+        //                         </Menu.Item>
+        //                     </Container>
+        //                 </Menu>
+        //                 <HomepageHeading />
+        //             </Segment>
+        //         </Visibility>
+        //
+        //         {children}
+        //     </Responsive>
         )
     }
 }
@@ -183,11 +189,11 @@ const HomepageLayout = () => (
                     <Grid.Column width={8}>
                         <Header as='h3' style={{ fontSize: '2em' }}>We Make Investing in Cryptocurreny Easy</Header>
                         <p style={{ fontSize: '1.33em' }}>
-                            With our safe and efficent website
+                            With our safe and efficient website
                         </p>
                         <Header as='h3' style={{ fontSize: '2em' }}>Invest with confidence</Header>
                         <p style={{ fontSize: '1.33em' }}>
-                            Everthing is encryted
+                            Everything is encrypted
                         </p>
                     </Grid.Column>
                     <Grid.Column floated='right' width={6}>
@@ -228,7 +234,7 @@ const HomepageLayout = () => (
                 <Header as='h3' style={{ fontSize: '2em' }}>How to Invest</Header>
                 <p style={{ fontSize: '1.33em' }}>
                     Investing in crytocurrencies can be hard and confusing, but here at Birdie we
-                    have put together a comprehensize guide on how to get started.
+                    have put together a comprehensive guide on how to get started.
                 </p>
                 <Button as='a' size='large'>Read More</Button>
                 <Divider

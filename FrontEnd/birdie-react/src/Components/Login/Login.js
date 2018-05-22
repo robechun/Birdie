@@ -15,32 +15,42 @@ class LoginForm extends Component {
         super();
         this.state = {
             redirect : false,
-            accessToken : ""
+            accessToken : "",
+            redirect:<div/>
         };
 
         this.handleLogin = this.handleLogin.bind(this);
     }
 
     handleLogin(){
-        const queryURL = "http://localhost:8080/signin"
         let user = {
             username: document.getElementById("username").value,
             password: document.getElementById("password").value
         };
         //Redux Action
-        this.props.newToken(user);
+        try {
+            this.props.newToken(user);
+            this.setState({
+                redirect : <Redirect to="/"/>
+            })
+        }
+        catch(e){
+            console.log(e);
+            console.log("Invalid Login Credentials");
+        }
     }
 
     render() {
-        let redirect = <div/>
-        if(this.state.redirect == true) {
-            console.log("Log-in successful!");
-            redirect = <Redirect to={{pathname : '/', state : {accessToken : this.state.accessToken, redirect : true}}} />
-        }
+        // let redirect = <div/>
+        // if(this.state.redirect == true) {
+        //     console.log("Log-in successful!");
+        //     redirect = <Redirect to={{pathname : '/', state : {accessToken : this.state.accessToken, redirect : true}}} />
+        // }
 
 
         return (
             <div className="full blackout">
+                {this.state.redirect}
                 <div className='registerForm-form'>
                     <div>
                         <NavBar/>
@@ -88,7 +98,7 @@ class LoginForm extends Component {
                             </Message>
                         </Grid.Column>
                     </Grid>
-                    {redirect}
+                    
                 </div>
             </div>
         )
