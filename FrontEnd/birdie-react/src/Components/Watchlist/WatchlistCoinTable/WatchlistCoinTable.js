@@ -26,6 +26,7 @@ class CoinTable extends Component {
         let token = "";
         if(this.props.accessTokenObj) {
             token = this.props.accessTokenObj.accessToken;
+            console.log(this.props.accessTokenObj.accessToken)
         }
         //GET REQUEST STANDBY
         axios({
@@ -33,10 +34,14 @@ class CoinTable extends Component {
             url: queryURL,
             headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
         }).then((response) => {
+            // Back-End seems to be returning empty string if watchlist is not found or something...
+            // This only occurs when the user is registering successfully and the login is invoked by the register page
+            if(response.data !== ""){
                 //console.log("response: " + response.data)
                 this.setState({
-                    data : response.data
+                    data: response.data
                 })
+            }
             }
         ).catch((error) => {
             console.log(error);

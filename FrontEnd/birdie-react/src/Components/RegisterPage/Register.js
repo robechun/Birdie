@@ -3,15 +3,17 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import {Redirect} from 'react-router-dom'
 import NavBar from './../NavBar/NavBar';
+import {connect} from 'react-redux';
+import {newToken} from "../../Actions/loginActions";
 
 import {Button, Grid, Header, Form, Image, Segment,} from 'semantic-ui-react'
 
-class LoginForm extends Component {
+class Register extends Component {
 
     constructor(){
         super();
         this.state = {
-            res : 0
+            res : <div/>
         }
 
         this.handleNewUser = this.handleNewUser.bind(this);
@@ -56,12 +58,21 @@ class LoginForm extends Component {
                 data: user,
                 headers: {'Content-Type': 'application/json'},
             }).then((response) => {
+                console.log("success");
+                let loginCred = {
+                    username: document.getElementById("userName").value,
+                    password: document.getElementById("pass").value
+                };
+
+                //this.props.newToken(loginCred);
+
                 this.setState({
-                    res : 1
+                    //res : <Redirect to="/"/>
+                    res: <Redirect to="/login"/>
                 })
             }).catch((error) => {
                 this.setState({
-                    res : -1
+                    res : <p>Something went wrong...check your inputs again</p>
                 });
             });
         }
@@ -71,14 +82,6 @@ class LoginForm extends Component {
     }
 
     render(){
-        let msg = <p/>;
-        if(this.state.res == -1){
-            msg = <p>Something went wrong...check your inputs again</p>;
-        }
-        else if (this.state.res == 1){
-            msg = <Redirect to="/"/>
-        }
-
         return (
             <div className="full blackout">
                 <div className='registerForm-form'>
@@ -163,7 +166,7 @@ class LoginForm extends Component {
                                     />
 
                                     <Button color='black' fluid size='large' onClick={this.handleNewUser}>Create Account</Button>
-                                    {msg}
+                                    {this.state.res}
                                 </Segment>
                             </Form>
                         </Grid.Column>
@@ -175,4 +178,5 @@ class LoginForm extends Component {
 }
 
 
-export default LoginForm;
+//export default connect(null, {newToken})(Register);
+export default Register;

@@ -98,7 +98,7 @@ class LoginForm extends Component {
                             </Message>
                         </Grid.Column>
                     </Grid>
-                    
+
                 </div>
             </div>
         )
