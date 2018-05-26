@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/watchlist")
 public class WatchlistController {
 
     //Call an instance of service
@@ -17,14 +18,14 @@ public class WatchlistController {
     WatchlistService watchlistService;
 
     //Gets Watchlist based on ID provided
-    @GetMapping("/watchlist")
+    @GetMapping("/")
     public List<String> getWatchlist(){
         return watchlistService.getWatchlist();
     }
 
     //Adds to watchlist
     //TODO: Potentially add checks to ensure that the symbol is a valid symbol
-    @PostMapping("/watchlist/add/{symbol}")
+    @PostMapping("/add/{symbol}")
     public List<String> addWatchlistElement(@PathVariable String symbol){
         if(watchlistService.addWatchlistElement(symbol))
             return watchlistService.getWatchlist();
@@ -33,7 +34,7 @@ public class WatchlistController {
     }
 
     //Deletes from the watchlist
-    @DeleteMapping("/watchlist/delete/{symbol}")
+    @DeleteMapping("/delete/{symbol}")
     public List<String> deleteWatchlistElement(@PathVariable String symbol){
         if(watchlistService.deleteWatchlistElement(symbol))
             return watchlistService.getWatchlist();
@@ -42,7 +43,7 @@ public class WatchlistController {
     }
 
     //Clears out the watchlist
-    @DeleteMapping("/watchlist/clear")
+    @DeleteMapping("/clear")
     public List<String> clearWatchlist(){
         if(watchlistService.clearWatchlist()){
             return watchlistService.getWatchlist();

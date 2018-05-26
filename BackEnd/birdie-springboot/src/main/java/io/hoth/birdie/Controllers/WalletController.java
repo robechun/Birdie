@@ -60,7 +60,6 @@ public class WalletController {
         }
 
 
-        // TODO: How to send it to front-end to parse?
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
     }

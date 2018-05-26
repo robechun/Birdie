@@ -187,6 +187,7 @@ public class TradeService {
 
 
     // CANCEL ALL ORDERS OF A SPECIFIC SYMBOL
+    // TODO since cancel gives void, maybe check symbol before cancelling
     public void cancelAll(String symbol) {
         // Binance REST client
         BinanceApiRestClient client = getCurrentClient();
