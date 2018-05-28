@@ -26,7 +26,7 @@ class NavBar extends Component {
             token = this.props.accessToken.data.accessToken
         }
         catch (exception){
-            console.log("User Needs to Login");
+            // do nothing
         }
 
         if(token != ""){
