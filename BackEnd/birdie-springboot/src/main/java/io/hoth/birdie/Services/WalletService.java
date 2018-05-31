@@ -22,13 +22,17 @@ public class WalletService {
     public ResponseEntity getBalances() {
         UserPrincipal currentUser = getCurrentUser();
 
+        if (currentUser.getApiKey().length() != 64 || currentUser.getSecret().length() != 64)
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
+
         BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance(
                 currentUser.getApiKey(),
                 currentUser.getSecret()
         );
         BinanceApiRestClient client = factory.newRestClient();
-	System.out.printf("API KEY: %s\n", currentUser.getApiKey());
-	System.out.printf("Secret: %s\n", currentUser.getSecret());
+	    System.out.printf("API KEY: %s\n", currentUser.getApiKey());
+	    System.out.printf("Secret: %s\n", currentUser.getSecret());
         System.out.printf("Current User for getting balances: %s\n", currentUser.getUsername());
 
         // Grab the Binance account associated
@@ -47,8 +51,8 @@ public class WalletService {
         }
 
 
-        // TODO: How to send it to front-end to parse?
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
     }
 
 }
