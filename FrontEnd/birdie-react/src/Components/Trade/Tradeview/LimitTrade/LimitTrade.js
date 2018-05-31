@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Header, Button, Form, Input} from 'semantic-ui-react'
+import { Grid, Header, Button, Form, Input, Modal} from 'semantic-ui-react'
 import {connect} from 'react-redux';
 import {newToken} from "../../../../Actions/loginActions";
 import axios from 'axios';
@@ -7,9 +7,22 @@ import axios from 'axios';
 class LimitTrade extends Component {
 
     constructor(props){
-        super(props)
+        super(props);
 
+        this.state = {
+            open : false,
+            modalHeader : <p/>,
+            modalBody : <p/>
+        }
+
+        this.toggleModal = this.toggleModal.bind(this);
         this.handleLimitTrade = this.handleLimitTrade.bind(this);
+    }
+
+    toggleModal(){
+        this.setState({
+            open : !this.state.open
+        });
     }
 
     handleLimitTrade(){
@@ -48,9 +61,19 @@ class LimitTrade extends Component {
             headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
         }).then((response) => {
             console.log(response);
+            this.setState({
+                open : true,
+                modalHeader : <p>Success!</p>,
+                modalBody : <p>Limit was successfully placed!</p>
+            });
             // Create a success modal when this occurs
         }).catch((error) => {
             console.log(error);
+            this.setState({
+                open : true,
+                modalHeader : <p>Something Went Wrong...</p>,
+                modalBody : <p>Limit was placed incorrectly.</p>
+            });
             // Create an error modal when this occurs
         });
     }
@@ -66,6 +89,19 @@ class LimitTrade extends Component {
                     <Input id="limitTradeAmt" placeholder="Amount" />
                     <Input id="limitTradePrice" placeholder="Price" />
                 </Form>
+                <Modal size="mini" open={this.state.open} onClose={this.toggleModal}>
+                    <Modal.Header>
+                        {this.state.modalHeader}
+                    </Modal.Header>
+                    <Modal.Content>
+                        {this.state.modalBody}
+                    </Modal.Content>
+                    <Modal.Actions>
+                        <Button negative onClick={this.toggleModal}>
+                            Close
+                        </Button>
+                    </Modal.Actions>
+                </Modal>
                 <Button onClick={this.handleLimitTrade}>Limit Trade</Button>
             </Grid.Column>
         )
