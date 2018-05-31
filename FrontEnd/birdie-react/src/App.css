@@ -6,6 +6,15 @@ a:hover{
     color:#888;
 }
 
+.landingPageTitle {
+    width: 100%;
+    text-align: center;
+}
+
+.landingPageChart{
+    width: 100%;
+}
+
 .AppWrap{
     width: 95%;
     margin: auto;
@@ -49,14 +58,15 @@ a:hover{
     padding-left: 50px;
 }
 .righttable{
-    position: fixed;
-    top: 150px;
-    right: 50px;
+    float: right;
+    padding-left: 5%;
+    display: inline-block;
+    padding-top: 2%;
 }
 .leftchart{
-    left: 30px;
-    position: fixed;
-    top: 150px
+    float: left;
+    display: inline-block;
+    padding-top: 2%;
 }
 .LandingPageChart{
     display: inline-block;
@@ -88,4 +98,8 @@ a:hover{
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+}
+
+.half {
+    width: 50%;
 }

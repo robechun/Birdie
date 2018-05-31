@@ -90,7 +90,7 @@ class LoginForm extends Component {
                                         id = "password"
                                     />
 
-                                    <Button color='black' fluid size='large' onClick={this.handleLogin}>Login</Button>
+                                    <Button color='black' type='button' fluid size='large' onClick={this.handleLogin}>Login</Button>
                                 </Segment>
                             </Form>
                             <Message>

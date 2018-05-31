@@ -40,7 +40,8 @@ import {
  * such things.
  */
 const HomepageHeading = ({ mobile }) => (
-    <Container text>
+    <div className="landingPageTitle">
+
         <Header
             as='h1'
             content='Birdie'
@@ -62,19 +63,18 @@ const HomepageHeading = ({ mobile }) => (
                 marginTop: 1
             }}
         />
-
-        <div classname = "centerize">
+        <div className = "landingPageChart">
             <LandingPageChartThree/>
             <br></br>
         </div>
-
         <Button primary size='huge'>
             <NavLink exact to={'/login'}>
                 Get Started
             </NavLink>
             <Icon name='right arrow' />
         </Button>
-    </Container>
+    </div>
+
 
 
 )

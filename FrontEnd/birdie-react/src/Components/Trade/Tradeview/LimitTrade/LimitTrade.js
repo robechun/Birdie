@@ -59,6 +59,7 @@ class LimitTrade extends Component {
         return (
             <Grid.Column>
                 <Header>Limit</Header>
+                <hr/>
                 <Form>
                     <Input id="limitTradeType" placeholder="Type" />
                     <Input id="limitTradeSymbol" placeholder="Symbol" />

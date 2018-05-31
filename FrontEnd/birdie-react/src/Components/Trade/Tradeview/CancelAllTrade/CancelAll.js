@@ -48,6 +48,7 @@ class CancelAll extends Component {
         return (
             <Grid.Column>
                 <Header>Cancel All</Header>
+                <hr/>
                 <Form>
                     <Input id="CancelAllSymbol" placeholder="Symbol" />
                 </Form>

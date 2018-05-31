@@ -57,6 +57,7 @@ class StopLoss extends Component {
         return (
             <Grid.Column>
                 <Header>Stop Loss</Header>
+                <hr/>
                 <Form>
                     <Input id="StopLossSymbol" placeholder="Symbol" />
                     <Input id="StopLossAmt" placeholder="Amount" />

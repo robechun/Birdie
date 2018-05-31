@@ -51,7 +51,7 @@ class Wallet extends Component {
               <div className="righttable Wallet">
                 <WalletCoinTable data={this.state.data}/>
               </div>
-              <div className="leftchart">
+              <div className="leftchart Wallet">
                 <LandingPageChartTwo/>
               </div>
             </div>

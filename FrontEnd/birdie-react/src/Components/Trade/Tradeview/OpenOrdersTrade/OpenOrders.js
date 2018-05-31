@@ -48,6 +48,7 @@ class OpenOrders extends Component {
         return (
             <Grid.Column>
                 <Header>Open Orders</Header>
+                <hr/>
                 <Form>
                     <Input id="OpenOrdersSymbol" placeholder="Symbol" />
                 </Form>
