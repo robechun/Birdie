@@ -21,7 +21,7 @@ class Register extends Component {
 
     handleNewUser(){
         //e.preventDefault();
-        const queryURL = "http://localhost:8080/signup";
+        const queryURL = "http://159.65.72.45:8080/signup";
         if(document.getElementById("pass").value === document.getElementById("re-pass").value) {
             const user = {
                 firstName: document.getElementById("fName").value,

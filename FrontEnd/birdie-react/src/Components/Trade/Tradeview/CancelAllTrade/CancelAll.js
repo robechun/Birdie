@@ -24,7 +24,7 @@ class CancelAll extends Component {
         console.log("CancelAll Invoked");
 
         // POST ENDPOINT: /trade/market?type={type}&symbol={symbol}&amt={amount}
-        const baseURL = "http://localhost:8080/trade/cancelAll?";
+        const baseURL = "http://159.65.72.45:8080/trade/cancelAll?";
         const symbolParam = "symbol=";
 
         let symbolInput = document.getElementById("CancelAllSymbol").value;

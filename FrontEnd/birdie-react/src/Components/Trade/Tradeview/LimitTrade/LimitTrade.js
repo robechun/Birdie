@@ -24,7 +24,7 @@ class LimitTrade extends Component {
         console.log("LimitTrade Invoked");
 
         // POST ENDPOINT: /trade/market?type={type}&symbol={symbol}&amt={amount}
-        const baseURL = "http://localhost:8080/trade/limit?";
+        const baseURL = "http://159.65.72.45:8080/trade/limit?";
         const typeParam = "type=";
         const symbolParam = "symbol=";
         const amtParam = "amt="

@@ -22,7 +22,7 @@ class CoinTable extends Component {
     }
 
     componentWillMount(){
-        const queryURL = "http://localhost:8080/watchlist"
+        const queryURL = "http://159.65.72.45:8080/watchlist"
         let token = "";
         if(this.props.accessTokenObj) {
             token = this.props.accessTokenObj.accessToken;
