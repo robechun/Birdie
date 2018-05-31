@@ -6,6 +6,15 @@ a:hover{
     color:#888;
 }
 
+.landingPageTitle {
+    width: 100%;
+    text-align: center;
+}
+
+.landingPageChart{
+    width: 100%;
+}
+
 .AppWrap{
     width: 95%;
     margin: auto;
