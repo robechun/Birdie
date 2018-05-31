@@ -46,12 +46,12 @@ class Wallet extends Component {
 
     render() {
         return (
-            <div className="full blackout centerize">
+            <div className="full blackout">
               <NavBar/>
               <div className="righttable Wallet">
                 <WalletCoinTable data={this.state.data}/>
               </div>
-              <div className="leftchart">
+              <div className="leftchart Wallet">
                 <LandingPageChartTwo/>
               </div>
             </div>

@@ -59,15 +59,14 @@ a:hover{
 }
 .righttable{
     float: right;
+    padding-left: 5%;
     display: inline-block;
-    top: 150px;
-    right: 50px;
+    padding-top: 2%;
 }
 .leftchart{
     float: left;
     display: inline-block;
-    left: 30px;
-    top: 150px
+    padding-top: 2%;
 }
 .LandingPageChart{
     display: inline-block;
