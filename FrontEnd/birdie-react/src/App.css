@@ -58,13 +58,17 @@ a:hover{
     padding-left: 50px;
 }
 .righttable{
-    position: fixed;
+    float: right;
+    display: inline-block;
+    /*position: fixed;*/
     top: 150px;
     right: 50px;
 }
 .leftchart{
+    float: left;
+    display: inline-block;
     left: 30px;
-    position: fixed;
+    /*position: fixed;*/
     top: 150px
 }
 .LandingPageChart{
