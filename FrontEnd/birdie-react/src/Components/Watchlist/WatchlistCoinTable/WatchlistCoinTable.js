@@ -50,7 +50,7 @@ class CoinTable extends Component {
 
     clearWatchlist(){
         //DELETE (CLEAR) REQUEST STANDBY
-        const queryURL = "http://localhost:8080/watchlist/clear"
+        const queryURL = "http://159.65.72.45:8080/watchlist/clear"
         let token = "";
         if(this.props.accessTokenObj) {
             token = this.props.accessTokenObj.accessToken;
@@ -80,7 +80,7 @@ class CoinTable extends Component {
     deleteWatchlist(){
         //DELETE REQUEST STANDBY
         console.log("Deleting");
-        const queryURL = "http://localhost:8080/watchlist/delete/" //symbol to append
+        const queryURL = "http://159.65.72.45:8080/watchlist/delete/" //symbol to append
         let token = "";
         if(this.props.accessTokenObj) {
             token = this.props.accessTokenObj.accessToken;
@@ -121,7 +121,7 @@ class CoinTable extends Component {
     addWatchlist(){
         // TODO: make sure the coin being added is valid
 
-        const queryURL = "http://localhost:8080/watchlist/add/" //symbol to append
+        const queryURL = "http://159.65.72.45:8080/watchlist/add/" //symbol to append
         let token = "";
         if(this.props.accessTokenObj) {
             token = this.props.accessTokenObj.accessToken;
