@@ -25,7 +25,7 @@ class StopLossLimit extends Component {
         console.log("StopLossLimit Invoked");
 
         // POST ENDPOINT: /trade/market?type={type}&symbol={symbol}&amt={amount}
-        const baseURL = "http://localhost:8080/trade/stopLossLimit?";
+        const baseURL = "http://159.65.72.45:8080/trade/stopLossLimit?";
         const symbolParam = "symbol=";
         const amtParam = "amt="
         const priceParam = "price="

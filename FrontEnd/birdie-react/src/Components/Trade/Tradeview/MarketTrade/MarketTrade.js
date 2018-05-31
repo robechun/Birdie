@@ -25,7 +25,7 @@ class MarketTrade extends Component {
         console.log("MarketTrade Invoked");
 
         // POST ENDPOINT: /trade/market?type={type}&symbol={symbol}&amt={amount}
-        const baseURL = "http://localhost:8080/trade/market?";
+        const baseURL = "http://159.65.72.45:8080/trade/market?";
         const typeParam = "type=";
         const symbolParam = "symbol=";
         const amtParam = "amt="

@@ -29,7 +29,7 @@ class Wallet extends Component {
         }
 
         // GET REQUEST ON STANDBY
-        const queryURL = "http://localhost:8080/wallet/balance"
+        const queryURL = "http://159.65.72.45:8080/wallet/balance"
         axios({
             method: 'get',
             url: queryURL,

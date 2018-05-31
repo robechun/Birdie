@@ -24,7 +24,7 @@ class OpenOrders extends Component {
         console.log("OpenOrders Invoked");
 
         // POST ENDPOINT: /trade/market?type={type}&symbol={symbol}&amt={amount}
-        const baseURL = "http://localhost:8080/trade/openOrders?";
+        const baseURL = "http://159.65.72.45:8080/trade/openOrders?";
         const symbolParam = "symbol=";
 
         let symbolInput = document.getElementById("OpenOrdersSymbol").value;
