@@ -6,6 +6,12 @@ import axios from 'axios';
 
 class StopLoss extends Component {
 
+    constructor(props){
+        super(props)
+
+        this.handleStopLoss = this.handleStopLoss.bind(this);
+    }
+
     handleStopLoss(){
         let token = "";
         try {

@@ -6,6 +6,12 @@ import axios from 'axios';
 
 class OpenOrders extends Component {
 
+    constructor(props){
+        super(props)
+
+        this.handleOpenOrders = this.handleOpenOrders.bind(this);
+    }
+
     handleOpenOrders(){
         let token = "";
         try {

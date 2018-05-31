@@ -5,11 +5,18 @@ import {newToken} from "../../../../Actions/loginActions";
 import axios from 'axios';
 
 class MarketTrade extends Component {
+    constructor(props){
+        super(props)
+
+        this.handleMarketTrade = this.handleMarketTrade.bind(this);
+    }
 
     handleMarketTrade(){
         let token = "";
+
         try {
-            token = this.props.accessToken.data.accessToken
+            console.log("accessToken");
+            token = this.props.accessToken.data.accessToken;
         }
         catch (exception){
             console.log("User Needs to Login");
@@ -27,6 +34,8 @@ class MarketTrade extends Component {
         let typeInput = document.getElementById("marketTradeType").value;
         let symbolInput = document.getElementById("marketTradeSymbol").value;
         let amtInput = document.getElementById("marketTradeAmt").value;
+
+        console.log(baseURL + typeParam + typeInput + append + symbolParam + symbolInput + append + amtParam + amtInput);
 
         // TODO: Account of valid symbols, whitespace, case-sensitivity, buy/sell type, alpha chars in amt
         //Accounts for '.09132' to make '0.9132' instead

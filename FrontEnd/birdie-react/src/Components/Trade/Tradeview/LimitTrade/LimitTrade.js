@@ -6,6 +6,12 @@ import axios from 'axios';
 
 class LimitTrade extends Component {
 
+    constructor(props){
+        super(props)
+
+        this.handleLimitTrade = this.handleLimitTrade.bind(this);
+    }
+
     handleLimitTrade(){
         let token = "";
         try {

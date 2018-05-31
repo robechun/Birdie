@@ -6,6 +6,12 @@ import axios from 'axios';
 
 class CancelAll extends Component {
 
+    constructor(props){
+        super(props)
+
+        this.handleCancelAll = this.handleCancelAll.bind(this);
+    }
+
     handleCancelAll(){
         let token = "";
         try {

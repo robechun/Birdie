@@ -22,6 +22,7 @@ class Wallet extends Component {
         let token = "";
         try {
             token = this.props.accessToken.data.accessToken
+            console.log(token)
         }
         catch (exception){
             console.log("User Needs to Login");
