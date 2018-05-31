@@ -27,7 +27,8 @@ public class WalletService {
                 currentUser.getSecret()
         );
         BinanceApiRestClient client = factory.newRestClient();
-
+	System.out.printf("API KEY: %s\n", currentUser.getApiKey());
+	System.out.printf("Secret: %s\n", currentUser.getSecret());
         System.out.printf("Current User for getting balances: %s\n", currentUser.getUsername());
 
         // Grab the Binance account associated
