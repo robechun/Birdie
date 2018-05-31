@@ -61,6 +61,7 @@ class MarketTrade extends Component {
         return (
                 <Grid.Column>
                     <Header>Market</Header>
+                    <hr/>
                     <Form>
                         <Input id="marketTradeType" placeholder="Type" />
                         <Input id="marketTradeSymbol" placeholder="Symbol" />

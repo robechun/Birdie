@@ -60,6 +60,7 @@ class StopLossLimit extends Component {
         return (
             <Grid.Column>
                 <Header>Stop Loss Limit</Header>
+                <hr/>
                 <Form>
                     <Input id="StopLossLimitSymbol" placeholder="Symbol" />
                     <Input id="StopLossLimitAmt" placeholder="Amount" />

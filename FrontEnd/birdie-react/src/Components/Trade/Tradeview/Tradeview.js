@@ -16,7 +16,6 @@ class Tradeview extends Component {
         }
 
         this.handleItemClick = this.handleItemClick.bind(this);
-
     }
 
     handleItemClick = (e, { name }) => {
@@ -53,6 +52,7 @@ class Tradeview extends Component {
 
         return (
             <div className="full">
+                <br/>
                 <Grid>
                     <Grid.Column width={4}>
                         <Menu fluid vertical tabular>
