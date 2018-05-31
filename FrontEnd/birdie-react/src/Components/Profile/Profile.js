@@ -28,7 +28,7 @@ class Profile extends Component {
         }
 
         let newPass = document.getElementById("modifyPass").value;
-        const queryURL = "http://http://159.65.72.45:3000/:8080/profile/newPassword"
+        const queryURL = "http://159.65.72.45:3000/:8080/profile/newPassword"
         axios({
             method: 'put',
             url: queryURL,
@@ -77,7 +77,7 @@ class Profile extends Component {
         }
 
         let secret = document.getElementById("secret").value;
-        const queryURL = "http://localhost:8080/profile/addSecret"
+        const queryURL = "http://159.65.72.45:8080/profile/addSecret"
         console.log("secret: |" + secret)
         axios({
             method: 'post',
