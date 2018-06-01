@@ -13,21 +13,22 @@ class WalletCoinTable extends Component {
 
     render() {
         return (
-            <div className="CoinTable" >
-                <Table size='small' celled selectable sortable>
+            <div className="WalletCoinTable">
+                <Table inverted size='small' celled>
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell sorted>Asset/Symbol</Table.HeaderCell>
+                            <Table.HeaderCell>Asset/Symbol</Table.HeaderCell>
                             <Table.HeaderCell>Free</Table.HeaderCell>
                             <Table.HeaderCell>Locked</Table.HeaderCell>
-                            {/*TODO: <Table.HeaderCell>Total</Table.HeaderCell>*/}
+                            <Table.HeaderCell>Total</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
 
                     <Table.Body>
                         {
                             this.props.data.map((i) => {
-                                return <WalletCoinRow asset={i.asset} free={i.free} locked={i.locked} key={i.asset}>Test</WalletCoinRow>
+                                let total = parseFloat(i.free) + parseFloat(i.locked);
+                                return <WalletCoinRow asset={i.asset} free={i.free} locked={i.locked} key={i.asset} total = {total.toPrecision(8)}>Test</WalletCoinRow>
                             })
                         }
                     </Table.Body>

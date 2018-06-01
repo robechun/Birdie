@@ -6,6 +6,15 @@ a:hover{
     color:#888;
 }
 
+.landingPageTitle {
+    width: 100%;
+    text-align: center;
+}
+
+.landingPageChart{
+    width: 100%;
+}
+
 .AppWrap{
     width: 95%;
     margin: auto;
@@ -17,6 +26,7 @@ a:hover{
 
 .full{
     width: 100%;
+    height: 100%;
 }
 
 .landingPage {
@@ -51,24 +61,39 @@ a:hover{
   padding-left: 100px;
 }
 .righttable{
-    position: fixed;
-    top: 150px;
-    right: 50px;
+    float: right;
+    padding-left: 5%;
+    display: inline-block;
+    padding-top: 2%;
 }
 .leftchart{
-    left: 30px;
-    position: fixed;
-    top: 100px
+    float: left;
+    display: inline-block;
+    padding-top: 2%;
 }
 .LandingPageChart{
     display: inline-block;
     width: 70%;
 }
 
-.CoinTable{
+.WatchlistCoinTable{
     display: inline-block;
     vertical-align: top;
+    height: 90%;
     width: 30%;
+    overflow-y: scroll;
+}
+
+.WalletCoinTable{
+    height: 75%;
+    text-align: right;
+    width: 80%;
+    overflow-y: scroll;
+}
+
+.Wallet {
+    height : 100%;
+    width : 50%;
 }
 
 .center{
@@ -76,4 +101,8 @@ a:hover{
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+}
+
+.half {
+    width: 50%;
 }

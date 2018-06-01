@@ -40,18 +40,17 @@ const panes = [
                     <Grid.Column textAlign = 'center'>
                         <b>BUY</b><br></br>
                         <DropDownMenu/><br></br>
-                        {/*BTC Balance: 0.00000000<br>*/}
                         <br></br>
-                        {/*Price:&emsp;&emsp;*/}<Input focus placeholder='Enter price...' />
+                        <Input focus placeholder='Enter price...' />
+                        <br/><br/>
+                        <Input focus placeholder='Enter amount...' />
                         <br></br><br></br>
-                        {/*Amount:&emsp;*/}<Input focus placeholder='Enter amount...' />
-                        <br></br><br></br>
-                        {/*	<Button.Group >
-						<Button>25%</Button>
-						<Button>50%</Button>
-						<Button>75%</Button>
-						<Button>100%</Button>
-					</Button.Group> */}
+                        {/*<Button.Group >*/}
+                            {/*<Button>25%</Button>*/}
+                            {/*<Button>50%</Button>*/}
+                            {/*<Button>75%</Button>*/}
+                            {/*<Button>100%</Button>*/}
+					    {/*</Button.Group>*/}
                         <br></br><br></br>
                         {/*Total:&emsp;&emsp;*/}<Input focus placeholder='Total...' />
                         <br></br><br></br>
@@ -63,9 +62,9 @@ const panes = [
                         <DropDownMenu/><br></br>
                         <br></br>
 
-                        {/*Price:&emsp;&emsp;*/}<Input focus placeholder='Enter price...' />
+                        <Input focus placeholder='Enter price...' />
                         <br></br><br></br>
-                        {/*Amount:&emsp;*/}<Input focus placeholder='Enter amount...' />
+                        <Input focus placeholder='Enter amount...' />
                         <br></br><br></br>
                         {/*	<Button.Group >
 						<Button>25%</Button>
@@ -74,7 +73,7 @@ const panes = [
 						<Button>100%</Button>
 					</Button.Group> */}
                         <br></br><br></br>
-                        {/*Total:&emsp;*/}<Input focus placeholder='Total...' />
+                        <Input focus placeholder='Total...' />
                         <br></br><br></br>
                         <Button fluid color='red'>SELL</Button>
                     </Grid.Column>

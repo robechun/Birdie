@@ -3,15 +3,17 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import {Redirect} from 'react-router-dom'
 import NavBar from './../NavBar/NavBar';
+import {connect} from 'react-redux';
+import {newToken} from "../../Actions/loginActions";
 
 import {Button, Grid, Header, Form, Image, Segment, Container, List} from 'semantic-ui-react'
 
-class LoginForm extends Component {
+class Register extends Component {
 
     constructor(){
         super();
         this.state = {
-            res : 0
+            res : <div/>
         }
 
         this.handleNewUser = this.handleNewUser.bind(this);
@@ -19,7 +21,7 @@ class LoginForm extends Component {
 
     handleNewUser(){
         //e.preventDefault();
-        const queryURL = "http://localhost:8080/signup";
+        const queryURL = "http://159.65.72.45:8080/signup";
         if(document.getElementById("pass").value === document.getElementById("re-pass").value) {
             const user = {
                 firstName: document.getElementById("fName").value,
@@ -35,7 +37,6 @@ class LoginForm extends Component {
                 isCredentialNonExpired: true,
                 isEnabled: true
             };
-
             // {
             //     "firstName":"Raf",
             //     "lastName": "Valdez",
@@ -57,12 +58,21 @@ class LoginForm extends Component {
                 data: user,
                 headers: {'Content-Type': 'application/json'},
             }).then((response) => {
+                console.log("success");
+                let loginCred = {
+                    username: document.getElementById("userName").value,
+                    password: document.getElementById("pass").value
+                };
+
+                //this.props.newToken(loginCred);
+
                 this.setState({
-                    res : 1
+                    //res : <Redirect to="/"/>
+                    res: <Redirect to="/login"/>
                 })
             }).catch((error) => {
                 this.setState({
-                    res : -1
+                    res : <p>Something went wrong...check your inputs again</p>
                 });
             });
         }
@@ -72,104 +82,99 @@ class LoginForm extends Component {
     }
 
     render(){
-        let msg = <p/>;
-        if(this.state.res == -1){
-            msg = <p>Something went wrong...check your inputs again</p>;
-        }
-        else if (this.state.res == 1){
-            msg = <Redirect to="/"/>
-        }
-
         return (
-          <div className= "blackout">
-            <div className='registerForm-form'>
-                {
-                    /*notes*/
-                }
+
+            <div className="full blackout">
+                <div className='registerForm-form'>
+                    {
+                        /*notes*/
+
+                    }
                 <div>
                     <NavBar/>
                 </div>
-                <style>
-                    {`
-                    body > div,
-                    body > div > div,
-                    body > div > div > div.login-form {
-                      height: 100%;
-                    }
-                  `}
-                </style>
-                <Grid
-                    textAlign='center'
-                    style={{ height: '100%' }}
-                    verticalAlign='middle'
-                >
-                    <Grid.Column style={{ maxWidth: 450 }}>
-                        <Header as='h2' color='teal' textAlign='center-left'>
-                            <Image src='/logo.png' />
-                            {' '}Create New Account
-                        </Header>
-                        <Form size='large'>
-                            <Segment stacked>
-                                <Form.Input
-                                    fluid
-                                    icon='user'
-                                    iconPosition='left'
-                                    placeholder='First Name'
-                                    id = "fName"
-                                />
-                                <Form.Input
-                                    fluid
-                                    icon='user'
-                                    iconPosition='left'
-                                    placeholder='Last Name'
-                                    id = "lName"
-                                />
-                                <Form.Input
-                                    fluid
-                                    icon='user'
-                                    iconPosition='left'
-                                    placeholder='Username'
-                                    id = "userName"
-                                />
+                    <style>
+                        {`
+                        body > div,
+                        body > div > div,
+                        body > div > div > div.login-form {
+                          height: 100%;
+                        }
+                      `}
+                    </style>
+                    <Grid
+                        textAlign='center'
+                        style={{ height: '100%' }}
+                        verticalAlign='middle'
+                    >
+                        <Grid.Column style={{ maxWidth: 450 }}>
+                            <Header as='h2' color='teal' textAlign='center-left'>
+                                <Image src='/logo.png' />
+                                {' '}Create New Account
+                            </Header>
+                            <Form size='large'>
+                                <Segment stacked>
+                                    <Form.Input
+                                        fluid
+                                        icon='user'
+                                        iconPosition='left'
+                                        placeholder='First Name'
+                                        id = "fName"
+                                    />
+                                    <Form.Input
+                                        fluid
+                                        icon='user'
+                                        iconPosition='left'
+                                        placeholder='Last Name'
+                                        id = "lName"
+                                    />
+                                    <Form.Input
+                                        fluid
+                                        icon='user'
+                                        iconPosition='left'
+                                        placeholder='Username'
+                                        id = "userName"
+                                    />
 
-                                <Form.Input
-                                    fluid
-                                    icon='user'
-                                    iconPosition='left'
-                                    placeholder='Phone Number'
-                                    id = "phoneNum"
-                                />
-                                <Form.Input
-                                    fluid
-                                    icon='user'
-                                    iconPosition='left'
-                                    placeholder='E-mail address'
-                                    id = "email"
-                                />
-                                <Form.Input
-                                    fluid
-                                    icon='lock'
-                                    iconPosition='left'
-                                    placeholder='Password'
-                                    type='password'
-                                    id = "pass"
-                                />
-                                <Form.Input
-                                    fluid
-                                    icon='lock'
-                                    iconPosition='left'
-                                    placeholder='Confirm Password'
-                                    type='password'
-                                    id = "re-pass"
-                                />
+                                    <Form.Input
+                                        fluid
+                                        icon='user'
+                                        iconPosition='left'
+                                        placeholder='Phone Number'
+                                        id = "phoneNum"
+                                    />
+                                    <Form.Input
+                                        fluid
+                                        icon='user'
+                                        iconPosition='left'
+                                        placeholder='E-mail address'
+                                        id = "email"
+                                    />
+                                    <Form.Input
+                                        fluid
+                                        icon='lock'
+                                        iconPosition='left'
+                                        placeholder='Password'
+                                        type='password'
+                                        id = "pass"
+                                    />
+                                    <Form.Input
+                                        fluid
+                                        icon='lock'
+                                        iconPosition='left'
+                                        placeholder='Confirm Password'
+                                        type='password'
+                                        id = "re-pass"
+                                    />
 
-                                <Button color='teal' fluid size='large' onClick={this.handleNewUser}>Create Account</Button>
-                                {msg}
-                            </Segment>
-                        </Form>
-                    </Grid.Column>
-                </Grid>
-            </div>
+                                    <Button color='black' fluid size='large' onClick={this.handleNewUser}>Create Account</Button>
+                                    {this.state.res}
+                                </Segment>
+                            </Form>
+                        </Grid.Column>
+                    </Grid>
+                </div>
+
             <Segment inverted vertical style={{ padding: '5em 0em' }}>
             <Container>
                 <Grid divided inverted stackable>
@@ -203,4 +208,5 @@ class LoginForm extends Component {
 }
 
 
-export default LoginForm;
+//export default connect(null, {newToken})(Register);
+export default Register;

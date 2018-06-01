@@ -6,10 +6,13 @@
     "axios": "^0.18.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
     "react-tradingview-widget": "^1.2.5",
     "react-websocket": "^2.0.0",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.2.0",
     "semantic-ui": "^2.3.1",
     "semantic-ui-react": "^0.79.1"
   },

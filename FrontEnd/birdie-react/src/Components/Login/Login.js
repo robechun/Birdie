@@ -2,6 +2,8 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import NavBar from './../NavBar/NavBar';
+import {connect} from 'react-redux';
+import {newToken} from "../../Actions/loginActions";
 
 import {Redirect} from 'react-router-dom'
 import {Button, Grid, Header, Form, Image, Message, Segment, Container, List} from 'semantic-ui-react'
@@ -13,96 +15,92 @@ class LoginForm extends Component {
         super();
         this.state = {
             redirect : false,
-            accessToken : ""
+            accessToken : "",
+            redirect:<div/>
         };
 
         this.handleLogin = this.handleLogin.bind(this);
     }
 
     handleLogin(){
-        const queryURL = "http://localhost:8080/signin"
         let user = {
             username: document.getElementById("username").value,
             password: document.getElementById("password").value
         };
-        //Request to backend to grab a token
-        axios({
-            method: 'post',
-            url: queryURL,
-            data: user,
-            headers: {'Content-Type': 'application/json'},
-        }).then((response) => {
+        //Redux Action
+        try {
+            this.props.newToken(user);
             this.setState({
-                redirect : true,
-                accessToken: response.data.accessToken
-            });
-        }).catch((error) => {
-            console.log(error);
-        });
+                redirect : <Redirect to="/"/>
+            })
+        }
+        catch(e){
+            console.log(e);
+            console.log("Invalid Login Credentials");
+        }
     }
 
     render() {
-        let redirect = <div/>
-        if(this.state.redirect == true) {
-            console.log("Log-in successful!");
-            redirect = <Redirect to={{pathname : '/', state : {accessToken : this.state.accessToken, redirect : true}}} />
-        }
+        // let redirect = <div/>
+        // if(this.state.redirect == true) {
+        //     console.log("Log-in successful!");
+        //     redirect = <Redirect to={{pathname : '/', state : {accessToken : this.state.accessToken, redirect : true}}} />
+        // }
 
 
         return (
-          <div className = "blackout">
-            <div className='registerForm-form'>
-                {
-                    /*notes*/
-                }
-                <div>
-                    <NavBar/>
-                </div>
-                <style>{`
-                  body > div,
-                  body > div > div,
-                  body > div > div > div.login-form {
-                    height: 100%;
-                   }
-            `}</style>
-                <Grid
-                    textAlign='center'
-                    style={{ height: '100%' }}
-                    verticalAlign='middle'
-                >
-                    <Grid.Column style={{ maxWidth: 450 }}>
-                        <Header as='h2' color='teal' textAlign='center-left'>
-                            <Image src='/logo.png' />
-                            {' '}Log-in to your Account
-                        </Header>
-                        <Form size='large'>
-                            <Segment stacked>
-                                <Form.Input
-                                    fluid
-                                    icon='user'
-                                    iconPosition='left'
-                                    placeholder='username'
-                                    id = "username"
-                                />
-                                <Form.Input
-                                    fluid
-                                    icon='lock'
-                                    iconPosition='left'
-                                    placeholder='Password'
-                                    type='password'
-                                    id = "password"
-                                />
+            <div className="full blackout">
+                {this.state.redirect}
+                <div className='registerForm-form'>
+                    <div>
+                        <NavBar/>
+                    </div>
+                    <style>{`
+                      body > div,
+                      body > div > div,
+                      body > div > div > div.login-form {
+                        height: 100%;
+                       }
+                `}</style>
+                    <Grid
+                        textAlign='center'
+                        style={{ height: '100%' }}
+                        verticalAlign='middle'
+                    >
+                        <Grid.Column style={{ maxWidth: 450 }}>
+                            <Header as='h2' color='teal' textAlign='center-left'>
+                                <Image src='/logo.png' />
+                                {' '}Log-in to your Account
+                            </Header>
+                            <Form size='large'>
+                                <Segment stacked>
+                                    <Form.Input
+                                        fluid
+                                        icon='user'
+                                        iconPosition='left'
+                                        placeholder='username'
+                                        id = "username"
+                                    />
+                                    <Form.Input
+                                        fluid
+                                        icon='lock'
+                                        iconPosition='left'
+                                        placeholder='Password'
+                                        type='password'
+                                        id = "password"
+                                    />
 
-                                <Button color='teal' fluid size='large' onClick={this.handleLogin}>Login</Button>
-                            </Segment>
-                        </Form>
-                        <Message>
-                            New? <a href="/Register">Sign Up</a>
-                        </Message>
-                    </Grid.Column>
-                </Grid>
-                {redirect}
-            </div>
+                                    <Button color='black' type='button' fluid size='large' onClick={this.handleLogin}>Login</Button>
+                                </Segment>
+                            </Form>
+                            <Message>
+                                New? <a href="/Register">Sign Up</a>
+                            </Message>
+                        </Grid.Column>
+                    </Grid>
+
+                </div>
+
             <Segment inverted vertical style={{ padding: '5em 0em' }}>
             <Container>
                 <Grid divided inverted stackable>
@@ -135,5 +133,4 @@ class LoginForm extends Component {
     }
 }
 
-
-export default LoginForm;
+export default connect(null, {newToken})(LoginForm);
