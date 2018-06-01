@@ -33,9 +33,7 @@ public class WalletController {
 
     @GetMapping(value = "/balance")
     public ResponseEntity getAccountBalance() {
-
         return walletService.getBalances();
-
     }
 
     // TODO: takes too long, and still have to do calculations of profit/loss somehow

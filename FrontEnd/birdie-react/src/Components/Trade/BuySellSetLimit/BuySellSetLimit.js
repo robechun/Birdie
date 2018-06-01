@@ -182,7 +182,7 @@ const panes = [
 ]
 
 class BuySellSetLimit extends Component {
-    state = { color: colors[5] }
+    state = { color: colors[6] }
     handleColorChange = e => this.setState({ color: e.target.value })
 
     render() {

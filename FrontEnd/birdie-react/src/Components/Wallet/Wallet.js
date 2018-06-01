@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Segment, Container, Grid, Header, List } from 'semantic-ui-react'
 
 import {connect} from 'react-redux';
 import {newToken} from "../../Actions/loginActions";
@@ -6,11 +7,12 @@ import {newToken} from "../../Actions/loginActions";
 import WalletCoinTable from './WalletCoinTable/WalletCoinTable';
 import LandingPageChartTwo from '../LandingPageChart/LandingPageChartTwo'
 import axios from 'axios'
-import NavBar from '../NavBar/NavBar'
+import NavBar from '../NavBar/NavBarWallet'
+import footer from '../footer/footer'
 
 class Wallet extends Component {
 
-    constructor(props){
+  constructor(props){
         super(props);
         this.state = {
             data : []
@@ -54,6 +56,7 @@ class Wallet extends Component {
               <div className="leftchart Wallet">
                 <LandingPageChartTwo/>
               </div>
+              <footer/>
             </div>
         )
     }
@@ -63,6 +66,5 @@ const mapStateToProps = state => ({
     accessToken : state.loginRed.accessToken
 });
 
-
-
 export default connect(mapStateToProps, {newToken})(Wallet);
+

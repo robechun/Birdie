@@ -7,6 +7,7 @@ import NavBar from './../NavBar/NavBar';
 import axios from 'axios';
 import {Button, Input, Grid, Divider, Container, Header, List, Segment, Form, Card} from 'semantic-ui-react'
 
+
 class Profile extends Component {
 
     constructor(props){
@@ -216,13 +217,60 @@ class Profile extends Component {
                 </div>
                 <Button onClick = {this.modifyPass}>Modify Password</Button>
                 <Input id="modifyPass"/>
-                <hr/>
-                <Button onClick={this.addAPIKey}>Add API Key</Button>
-                <Input id="apiKey"/>
-                <hr/>
-                <Button onClick={this.addSecret}>Add Secret</Button>
-                <Input id ="secret"/>
 
+                <hr/>
+                <Divider horizontal></Divider>
+                <Form.Input
+                fluid
+                icon = 'lock'
+
+                id="apiKey"/>
+                <br></br>
+                <Button circular color = 'teal' fluid onClick={this.addAPIKey}>Add API Key</Button>
+                <hr/>
+                <Divider horizontal></Divider>
+                <Form.Input
+                fluid
+                icon = 'lock'
+
+                id ="secret"/>
+                <br></br>
+                <Button circular color = 'teal' fluid onClick={this.addSecret}>Add Secret</Button>
+                </Segment>
+                </div>
+                </Grid.Column>
+                <Grid.Column>
+                  <Card1/>
+                </Grid.Column>
+                </Grid.Row>
+                </Grid>
+                <Segment inverted vertical style={{ padding: '5em 0em' }}>
+                <Container>
+                    <Grid divided inverted stackable>
+                        <Grid.Row>
+                            <Grid.Column width={3}>
+                                <Header inverted as='h4' content='About' />
+                                <List link inverted>
+                                    <List.Item as='a'>Sitemap</List.Item>
+                                    <List.Item as='a'>Contact Us</List.Item>
+                                </List>
+                            </Grid.Column>
+                            <Grid.Column width={3}>
+                                <Header inverted as='h4' content='Learn' />
+                                <List link inverted>
+                                    <List.Item as='a'>Binance</List.Item>
+                                    <List.Item as='a'>Investing in Crypto</List.Item>
+                                    <List.Item as='a'>How To Access</List.Item>
+                                </List>
+                            </Grid.Column>
+                            <Grid.Column width={7}>
+                                <Header as='h4' inverted>Profile Page</Header>
+                                <p>Change your password. Add an api key. Add a secret question</p>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Container>
+              </Segment>
             </div>
         )
     }
