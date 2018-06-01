@@ -7,7 +7,7 @@ import {newToken} from "../../Actions/loginActions";
 import WalletCoinTable from './WalletCoinTable/WalletCoinTable';
 import LandingPageChartTwo from '../LandingPageChart/LandingPageChartTwo'
 import axios from 'axios'
-import NavBar from '../NavBar/NavBarWallet'
+import NavBar from '../NavBar/NavBar'
 import footer from '../footer/footer'
 
 class Wallet extends Component {

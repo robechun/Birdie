@@ -100,7 +100,7 @@ class LoginForm extends Component {
                     </Grid>
 
                 </div>
-            </div>
+
             <Segment inverted vertical style={{ padding: '5em 0em' }}>
             <Container>
                 <Grid divided inverted stackable>

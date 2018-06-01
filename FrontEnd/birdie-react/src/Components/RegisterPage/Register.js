@@ -93,16 +93,6 @@ class Register extends Component {
                 <div>
                     <NavBar/>
                 </div>
-                <style>
-                    {`
-                    body > div,
-                    body > div > div,
-                    body > div > div > div.login-form {
-                      height: 100%;
-                    }
-                    <div>
-                        <NavBar/>
-                    </div>
                     <style>
                         {`
                         body > div,
