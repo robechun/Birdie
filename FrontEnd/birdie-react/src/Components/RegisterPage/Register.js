@@ -78,6 +78,9 @@ class Register extends Component {
         }
         else{
             console.log("Password entered not re-entered correctly");
+            this.setState({
+                res : <p>Something went wrong...check your inputs again</p>
+            });
         }
     }
 
