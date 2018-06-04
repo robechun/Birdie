@@ -29,7 +29,7 @@ import axios from 'axios';
 export const newToken = (userData, callback) => dispatch => {
     console.log("action called here");
     console.log(userData);
-    const queryURL = "http://localhost:8080/signin"
+    const queryURL = "http://159.65.72.45:8080/signin"
     axios({
             method: 'post',
             url: queryURL,
