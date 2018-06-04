@@ -14,19 +14,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainLandingPage.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Components/LandingPage/MainLandingPage.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1575">
-              <caret line="75" column="38" lean-forward="true" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="38" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="App.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="App.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="368">
@@ -42,6 +30,18 @@
             <state relative-caret-position="462">
               <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Wallet.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/Wallet/Wallet.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="29" column="9" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="29" selection-end-column="9" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -119,7 +119,6 @@
         <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/OpenOrdersTrade/OpenOrders.js" />
         <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/StopLossTrade/StopLoss.js" />
         <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/CancelAllTrade/CancelAll.js" />
-        <option value="$PROJECT_DIR$/src/Components/Wallet/Wallet.js" />
         <option value="$PROJECT_DIR$/src/Components/RegisterPage/Register.js" />
         <option value="$PROJECT_DIR$/src/Actions/loginActions.js" />
         <option value="$PROJECT_DIR$/src/Components/Login/Login.js" />
@@ -128,6 +127,7 @@
         <option value="$PROJECT_DIR$/src/Components/LandingPageChart/LandingPageChartThree.js" />
         <option value="$PROJECT_DIR$/src/Components/Footer/Footer.js" />
         <option value="$PROJECT_DIR$/src/App.css" />
+        <option value="$PROJECT_DIR$/src/Components/Wallet/Wallet.js" />
         <option value="$PROJECT_DIR$/src/Components/LandingPage/MainLandingPage.js" />
       </list>
     </option>
@@ -216,6 +216,13 @@
               <item name="Components" type="462c0819:PsiDirectoryNode" />
               <item name="Trade" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="birdie-react" type="b2602c69:ProjectViewProjectNode" />
+              <item name="birdie-react" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Components" type="462c0819:PsiDirectoryNode" />
+              <item name="Wallet" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -274,12 +281,12 @@
       <workItem from="1526853854481" duration="31042000" />
       <workItem from="1527621786666" duration="16898000" />
       <workItem from="1527886956155" duration="1613000" />
-      <workItem from="1528089360248" duration="8197000" />
+      <workItem from="1528089360248" duration="8856000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117247000" />
+    <option name="totallyTimeSpent" value="117906000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1513" height="973" extended-state="6" />
@@ -593,16 +600,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Wallet/Wallet.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="17" column="21" lean-forward="false" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#40#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Profile/Profile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
@@ -659,14 +656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="30" column="27" lean-forward="false" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/LandingPage/AboutBirdie/AboutBirdie.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="651">
@@ -683,13 +672,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Wallet/Wallet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="29" column="9" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="29" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/LandingPage/MainLandingPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1575">
-          <caret line="75" column="38" lean-forward="true" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="38" />
+        <state relative-caret-position="454">
+          <caret line="67" column="18" lean-forward="false" selection-start-line="67" selection-start-column="18" selection-end-line="67" selection-end-column="18" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
+            <marker date="1528100354708" expanded="true" signature="2514:2526" ph="..." />
+            <marker date="1528100354708" expanded="true" signature="2515:2526" ph="..." />
+            <marker date="1528100354708" expanded="true" signature="2937:3991" ph="..." />
+            <marker date="1528100354708" expanded="true" signature="3014:3845" ph="..." />
+            <marker date="1528100354708" expanded="true" signature="3043:3171" ph="..." />
+            <marker date="1528100354708" expanded="true" signature="3200:3340" ph="..." />
+            <marker date="1528100354708" expanded="true" signature="3397:3503" ph="..." />
+            <marker date="1528100354708" expanded="true" signature="3642:3819" ph="..." />
+            <marker date="1528100354708" expanded="true" signature="3700:3783" ph="..." />
+            <marker date="1528100354708" expanded="true" signature="3888:3972" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="30" column="27" lean-forward="false" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>

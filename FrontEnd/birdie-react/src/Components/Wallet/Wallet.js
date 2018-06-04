@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import {Segment, Container, Grid, Header, List } from 'semantic-ui-react'
+import React, { Component } from 'react';
 
 import {connect} from 'react-redux';
 import {newToken} from "../../Actions/loginActions";
