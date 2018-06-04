@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Grid, Header, Button, Form, Input, Modal} from 'semantic-ui-react'
+import { Grid, Header, Button, Form, Input, Modal, Dropdown} from 'semantic-ui-react'
 import {connect} from 'react-redux';
 import {newToken} from "../../../../Actions/loginActions";
 import axios from 'axios';
+import {CoinPairs} from "../../../../Resources/CoinPairs"
 
 class MarketTrade extends Component {
     constructor(props){
@@ -11,7 +12,8 @@ class MarketTrade extends Component {
         this.state = {
             open : false,
             modalHeader : <p/>,
-            modalBody : <p/>
+            modalBody : <p/>,
+            searchQuery : ""
         }
 
         this.handleMarketTrade = this.handleMarketTrade.bind(this);
@@ -44,6 +46,7 @@ class MarketTrade extends Component {
         const amtParam = "amt="
         const append = "&";
 
+        //TODO : Get Value from DropDown as opposed to Input
         let typeInput = document.getElementById("marketTradeType").value;
         let symbolInput = document.getElementById("marketTradeSymbol").value;
         let amtInput = document.getElementById("marketTradeAmt").value;
@@ -79,15 +82,36 @@ class MarketTrade extends Component {
         });
     }
 
+    handleChange = (e, { searchQuery, value }) => {
+        this.setState({
+            searchQuery: searchQuery,
+            value: value })
+    }
+
+    handleSearchChange = (e, { searchQuery }) => this.setState({ searchQuery })
+
     // | /trade/market?type={type}&symbol={symbol}&amt={amount}
     render() {
+        let searchQuery = this.state.searchQuery;
+        let value = this.state.value;
         return (
                 <Grid.Column>
                     <Header>Market</Header>
                     <hr/>
                     <Form>
                         <Input id="marketTradeType" placeholder="Type" />
-                        <Input id="marketTradeSymbol" placeholder="Symbol" />
+                        {/*<Input id="marketTradeSymbol" placeholder="Symbol" />*/}
+                        <Dropdown
+                            fluid
+                            selection
+                            onChange={this.handleChange}
+                            onSearchChange={this.handleSearchChange}
+                            options = {CoinPairs}
+                            placeholder="Symbol"
+                            search
+                            searchQuery={searchQuery}
+                            value = {value}
+                        />
                         <Input id="marketTradeAmt" placeholder="Amount" />
                     </Form>
                     <Modal size="mini" open={this.state.open} onClose={this.toggleModal}>

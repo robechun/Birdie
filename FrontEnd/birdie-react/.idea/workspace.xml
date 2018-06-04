@@ -14,12 +14,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CoinPairs.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CoinPairs.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Resources/CoinPairs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3066">
-              <caret line="15" column="30" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+            <state relative-caret-position="0">
+              <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Currencies.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/Trade/BuySellSetLimit/DropDownMenu/Currencies.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="588">
+              <caret line="28" column="50" lean-forward="false" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MarketTrade.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Components/Trade/Tradeview/MarketTrade/MarketTrade.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="48" column="60" lean-forward="false" selection-start-line="48" selection-start-column="60" selection-end-line="48" selection-end-column="60" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -90,7 +112,6 @@
         <option value="$PROJECT_DIR$/src/Components/Trade/BuySellSetLimit/BuySellSetLimit.js" />
         <option value="$PROJECT_DIR$/src/Components/Trade/BuySellSetLimit/Tradeview.js" />
         <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/Tradeview.js" />
-        <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/MarketTrade/MarketTrade.js" />
         <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/StopLossLimitTrade/StopLossLimit.js" />
         <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/LimitTrade/LimitTrade.js" />
         <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/OpenOrdersTrade/OpenOrders.js" />
@@ -110,6 +131,7 @@
         <option value="$PROJECT_DIR$/src/Actions/loginActions.js" />
         <option value="$PROJECT_DIR$/src/Components/Watchlist/WatchlistCoinTable/WatchlistCoinTable.js" />
         <option value="$PROJECT_DIR$/src/Resources/CoinPairs.js" />
+        <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/MarketTrade/MarketTrade.js" />
       </list>
     </option>
   </component>
@@ -212,6 +234,23 @@
               <item name="birdie-react" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Components" type="462c0819:PsiDirectoryNode" />
+              <item name="Trade" type="462c0819:PsiDirectoryNode" />
+              <item name="Tradeview" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="birdie-react" type="b2602c69:ProjectViewProjectNode" />
+              <item name="birdie-react" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Components" type="462c0819:PsiDirectoryNode" />
+              <item name="Trade" type="462c0819:PsiDirectoryNode" />
+              <item name="Tradeview" type="462c0819:PsiDirectoryNode" />
+              <item name="MarketTrade" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="birdie-react" type="b2602c69:ProjectViewProjectNode" />
+              <item name="birdie-react" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Components" type="462c0819:PsiDirectoryNode" />
               <item name="Watchlist" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -286,12 +325,12 @@
       <workItem from="1526853854481" duration="31042000" />
       <workItem from="1527621786666" duration="16898000" />
       <workItem from="1527886956155" duration="1613000" />
-      <workItem from="1528089360248" duration="16226000" />
+      <workItem from="1528089360248" duration="18498000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125276000" />
+    <option name="totallyTimeSpent" value="127548000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1513" height="973" extended-state="6" />
@@ -455,13 +494,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Trade/BuySellSetLimit/DropDownMenu/DropDownMenu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Trade/BuySellSetLimit/BuySellSetLimit.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-252">
@@ -481,6 +513,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="54" column="21" lean-forward="false" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -498,16 +533,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
           <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#40#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Trade/Tradeview/MarketTrade/MarketTrade.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="93" column="35" lean-forward="true" selection-start-line="93" selection-start-column="35" selection-end-line="93" selection-end-column="35" />
           <folding>
             <element signature="e#0#40#0" expanded="false" />
           </folding>
@@ -699,14 +724,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Trade/BuySellSetLimit/DropDownMenu/Currencies.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="28" column="50" lean-forward="false" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/LandingPageChart/LandingPageChartThree.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="580">
@@ -715,11 +732,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Trade/BuySellSetLimit/DropDownMenu/DropDownMenu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="7" lean-forward="true" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Trade/BuySellSetLimit/DropDownMenu/Currencies.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="28" column="50" lean-forward="false" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Resources/CoinPairs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3066">
-          <caret line="15" column="30" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+        <state relative-caret-position="0">
+          <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Trade/Tradeview/MarketTrade/MarketTrade.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="48" column="60" lean-forward="false" selection-start-line="48" selection-start-column="60" selection-end-line="48" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
