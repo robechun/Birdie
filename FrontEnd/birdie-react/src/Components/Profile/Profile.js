@@ -5,7 +5,7 @@ import {newToken} from "../../Actions/loginActions";
 
 import NavBar from './../NavBar/NavBar';
 import axios from 'axios';
-import {Button, Input, Grid, Divider, Container, Header, List, Segment, Form, Card} from 'semantic-ui-react'
+import {Button, Grid, Divider, Segment, Form} from 'semantic-ui-react'
 
 
 class Profile extends Component {

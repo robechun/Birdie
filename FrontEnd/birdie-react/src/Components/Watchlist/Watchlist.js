@@ -21,7 +21,7 @@ import {newToken} from "../../Actions/loginActions";
 import NavBar from '../NavBar/NavBar'
 import WatchlistCoinTable from './WatchlistCoinTable/WatchlistCoinTable';
 import LandingPageChartTwo from '../LandingPageChart/LandingPageChartTwo'
-import footer from '../footer/footer'
+import footer from '../Footer/Footer'
 
 class Watchlist extends Component {
 

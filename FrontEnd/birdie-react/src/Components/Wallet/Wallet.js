@@ -8,7 +8,7 @@ import WalletCoinTable from './WalletCoinTable/WalletCoinTable';
 import LandingPageChartTwo from '../LandingPageChart/LandingPageChartTwo'
 import axios from 'axios'
 import NavBar from '../NavBar/NavBar'
-import footer from '../footer/footer'
+import footer from '../Footer/Footer'
 
 class Wallet extends Component {
 
