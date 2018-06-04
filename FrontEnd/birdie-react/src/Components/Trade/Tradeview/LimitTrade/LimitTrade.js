@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Grid, Header, Button, Form, Input, Modal} from 'semantic-ui-react'
+import { Grid, Header, Button, Form, Input, Modal, Dropdown} from 'semantic-ui-react'
 import {connect} from 'react-redux';
 import {newToken} from "../../../../Actions/loginActions";
 import axios from 'axios';
+import {CoinPairs} from "../../../../Resources/CoinPairs"
 
 class LimitTrade extends Component {
 
@@ -12,7 +13,8 @@ class LimitTrade extends Component {
         this.state = {
             open : false,
             modalHeader : <p/>,
-            modalBody : <p/>
+            modalBody : <p/>,
+            searchQuery : ""
         }
 
         this.toggleModal = this.toggleModal.bind(this);
@@ -45,7 +47,7 @@ class LimitTrade extends Component {
         const append = "&";
 
         let typeInput = document.getElementById("limitTradeType").value;
-        let symbolInput = document.getElementById("limitTradeSymbol").value;
+        let symbolInput = this.state.symbolValue; // Symbol drop down menu value
         let amtInput = document.getElementById("limitTradeAmt").value;
         let priceInput = document.getElementById("limitTradePrice").value;
 
@@ -63,7 +65,7 @@ class LimitTrade extends Component {
             console.log(response);
             this.setState({
                 open : true,
-                modalHeader : <p>Success!</p>,
+                modalHeader : <p className="success">Success!</p>,
                 modalBody : <p>Limit was successfully placed!</p>
             });
             // Create a success modal when this occurs
@@ -71,21 +73,44 @@ class LimitTrade extends Component {
             console.log(error);
             this.setState({
                 open : true,
-                modalHeader : <p>Something Went Wrong...</p>,
+                modalHeader : <p className = "error">Something Went Wrong...</p>,
                 modalBody : <p>Limit was placed incorrectly.</p>
             });
             // Create an error modal when this occurs
         });
     }
 
+    handleChange = (e, { value }) => {
+        this.setState({
+            searchQuery: value,
+            symbolValue: value
+        })
+    }
+
+    handleSearchChange = (e, { searchQuery }) => this.setState({ searchQuery })
+
     render() {
+        let searchQuery = this.state.searchQuery;
+        let value = this.state.symbolValue;
+        console.log(this.state.symbolValue)
+
         return (
             <Grid.Column>
                 <Header>Limit</Header>
                 <hr/>
                 <Form>
                     <Input id="limitTradeType" placeholder="Type" />
-                    <Input id="limitTradeSymbol" placeholder="Symbol" />
+                    <Dropdown
+                        fluid
+                        selection
+                        onChange={this.handleChange}
+                        onSearchChange={this.handleSearchChange}
+                        options = {CoinPairs}
+                        placeholder="Symbol"
+                        search
+                        searchQuery={searchQuery}
+                        value = {value}
+                    />
                     <Input id="limitTradeAmt" placeholder="Amount" />
                     <Input id="limitTradePrice" placeholder="Price" />
                 </Form>
@@ -97,7 +122,7 @@ class LimitTrade extends Component {
                         {this.state.modalBody}
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button negative onClick={this.toggleModal}>
+                        <Button onClick={this.toggleModal}>
                             Close
                         </Button>
                     </Modal.Actions>

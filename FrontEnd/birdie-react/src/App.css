@@ -115,5 +115,8 @@ a:hover{
 }
 
 .error {
-    color: red;
+    color: #D92633;
+}
+.success {
+    color: #29B23E;
 }

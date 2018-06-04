@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Grid, Header, Button, Form, Input, Modal} from 'semantic-ui-react'
+import { Grid, Header, Button, Form, Modal, Dropdown} from 'semantic-ui-react'
 import {connect} from 'react-redux';
 import {newToken} from "../../../../Actions/loginActions";
 import axios from 'axios';
+import {CoinPairs} from "../../../../Resources/CoinPairs"
 
 class OpenOrders extends Component {
 
@@ -12,7 +13,8 @@ class OpenOrders extends Component {
         this.state = {
             open : false,
             modalHeader : <p/>,
-            modalBody : <p/>
+            modalBody : <p/>,
+            searchQuery : "",
         }
 
         this.toggleModal = this.toggleModal.bind(this);
@@ -40,7 +42,7 @@ class OpenOrders extends Component {
         const baseURL = "http://159.65.72.45:8080/trade/openOrders?";
         const symbolParam = "symbol=";
 
-        let symbolInput = document.getElementById("OpenOrdersSymbol").value;
+        let symbolInput = this.state.symbolValue; // Symbol drop down menu value
 
         // TODO: Account of valid symbols, whitespace, case-sensitivity, buy/sell type, alpha chars in amt
 
@@ -52,28 +54,48 @@ class OpenOrders extends Component {
             console.log(response);
             this.setState({
                 open : true,
-                modalHeader : <p>Success!</p>,
+                modalHeader : <p className="success">Success!</p>,
                 modalBody : <p>Orders Opened!</p>
             });
-            // Create a success modal when this occurs
         }).catch((error) => {
             console.log(error);
             this.setState({
                 open : true,
-                modalHeader : <p>Something Went Wrong...</p>,
+                modalHeader : <p className="error">Something Went Wrong...</p>,
                 modalBody : <p>Orders unable to be Opened.</p>
             });
-            // Create an error modal when this occurs
         });
     }
 
+    handleChange = (e, { value }) => {
+        this.setState({
+            searchQuery: value,
+            symbolValue: value
+        })
+    }
+
+    handleSearchChange = (e, { searchQuery }) => this.setState({ searchQuery })
+
     render() {
+        let searchQuery = this.state.searchQuery;
+        let value = this.state.symbolValue;
+        console.log(this.state.symbolValue)
         return (
             <Grid.Column>
                 <Header>Open Orders</Header>
                 <hr/>
                 <Form>
-                    <Input id="OpenOrdersSymbol" placeholder="Symbol" />
+                    <Dropdown
+                        fluid
+                        selection
+                        onChange={this.handleChange}
+                        onSearchChange={this.handleSearchChange}
+                        options = {CoinPairs}
+                        placeholder="Symbol"
+                        search
+                        searchQuery={searchQuery}
+                        value = {value}
+                    />
                 </Form>
                 <Modal size="mini" open={this.state.open} onClose={this.toggleModal}>
                     <Modal.Header>
@@ -83,7 +105,7 @@ class OpenOrders extends Component {
                         {this.state.modalBody}
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button negative onClick={this.toggleModal}>
+                        <Button onClick={this.toggleModal}>
                             Close
                         </Button>
                     </Modal.Actions>

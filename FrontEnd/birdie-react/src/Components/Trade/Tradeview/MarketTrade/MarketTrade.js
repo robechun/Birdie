@@ -46,9 +46,8 @@ class MarketTrade extends Component {
         const amtParam = "amt="
         const append = "&";
 
-        //TODO : Get Value from DropDown as opposed to Input
         let typeInput = document.getElementById("marketTradeType").value;
-        let symbolInput = document.getElementById("marketTradeSymbol").value;
+        let symbolInput = this.state.symbolValue; // Symbol drop down menu value
         let amtInput = document.getElementById("marketTradeAmt").value;
 
         console.log(baseURL + typeParam + typeInput + append + symbolParam + symbolInput + append + amtParam + amtInput);
@@ -67,40 +66,38 @@ class MarketTrade extends Component {
             console.log(response);
             this.setState({
                 open : true,
-                modalHeader : <p>Success!</p>,
+                modalHeader : <p className="success">Success!</p>,
                 modalBody : <p>Trade was successfully placed!</p>
             });
-            // Create a success modal when this occurs
         }).catch((error) => {
             console.log(error);
             this.setState({
                 open : true,
-                modalHeader : <p>Something Went Wrong...</p>,
+                modalHeader : <p className="error">Something Went Wrong...</p>,
                 modalBody : <p>Trade was placed incorrectly.</p>
             });
-            // Create an error modal when this occurs
         });
     }
 
-    handleChange = (e, { searchQuery, value }) => {
+    handleChange = (e, { value }) => {
         this.setState({
-            searchQuery: searchQuery,
-            value: value })
+            searchQuery: value,
+            symbolValue: value
+        })
     }
 
     handleSearchChange = (e, { searchQuery }) => this.setState({ searchQuery })
 
-    // | /trade/market?type={type}&symbol={symbol}&amt={amount}
     render() {
         let searchQuery = this.state.searchQuery;
-        let value = this.state.value;
+        let value = this.state.symbolValue;
+        console.log(this.state.symbolValue)
         return (
                 <Grid.Column>
                     <Header>Market</Header>
                     <hr/>
                     <Form>
                         <Input id="marketTradeType" placeholder="Type" />
-                        {/*<Input id="marketTradeSymbol" placeholder="Symbol" />*/}
                         <Dropdown
                             fluid
                             selection
@@ -122,7 +119,7 @@ class MarketTrade extends Component {
                             {this.state.modalBody}
                         </Modal.Content>
                         <Modal.Actions>
-                            <Button negative onClick={this.toggleModal}>
+                            <Button onClick={this.toggleModal}>
                                 Close
                             </Button>
                         </Modal.Actions>
