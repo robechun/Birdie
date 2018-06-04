@@ -22,7 +22,7 @@ class CoinTable extends Component {
     }
 
     componentWillMount(){
-        const queryURL = "http://159.65.72.45:8080/watchlist"
+        const queryURL = "http://159.65.72.45:8080/watchlist/"
         let token = "";
         if(this.props.accessTokenObj) {
             token = this.props.accessTokenObj.accessToken;
@@ -87,14 +87,14 @@ class CoinTable extends Component {
         }
         axios({
             method: 'delete',
-            url: queryURL + document.getElementById("delete").value,
+            url: queryURL + document.getElementById("delete").value.toUpperCase(),
             headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
         }).then((response) => {
             let tempData = this.state.data;
             let index = -1;
             let flag = false;
             for(let i = 0; i < tempData.length; i++){
-                if(tempData[i] === document.getElementById("delete").value) {
+                if(tempData[i] === document.getElementById("delete").value.toUpperCase()) {
                     flag = true
                     break;
                 }
@@ -126,30 +126,36 @@ class CoinTable extends Component {
         if(this.props.accessTokenObj) {
             token = this.props.accessTokenObj.accessToken;
         }
-        let symbol = document.getElementById("add").value;
+        let symbol = document.getElementById("add").value.toUpperCase();
         let url = queryURL + symbol;
         console.log(symbol);
-        //POST REQUEST STANDBY
-        axios({
-            method: 'post',
-            url: url,
-            headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
-        }).then((response) => {
-                let tempData = this.state.data;
-                tempData.push(document.getElementById("add").value);
-                console.log(tempData);
-                this.setState({
-                    data : tempData
-                }, () => {
+
+        let tempData = this.state.data;
+        if(!tempData.includes(symbol)) {
+            //POST REQUEST STANDBY
+            axios({
+                method: 'post',
+                url: url,
+                headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
+            }).then((response) => {
+                    tempData.push(document.getElementById("add").value.toUpperCase());
+                    console.log(tempData);
+                    this.setState({
+                        data: tempData
+                    }, () => {
+                        this.toggleAddModal();
+                        console.log(this.state.data);
+                    });
+                }
+            ).catch((error) => {
+                console.log(error), () => {
                     this.toggleAddModal();
-                    console.log(this.state.data);
-                });
-            }
-        ).catch((error) => {
-            console.log(error), () => {
-                this.toggleAddModal();
-            };
-        });
+                };
+            });
+        }
+        else {
+            this.toggleAddModal(); //closes modal
+        }
     }
 
     toggleAddModal(){
@@ -186,15 +192,14 @@ class CoinTable extends Component {
                     <Table.Body>
                         {
                             this.state.data.map((i) => {
-                                //for(let i = 0 ; i < this.state.data.length; i++) {
                                 return (
 
                                         <CoinRow coinSymbol={i}  key={i}>Test</CoinRow>
                                 )
-                                //}
                             })
                         }
                         <Table.Row>
+                            {/*Could make these cells as one component then pass in the appropriate prompts and functions*/}
                             <Table.Cell>
                                 <Button positive onClick={this.toggleAddModal} content="Add Coin"/>
                                 <Modal size="mini" open={this.state.openAdd} onClose={this.toggleAddModal}>
