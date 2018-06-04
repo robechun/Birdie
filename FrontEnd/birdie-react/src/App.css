@@ -106,3 +106,7 @@ a:hover{
 .half {
     width: 50%;
 }
+
+.error {
+    color: red;
+}

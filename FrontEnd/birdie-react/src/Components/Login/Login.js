@@ -1,6 +1,5 @@
 
-import React, { Component } from 'react'
-import axios from 'axios';
+import React, { Component } from 'react';
 import NavBar from './../NavBar/NavBar';
 import {connect} from 'react-redux';
 import {newToken} from "../../Actions/loginActions";
@@ -29,10 +28,18 @@ class LoginForm extends Component {
         };
         //Redux Action
         try {
-            this.props.newToken(user);
-            this.setState({
-                redirect : <Redirect to="/"/>
-            })
+        this.props.newToken(user, (response) => {
+            if(response) {
+                this.setState({
+                    redirect : <Redirect to="/"/>
+                });
+            }
+            else{
+                this.setState({
+                    redirect : <p className="error">Invalid Login Credentials</p>
+                })
+            }
+            });
         }
         catch(e){
             console.log(e);
@@ -50,7 +57,6 @@ class LoginForm extends Component {
 
         return (
             <div className="full blackout">
-                {this.state.redirect}
                 <div className='registerForm-form'>
                     <div>
                         <NavBar/>
@@ -72,6 +78,7 @@ class LoginForm extends Component {
                                 <Image src='/logo.png' />
                                 {' '}Log-in to your Account
                             </Header>
+                            {this.state.redirect}
                             <Form size='large'>
                                 <Segment stacked>
                                     <Form.Input
