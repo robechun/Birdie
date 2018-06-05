@@ -19,7 +19,6 @@ class Tradeview extends Component {
     }
 
     handleItemClick = (e, { name }) => {
-        console.log("clicked");
         let comp = <div/>
         if(name === "Market"){
             comp = <MarketTrade/>

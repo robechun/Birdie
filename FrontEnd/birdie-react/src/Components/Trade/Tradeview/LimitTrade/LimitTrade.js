@@ -46,7 +46,7 @@ class LimitTrade extends Component {
         const priceParam = "price="
         const append = "&";
 
-        let typeInput = document.getElementById("limitTradeType").value;
+        let typeInput = this.state.type; // Type drop down menu value
         let symbolInput = this.state.symbolValue; // Symbol drop down menu value
         let amtInput = document.getElementById("limitTradeAmt").value;
         let priceInput = document.getElementById("limitTradePrice").value;
@@ -89,17 +89,35 @@ class LimitTrade extends Component {
 
     handleSearchChange = (e, { searchQuery }) => this.setState({ searchQuery })
 
+    handleTypeChange = (e, { value }) => {
+        this.setState({
+            type : value
+        });
+    }
+
     render() {
+        const typeOptions = [
+            {key: "Sell", value: "Sell", text:"Sell"},
+            {key: "Buy", value: "Buy", text:"Buy"}
+        ]
         let searchQuery = this.state.searchQuery;
         let value = this.state.symbolValue;
-        console.log(this.state.symbolValue)
+        let type = this.state.type;
+        console.log(this.state.type);
 
         return (
             <Grid.Column>
                 <Header>Limit</Header>
                 <hr/>
                 <Form>
-                    <Input id="limitTradeType" placeholder="Type" />
+                    <Dropdown
+                        fluid
+                        selection
+                        onChange={this.handleTypeChange}
+                        options = {typeOptions}
+                        placeholder = "Type"
+                        value = {type}
+                    />
                     <Dropdown
                         fluid
                         selection

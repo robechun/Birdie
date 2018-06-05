@@ -13,7 +13,8 @@ class MarketTrade extends Component {
             open : false,
             modalHeader : <p/>,
             modalBody : <p/>,
-            searchQuery : ""
+            searchQuery : "",
+            type : ""
         }
 
         this.handleMarketTrade = this.handleMarketTrade.bind(this);
@@ -46,7 +47,7 @@ class MarketTrade extends Component {
         const amtParam = "amt="
         const append = "&";
 
-        let typeInput = document.getElementById("marketTradeType").value;
+        let typeInput = this.state.type; // Type drop down menu value
         let symbolInput = this.state.symbolValue; // Symbol drop down menu value
         let amtInput = document.getElementById("marketTradeAmt").value;
 
@@ -88,16 +89,37 @@ class MarketTrade extends Component {
 
     handleSearchChange = (e, { searchQuery }) => this.setState({ searchQuery })
 
+    handleTypeChange = (e, { value }) => {
+        this.setState({
+            type : value
+        });
+    }
+
     render() {
+        const typeOptions = [
+            {key: "Sell", value: "Sell", text:"Sell"},
+            {key: "Buy", value: "Buy", text:"Buy"}
+        ]
+
         let searchQuery = this.state.searchQuery;
         let value = this.state.symbolValue;
+        let type = this.state.type;
         console.log(this.state.symbolValue)
+        console.log(this.state.type);
         return (
                 <Grid.Column>
                     <Header>Market</Header>
                     <hr/>
                     <Form>
-                        <Input id="marketTradeType" placeholder="Type" />
+                        <Dropdown
+                            fluid
+                            selection
+                            onChange={this.handleTypeChange}
+                            options = {typeOptions}
+                            placeholder = "Type"
+                            value = {type}
+                        />
+                        {/*<span>Type<Input fluid id="marketTradeType" placeholder="Type" /></span>*/}
                         <Dropdown
                             fluid
                             selection
