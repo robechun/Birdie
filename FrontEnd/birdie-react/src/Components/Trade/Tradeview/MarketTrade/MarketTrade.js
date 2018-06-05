@@ -71,11 +71,11 @@ class MarketTrade extends Component {
                 modalBody : <p>Trade was successfully placed!</p>
             });
         }).catch((error) => {
-            console.log(error);
+            let response = error.response.data.message;
             this.setState({
                 open : true,
                 modalHeader : <p className="error">Something Went Wrong...</p>,
-                modalBody : <p>Trade was placed incorrectly.</p>
+                modalBody : <p> {response} </p>
             });
         });
     }

@@ -67,15 +67,13 @@ class StopLossLimit extends Component {
                 modalHeader : <p className="success">Success!</p>,
                 modalBody : <p>StopLossLimit was successfully placed!</p>
             });
-            // Create a success modal when this occurs
         }).catch((error) => {
-            console.log(error);
+            let response = error.response.data.message;
             this.setState({
                 open : true,
                 modalHeader : <p className="error">Something Went Wrong...</p>,
-                modalBody : <p>StopLossLimit was placed incorrectly.</p>
+                modalBody : <p>{response}</p>
             });
-            // Create an error modal when this occurs
         });
     }
 

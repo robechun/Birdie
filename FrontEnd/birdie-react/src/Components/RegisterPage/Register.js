@@ -97,10 +97,13 @@ class Register extends Component {
                 this.setState({
                     //res : <Redirect to="/"/>
                     res: <Redirect to="/login"/>
-                })
+                });
             }).catch((error) => {
+                console.log(error.response.data.message);
+                let response = error.response.data.message;
+                let res =  <p className="error"> { response } </p>;
                 this.setState({
-                    res : <p className="error">User Already Exists</p>
+                    res : res
                 });
             });
         }

@@ -208,7 +208,6 @@ class CoinTable extends Component {
         let addValue = this.state.addSymbolValue;
         let deleteSearchQuery = this.state.deleteSearchQuery;
         let deleteValue = this.state.deleteSymbolValue;
-        console.log(dataObjects);
 
         return (
             <div>
@@ -225,7 +224,7 @@ class CoinTable extends Component {
                         {
                             this.state.data.map((i) => {
                                 return (
-                                        <CoinRow coinSymbol={i}  key={i}>Test</CoinRow>
+                                        <CoinRow coinSymbol={i} key={i}>Test</CoinRow>
                                 )
                             })
                         }

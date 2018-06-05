@@ -59,10 +59,11 @@ class OpenOrders extends Component {
             });
         }).catch((error) => {
             console.log(error);
+            let response = error.response.data.message;
             this.setState({
                 open : true,
                 modalHeader : <p className="error">Something Went Wrong...</p>,
-                modalBody : <p>Orders unable to be Opened.</p>
+                modalBody : <p>{response}</p>
             });
         });
     }
