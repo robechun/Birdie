@@ -16,7 +16,7 @@ class Footer extends Component {
                         </Grid.Column>
                         <Grid.Column width={7}>
                             <Header as='h4' inverted>Birdie</Header>
-                            <p>Secure your financial future. Create an account now!</p>
+                            <p>Secure your financial future with Birdie.</p>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

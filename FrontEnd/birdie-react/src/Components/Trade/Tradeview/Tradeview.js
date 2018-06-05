@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { Grid, Menu, Segment } from 'semantic-ui-react'
+import { Grid, Menu } from 'semantic-ui-react'
 import MarketTrade from "./MarketTrade/MarketTrade";
 import LimitTrade from "./LimitTrade/LimitTrade";
 import StopLoss from "./StopLossTrade/StopLoss";
 import StopLossLimit from "./StopLossLimitTrade/StopLossLimit";
 import CancelAll from "./CancelAllTrade/CancelAll";
 import OpenOrders from "./OpenOrdersTrade/OpenOrders"
+import Footer from "../../Footer/Footer"
 
 class Tradeview extends Component {
     constructor(){
@@ -67,6 +68,7 @@ class Tradeview extends Component {
                         {this.state.activeComp}
                     </Grid.Column>
                 </Grid>
+                <Footer/>
             </div>
 
         )

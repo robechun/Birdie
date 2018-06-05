@@ -7,7 +7,7 @@ import WalletCoinTable from './WalletCoinTable/WalletCoinTable';
 import LandingPageChartTwo from '../LandingPageChart/LandingPageChartTwo'
 import axios from 'axios'
 import NavBar from '../NavBar/NavBar'
-import footer from '../Footer/Footer'
+import Footer from '../Footer/Footer'
 
 class Wallet extends Component {
 
@@ -55,7 +55,6 @@ class Wallet extends Component {
               <div className="leftchart Wallet">
                 <LandingPageChartTwo/>
               </div>
-              <footer/>
             </div>
         )
     }
