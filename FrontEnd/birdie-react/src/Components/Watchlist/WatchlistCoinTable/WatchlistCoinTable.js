@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Icon, Table, Button, Modal, Input } from 'semantic-ui-react'
+import { Dropdown, Table, Button, Modal, Input } from 'semantic-ui-react'
 import CoinRow from './WatchlistCoinRow'
 import axios from 'axios'
+import {CoinPairs} from "../../../Resources/CoinPairs"
 
 class CoinTable extends Component {
     constructor(props){
@@ -11,6 +12,8 @@ class CoinTable extends Component {
             openAdd: false,
             openDelete: false,
             openClear: false,
+            deleteSearchQuery : "",
+            addSearchQuery : ""
         }
 
         this.addWatchlist = this.addWatchlist.bind(this);
@@ -87,14 +90,14 @@ class CoinTable extends Component {
         }
         axios({
             method: 'delete',
-            url: queryURL + document.getElementById("delete").value.toUpperCase(),
+            url: queryURL + this.state.deleteSymbolValue, // document.getElementById("delete").value.toUpperCase(),
             headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
         }).then((response) => {
             let tempData = this.state.data;
             let index = -1;
             let flag = false;
             for(let i = 0; i < tempData.length; i++){
-                if(tempData[i] === document.getElementById("delete").value.toUpperCase()) {
+                if(tempData[i] === this.state.deleteSymbolValue) {
                     flag = true
                     break;
                 }
@@ -126,7 +129,7 @@ class CoinTable extends Component {
         if(this.props.accessTokenObj) {
             token = this.props.accessTokenObj.accessToken;
         }
-        let symbol = document.getElementById("add").value.toUpperCase();
+        let symbol = this.state.addSymbolValue //document.getElementById("add").value.toUpperCase();
         let url = queryURL + symbol;
         console.log(symbol);
 
@@ -138,7 +141,7 @@ class CoinTable extends Component {
                 url: url,
                 headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
             }).then((response) => {
-                    tempData.push(document.getElementById("add").value.toUpperCase());
+                    tempData.push(this.state.addSymbolValue);
                     console.log(tempData);
                     this.setState({
                         data: tempData
@@ -160,13 +163,15 @@ class CoinTable extends Component {
 
     toggleAddModal(){
         this.setState({
-            openAdd: !this.state.openAdd
+            openAdd: !this.state.openAdd,
+            addSearchQuery : ""
         });
     }
 
     toggleDeleteModal(){
         this.setState({
-            openDelete: !this.state.openDelete
+            openDelete: !this.state.openDelete,
+            deleteSearchQuery : ""
         })
     }
 
@@ -176,7 +181,34 @@ class CoinTable extends Component {
         })
     }
 
+    handleAddChange = (e, { value }) => {
+        this.setState({
+            addSearchQuery: value,
+            addSymbolValue: value
+        })
+    }
+
+    handleAddSearchChange = (e, { addSearchQuery }) => this.setState({ addSearchQuery })
+
+    handleDeleteChange = (e, { value }) => {
+        this.setState({
+            deleteSearchQuery: value,
+            deleteSymbolValue: value
+        })
+    }
+
+    handleDeleteSearchChange = (e, { deleteSearchQuery }) => this.setState({ deleteSearchQuery })
+
     render() {
+        let dataObjects = [];
+        for(let i = 0; i < this.state.data.length; i++){
+            dataObjects.push({key : this.state.data[i], value: this.state.data[i], text: this.state.data[i]})
+        }
+        let addSearchQuery = this.state.addSearchQuery;
+        let addValue = this.state.addSymbolValue;
+        let deleteSearchQuery = this.state.deleteSearchQuery;
+        let deleteValue = this.state.deleteSymbolValue;
+        console.log(dataObjects);
 
         return (
             <div>
@@ -193,7 +225,6 @@ class CoinTable extends Component {
                         {
                             this.state.data.map((i) => {
                                 return (
-
                                         <CoinRow coinSymbol={i}  key={i}>Test</CoinRow>
                                 )
                             })
@@ -208,7 +239,18 @@ class CoinTable extends Component {
                                     </Modal.Header>
                                     <Modal.Content>
                                         <p>Input a coin symbol to add to your watchlist</p>
-                                        <Input id = "add"/>
+                                        {/*<Input id = "add"/>*/}
+                                        <Dropdown
+                                            fluid
+                                            selection
+                                            onChange={this.handleAddChange}
+                                            onSearchChange={this.handleAddSearchChange}
+                                            options = {CoinPairs}
+                                            placeholder="Symbol"
+                                            search
+                                            searchQuery={addSearchQuery}
+                                            value = {addValue}
+                                        />
                                     </Modal.Content>
                                     <Modal.Actions>
                                         <Button negative onClick={this.toggleAddModal}>
@@ -226,7 +268,18 @@ class CoinTable extends Component {
                                     </Modal.Header>
                                     <Modal.Content>
                                         <p>Input a coin symbol to delete from your watchlist</p>
-                                        <Input id = "delete"/>
+                                        <Dropdown
+                                            fluid
+                                            selection
+                                            onChange={this.handleDeleteChange}
+                                            onSearchChange={this.handleDeleteSearchChange}
+                                            options = {dataObjects}
+                                            placeholder="Symbol"
+                                            search
+                                            searchQuery={deleteSearchQuery}
+                                            value = {deleteValue}
+                                        />
+                                        {/*<Input id = "delete"/>*/}
                                     </Modal.Content>
                                     <Modal.Actions>
                                         <Button negative onClick={this.toggleDeleteModal}>
