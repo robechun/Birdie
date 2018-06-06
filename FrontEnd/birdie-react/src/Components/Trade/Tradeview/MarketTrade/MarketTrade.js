@@ -14,7 +14,13 @@ class MarketTrade extends Component {
             modalHeader : <p/>,
             modalBody : <p/>,
             searchQuery : "",
-            type : ""
+            type : "",
+            responseHTML: {
+                clientOrderId : <p/>,
+                orderId : <p/>,
+                symbol : <p/>,
+                transactTime : <p/>
+            }
         }
 
         this.handleMarketTrade = this.handleMarketTrade.bind(this);
@@ -68,7 +74,13 @@ class MarketTrade extends Component {
             this.setState({
                 open : true,
                 modalHeader : <p className="success">Success!</p>,
-                modalBody : <p>Trade was successfully placed!</p>
+                modalBody : <p>Trade was successfully placed!</p>,
+                responseHTML : {
+                    clientOrderId: <p>Client Order Id: {response.data.clientOrderId}</p>,
+                    orderId: <p>Order Id: {response.data.orderId}</p>,
+                    symbol: <p>Symbol: {response.data.symbol}</p>,
+                    transactTime: <p>Transaction Time: {response.data.transactTime}</p>
+                }
             });
         }).catch((error) => {
             let response = error.response.data.message;
@@ -139,6 +151,11 @@ class MarketTrade extends Component {
                         </Modal.Header>
                         <Modal.Content>
                             {this.state.modalBody}
+                            <br/>
+                            {this.state.responseHTML.clientOrderId}
+                            {this.state.responseHTML.orderId}
+                            {this.state.responseHTML.symbol}
+                            {this.state.responseHTML.transactTime}
                         </Modal.Content>
                         <Modal.Actions>
                             <Button onClick={this.toggleModal}>

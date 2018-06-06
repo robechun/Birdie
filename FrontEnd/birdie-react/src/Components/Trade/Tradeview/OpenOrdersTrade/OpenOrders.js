@@ -80,7 +80,7 @@ class OpenOrders extends Component {
     render() {
         let searchQuery = this.state.searchQuery;
         let value = this.state.symbolValue;
-        console.log(this.state.symbolValue)
+        console.log(this.state.symbolValue);
         return (
             <Grid.Column>
                 <Header>Open Orders</Header>

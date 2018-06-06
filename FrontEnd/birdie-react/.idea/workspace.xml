@@ -34,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OpenOrders.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OpenOrders.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/Trade/Tradeview/OpenOrdersTrade/OpenOrders.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="67" column="11" lean-forward="true" selection-start-line="67" selection-start-column="11" selection-end-line="67" selection-end-column="11" />
+            <state relative-caret-position="189">
+              <caret line="89" column="24" lean-forward="false" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -54,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MarketTrade.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MarketTrade.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Components/Trade/Tradeview/MarketTrade/MarketTrade.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="73" column="55" lean-forward="true" selection-start-line="73" selection-start-column="11" selection-end-line="73" selection-end-column="55" />
+            <state relative-caret-position="462">
+              <caret line="22" column="13" lean-forward="true" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -183,12 +183,12 @@
         <option value="$PROJECT_DIR$/src/Components/Wallet/Wallet.js" />
         <option value="$PROJECT_DIR$/src/Components/Watchlist/WatchlistCoinTable/WatchlistCoinTable.js" />
         <option value="$PROJECT_DIR$/src/Components/RegisterPage/Register.js" />
-        <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/MarketTrade/MarketTrade.js" />
         <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/StopLossLimitTrade/StopLossLimit.js" />
         <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/LimitTrade/LimitTrade.js" />
         <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/StopLossTrade/StopLoss.js" />
         <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/CancelAllTrade/CancelAll.js" />
         <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/OpenOrdersTrade/OpenOrders.js" />
+        <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/MarketTrade/MarketTrade.js" />
       </list>
     </option>
   </component>
@@ -369,12 +369,12 @@
       <workItem from="1526853854481" duration="31042000" />
       <workItem from="1527621786666" duration="16898000" />
       <workItem from="1527886956155" duration="1613000" />
-      <workItem from="1528089360248" duration="33925000" />
+      <workItem from="1528089360248" duration="38075000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142975000" />
+    <option name="totallyTimeSpent" value="147125000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1513" height="973" extended-state="6" />
@@ -703,7 +703,7 @@
         <state relative-caret-position="420">
           <caret line="34" column="26" lean-forward="true" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -757,16 +757,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Trade/Tradeview/MarketTrade/MarketTrade.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="73" column="55" lean-forward="true" selection-start-line="73" selection-start-column="11" selection-end-line="73" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Trade/Tradeview/LimitTrade/LimitTrade.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -795,9 +785,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Trade/Tradeview/OpenOrdersTrade/OpenOrders.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="67" column="11" lean-forward="true" selection-start-line="67" selection-start-column="11" selection-end-line="67" selection-end-column="11" />
+        <state relative-caret-position="189">
+          <caret line="89" column="24" lean-forward="false" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Trade/Tradeview/MarketTrade/MarketTrade.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="22" column="13" lean-forward="true" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
