@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {newToken} from "../../../../Actions/loginActions";
 import axios from 'axios';
 import {CoinPairs} from "../../../../Resources/CoinPairs"
+import Order from "./Order"
 
 class OpenOrders extends Component {
 
@@ -68,20 +69,19 @@ class OpenOrders extends Component {
         }).then((response) => {
             let data = [];
             let obj = {};
-            console.log(response);
             for(let i = 0; i < response.data.length; i++){
                 obj = {
-                    clientOrderId : <p>{response.data.clientOrderId} </p>,
-                    executedQty : <p> {response.data.executedQty} </p>,
-                    icebergQty : <p> {response.data.icebergQty} </p>,
-                    orderId : <p> {response.data.orderId} </p>,
-                    origQty: <p> {response.data.origQty}</p>,
-                    price: <p>{response.data.price}</p>,
-                    side: <p>{response.data.side}</p>,
-                    status : <p>{response.data.status}</p>,
-                    stopPrice : <p>{response.data.stopPrice}</p>,
-                    symbol : <p>{response.data.symbol}</p>,
-                    time : <p>{response.data.time}</p>,
+                    clientOrderId : <p>ClientId: {response.data[i].clientOrderId} </p>,
+                    executedQty : <p>ExecutedQty: {response.data[i].executedQty} </p>,
+                    icebergQty : <p>IcebergQty: {response.data[i].icebergQty} </p>,
+                    orderId : <p>OrderId: {response.data[i].orderId} </p>,
+                    origQty: <p>OrigQty: {response.data[i].origQty}</p>,
+                    price: <p>Price: {response.data[i].price}</p>,
+                    side: <p>Side: {response.data[i].side}</p>,
+                    status : <p>Status: {response.data[i].status}</p>,
+                    stopPrice : <p>StopPrice: {response.data[i].stopPrice}</p>,
+                    symbol : <p>Symbol: {response.data[i].symbol}</p>,
+                    time : <p>Time: {response.data[i].time}</p>,
                 }
                 data.push(obj);
             }
@@ -91,9 +91,6 @@ class OpenOrders extends Component {
                 modalBody : <p>Orders Opened!</p>,
                 responseData : response.data,
                 responseHTML : data,
-            }, () => {
-                console.log(this.state.responseHTML);
-                console.log(data);
             });
         }).catch((error) => {
             console.log(error);
@@ -142,7 +139,18 @@ class OpenOrders extends Component {
                     </Modal.Header>
                     <Modal.Content>
                         {this.state.modalBody}
-                        {this.state.responseHTML[0].clientOrderId}
+                        <Order responseHTML = {this.state.responseHTML}/>
+                        {/*{this.state.responseHTML[0].clientOrderId}*/}
+                        {/*{this.state.responseHTML[0].executedQty}*/}
+                        {/*{this.state.responseHTML[0].icebergQty}*/}
+                        {/*{this.state.responseHTML[0].orderId}*/}
+                        {/*{this.state.responseHTML[0].origQty}*/}
+                        {/*{this.state.responseHTML[0].price}*/}
+                        {/*{this.state.responseHTML[0].side}*/}
+                        {/*{this.state.responseHTML[0].status}*/}
+                        {/*{this.state.responseHTML[0].stopPrice}*/}
+                        {/*{this.state.responseHTML[0].symbol}*/}
+                        {/*{this.state.responseHTML[0].time}*/}
                     </Modal.Content>
                     <Modal.Actions>
                         <Button onClick={this.toggleModal}>
