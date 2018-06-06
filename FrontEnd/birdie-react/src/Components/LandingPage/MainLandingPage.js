@@ -42,6 +42,7 @@ const HomepageHeading = ({ mobile }) => (
             <Icon name='right arrow' />
         </Button>
     </div>
+)
   
 import {Button, Container, Divider, Grid, Header, Icon, Image, List, Menu, Responsive, Segment, Sidebar, Visibility,} from 'semantic-ui-react'
 import Footer from "../Footer/Footer";
@@ -156,7 +157,7 @@ const AboutBirdie = () => (
                 </Grid>
             </Container>
         </Segment>
-    </ResponsiveContainer>
+    </div>
 )
 
 
