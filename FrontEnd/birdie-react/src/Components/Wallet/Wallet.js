@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import {Segment, Container, Grid, Header, List } from 'semantic-ui-react'
+import React, { Component } from 'react';
 
 import {connect} from 'react-redux';
 import {newToken} from "../../Actions/loginActions";
@@ -8,7 +7,7 @@ import WalletCoinTable from './WalletCoinTable/WalletCoinTable';
 import LandingPageChartTwo from '../LandingPageChart/LandingPageChartTwo'
 import axios from 'axios'
 import NavBar from '../NavBar/NavBar'
-import footer from '../footer/footer'
+import Footer from '../Footer/Footer'
 
 class Wallet extends Component {
 
@@ -56,7 +55,6 @@ class Wallet extends Component {
               <div className="leftchart Wallet">
                 <LandingPageChartTwo/>
               </div>
-              <footer/>
             </div>
         )
     }

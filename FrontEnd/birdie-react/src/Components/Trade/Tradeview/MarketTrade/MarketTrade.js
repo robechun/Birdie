@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Grid, Header, Button, Form, Input, Modal} from 'semantic-ui-react'
+import { Grid, Header, Button, Form, Input, Modal, Dropdown} from 'semantic-ui-react'
 import {connect} from 'react-redux';
 import {newToken} from "../../../../Actions/loginActions";
 import axios from 'axios';
+import {CoinPairs} from "../../../../Resources/CoinPairs"
 
 class MarketTrade extends Component {
     constructor(props){
@@ -11,7 +12,15 @@ class MarketTrade extends Component {
         this.state = {
             open : false,
             modalHeader : <p/>,
-            modalBody : <p/>
+            modalBody : <p/>,
+            searchQuery : "",
+            type : "",
+            responseHTML: {
+                clientOrderId : <p/>,
+                orderId : <p/>,
+                symbol : <p/>,
+                transactTime : <p/>
+            }
         }
 
         this.handleMarketTrade = this.handleMarketTrade.bind(this);
@@ -44,8 +53,8 @@ class MarketTrade extends Component {
         const amtParam = "amt="
         const append = "&";
 
-        let typeInput = document.getElementById("marketTradeType").value;
-        let symbolInput = document.getElementById("marketTradeSymbol").value;
+        let typeInput = this.state.type; // Type drop down menu value
+        let symbolInput = this.state.symbolValue; // Symbol drop down menu value
         let amtInput = document.getElementById("marketTradeAmt").value;
 
         console.log(baseURL + typeParam + typeInput + append + symbolParam + symbolInput + append + amtParam + amtInput);
@@ -64,30 +73,76 @@ class MarketTrade extends Component {
             console.log(response);
             this.setState({
                 open : true,
-                modalHeader : <p>Success!</p>,
-                modalBody : <p>Trade was successfully placed!</p>
+                modalHeader : <p className="success">Success!</p>,
+                modalBody : <p>Trade was successfully placed!</p>,
+                responseHTML : {
+                    clientOrderId: <p>Client Order Id: {response.data.clientOrderId}</p>,
+                    orderId: <p>Order Id: {response.data.orderId}</p>,
+                    symbol: <p>Symbol: {response.data.symbol}</p>,
+                    transactTime: <p>Transaction Time: {response.data.transactTime}</p>
+                }
             });
-            // Create a success modal when this occurs
         }).catch((error) => {
-            console.log(error);
+            let response = error.response.data.message;
             this.setState({
                 open : true,
-                modalHeader : <p>Something Went Wrong...</p>,
-                modalBody : <p>Trade was placed incorrectly.</p>
+                modalHeader : <p className="error">Something Went Wrong...</p>,
+                modalBody : <p> {response} </p>
             });
-            // Create an error modal when this occurs
         });
     }
 
-    // | /trade/market?type={type}&symbol={symbol}&amt={amount}
+    handleChange = (e, { value }) => {
+        this.setState({
+            searchQuery: value,
+            symbolValue: value
+        })
+    }
+
+    handleSearchChange = (e, { searchQuery }) => this.setState({ searchQuery })
+
+    handleTypeChange = (e, { value }) => {
+        this.setState({
+            type : value
+        });
+    }
+
     render() {
+        const typeOptions = [
+            {key: "Sell", value: "Sell", text:"Sell"},
+            {key: "Buy", value: "Buy", text:"Buy"}
+        ]
+
+        let searchQuery = this.state.searchQuery;
+        let value = this.state.symbolValue;
+        let type = this.state.type;
+        console.log(this.state.symbolValue)
+        console.log(this.state.type);
         return (
                 <Grid.Column>
                     <Header>Market</Header>
                     <hr/>
                     <Form>
-                        <Input id="marketTradeType" placeholder="Type" />
-                        <Input id="marketTradeSymbol" placeholder="Symbol" />
+                        <Dropdown
+                            fluid
+                            selection
+                            onChange={this.handleTypeChange}
+                            options = {typeOptions}
+                            placeholder = "Type"
+                            value = {type}
+                        />
+                        {/*<span>Type<Input fluid id="marketTradeType" placeholder="Type" /></span>*/}
+                        <Dropdown
+                            fluid
+                            selection
+                            onChange={this.handleChange}
+                            onSearchChange={this.handleSearchChange}
+                            options = {CoinPairs}
+                            placeholder="Symbol"
+                            search
+                            searchQuery={searchQuery}
+                            value = {value}
+                        />
                         <Input id="marketTradeAmt" placeholder="Amount" />
                     </Form>
                     <Modal size="mini" open={this.state.open} onClose={this.toggleModal}>
@@ -96,9 +151,14 @@ class MarketTrade extends Component {
                         </Modal.Header>
                         <Modal.Content>
                             {this.state.modalBody}
+                            <br/>
+                            {this.state.responseHTML.clientOrderId}
+                            {this.state.responseHTML.orderId}
+                            {this.state.responseHTML.symbol}
+                            {this.state.responseHTML.transactTime}
                         </Modal.Content>
                         <Modal.Actions>
-                            <Button negative onClick={this.toggleModal}>
+                            <Button onClick={this.toggleModal}>
                                 Close
                             </Button>
                         </Modal.Actions>

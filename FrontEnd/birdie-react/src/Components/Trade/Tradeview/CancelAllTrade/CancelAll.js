@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Grid, Header, Button, Form, Input, Modal} from 'semantic-ui-react'
+import { Grid, Header, Button, Form, Input, Modal, Dropdown} from 'semantic-ui-react'
 import {connect} from 'react-redux';
 import {newToken} from "../../../../Actions/loginActions";
 import axios from 'axios';
+import {CoinPairs} from "../../../../Resources/CoinPairs"
 
 class CancelAll extends Component {
 
@@ -12,7 +13,8 @@ class CancelAll extends Component {
         this.state = {
             open : false,
             modalHeader : <p/>,
-            modalBody : <p/>
+            modalBody : <p/>,
+            searchQuery : ""
         }
 
         this.toggleModal = this.toggleModal.bind(this);
@@ -40,7 +42,7 @@ class CancelAll extends Component {
         const baseURL = "http://159.65.72.45:8080/trade/cancelAll?";
         const symbolParam = "symbol=";
 
-        let symbolInput = document.getElementById("CancelAllSymbol").value;
+        let symbolInput = this.state.symbolValue; // Symbol drop down menu value
 
         // TODO: Account of valid symbols, whitespace, case-sensitivity, buy/sell type, alpha chars in amt
 
@@ -52,28 +54,49 @@ class CancelAll extends Component {
             console.log(response);
             this.setState({
                 open : true,
-                modalHeader : <p>Success!</p>,
+                modalHeader : <p className="success">Success!</p>,
                 modalBody : <p>Cancellation successful!</p>
             });
-            // Create a success modal when this occurs
         }).catch((error) => {
             console.log(error);
+            let response = error.response.data.message;
             this.setState({
                 open : true,
-                modalHeader : <p>Something Went Wrong...</p>,
-                modalBody : <p>Unable to Cancel.</p>
+                modalHeader : <p className="error">Something Went Wrong...</p>,
+                modalBody : <p>{response}</p>
             });
-            // Create an error modal when this occurs
         });
     }
 
+    handleChange = (e, { value }) => {
+        this.setState({
+            searchQuery: value,
+            symbolValue: value
+        })
+    }
+
+    handleSearchChange = (e, { searchQuery }) => this.setState({ searchQuery })
+
     render() {
+        let searchQuery = this.state.searchQuery;
+        let value = this.state.symbolValue;
+        console.log(this.state.symbolValue)
         return (
             <Grid.Column>
                 <Header>Cancel All</Header>
                 <hr/>
                 <Form>
-                    <Input id="CancelAllSymbol" placeholder="Symbol" />
+                    <Dropdown
+                        fluid
+                        selection
+                        onChange={this.handleChange}
+                        onSearchChange={this.handleSearchChange}
+                        options = {CoinPairs}
+                        placeholder="Symbol"
+                        search
+                        searchQuery={searchQuery}
+                        value = {value}
+                    />
                 </Form>
                 <Modal size="mini" open={this.state.open} onClose={this.toggleModal}>
                     <Modal.Header>
@@ -83,7 +106,7 @@ class CancelAll extends Component {
                         {this.state.modalBody}
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button negative onClick={this.toggleModal}>
+                        <Button onClick={this.toggleModal}>
                             Close
                         </Button>
                     </Modal.Actions>

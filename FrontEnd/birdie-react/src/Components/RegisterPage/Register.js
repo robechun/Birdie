@@ -6,37 +6,65 @@ import NavBar from './../NavBar/NavBar';
 import {connect} from 'react-redux';
 import {newToken} from "../../Actions/loginActions";
 
-import {Button, Grid, Header, Form, Image, Segment, Container, List} from 'semantic-ui-react'
+import {Button, Grid, Header, Form, Image, Segment, Input, Container, List} from 'semantic-ui-react'
+import Footer from "../Footer/Footer";
 
 class Register extends Component {
 
     constructor(){
         super();
         this.state = {
-            res : <div/>
+            res : <div/>,
+            vfName: "",
+            vlName: "",
+            vphoneNum: "",
+            vemail: "",
+            vpass: "",
+            vusername: "",
         }
 
         this.handleNewUser = this.handleNewUser.bind(this);
     }
 
     handleNewUser(){
-        //e.preventDefault();
-        const queryURL = "http://159.65.72.45:8080/signup";
-        if(document.getElementById("pass").value === document.getElementById("re-pass").value) {
-            const user = {
-                firstName: document.getElementById("fName").value,
-                lastName: document.getElementById("lName").value,
-                phoneNumber: document.getElementById("phoneNum").value,
-                email: document.getElementById("email").value,
-                password: document.getElementById("pass").value,
-                matchingPassword: document.getElementById("re-pass").value,
-                role: "USER",
-                username: document.getElementById("userName").value,
-                isAccountNonLocked: true,
-                isAccountNonExpired: true,
-                isCredentialNonExpired: true,
-                isEnabled: true
-            };
+        let vfName = "error" , vlName = "error", vphoneNum = "error", vemail = "error", vpass = "error", vusername = "error";
+        const user = {
+            firstName: document.getElementById("fName").value,
+            lastName: document.getElementById("lName").value,
+            phoneNumber: document.getElementById("phoneNum").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("pass").value,
+            matchingPassword: document.getElementById("re-pass").value,
+            role: "USER",
+            username: document.getElementById("userName").value,
+            isAccountNonLocked: true,
+            isAccountNonExpired: true,
+            isCredentialNonExpired: true,
+            isEnabled: true
+        };
+
+        if(user.firstName !== ""){
+            vfName = "";
+        }
+        if(user.lastName !== ""){
+            vlName = "";
+        }
+        if(user.phoneNumber !== "" && !isNaN(user.phoneNumber)){
+            vphoneNum = "";
+        }
+        if(user.email !== "" && user.email.includes(".") && user.email.includes("@") && user.email.length >= 5){
+            vemail = "";
+        }
+        if(user.password.length > 4 && user.password === user.matchingPassword){
+            vpass = "";
+        }
+        if(user.username !== ""){
+            vusername = "";
+        }
+
+        if(vfName !== "error" && vlName !== "error" && vphoneNum !== "error" && vemail !== "error" && vpass !== "error" && vusername !== "error"){
+            const queryURL = "http://159.65.72.45:8080/signup";
+        //if(document.getElementById("pass").value === document.getElementById("re-pass").value) {
             // {
             //     "firstName":"Raf",
             //     "lastName": "Valdez",
@@ -69,17 +97,25 @@ class Register extends Component {
                 this.setState({
                     //res : <Redirect to="/"/>
                     res: <Redirect to="/login"/>
-                })
+                });
             }).catch((error) => {
+                console.log(error.response.data.message);
+                let response = error.response.data.message;
+                let res =  <p className="error"> { response } </p>;
                 this.setState({
-                    res : <p>Something went wrong...check your inputs again</p>
+                    res : res
                 });
             });
         }
         else{
             console.log("Password entered not re-entered correctly");
             this.setState({
-                res : <p>Something went wrong...check your inputs again</p>
+                vfName: vfName,
+                vlName: vlName,
+                vphoneNum: vphoneNum,
+                vemail: vemail,
+                vpass: vpass,
+                vusername: vusername
             });
         }
     }
@@ -89,13 +125,7 @@ class Register extends Component {
 
             <div className="full blackout">
                 <div className='registerForm-form'>
-                    {
-                        /*notes*/
-
-                    }
-                <div>
                     <NavBar/>
-                </div>
                     <style>
                         {`
                         body > div,
@@ -118,6 +148,7 @@ class Register extends Component {
                             <Form size='large'>
                                 <Segment stacked>
                                     <Form.Input
+                                        error = {this.state.vfName}
                                         fluid
                                         icon='user'
                                         iconPosition='left'
@@ -125,6 +156,7 @@ class Register extends Component {
                                         id = "fName"
                                     />
                                     <Form.Input
+                                        error = {this.state.vlName}
                                         fluid
                                         icon='user'
                                         iconPosition='left'
@@ -132,6 +164,7 @@ class Register extends Component {
                                         id = "lName"
                                     />
                                     <Form.Input
+                                        error = {this.state.vusername}
                                         fluid
                                         icon='user'
                                         iconPosition='left'
@@ -140,6 +173,7 @@ class Register extends Component {
                                     />
 
                                     <Form.Input
+                                        error = {this.state.vphoneNum}
                                         fluid
                                         icon='user'
                                         iconPosition='left'
@@ -147,6 +181,7 @@ class Register extends Component {
                                         id = "phoneNum"
                                     />
                                     <Form.Input
+                                        error = {this.state.vemail}
                                         fluid
                                         icon='user'
                                         iconPosition='left'
@@ -154,6 +189,7 @@ class Register extends Component {
                                         id = "email"
                                     />
                                     <Form.Input
+                                        error = {this.state.vpass}
                                         fluid
                                         icon='lock'
                                         iconPosition='left'
@@ -162,6 +198,7 @@ class Register extends Component {
                                         id = "pass"
                                     />
                                     <Form.Input
+                                        error = {this.state.vpass}
                                         fluid
                                         icon='lock'
                                         iconPosition='left'
@@ -177,34 +214,7 @@ class Register extends Component {
                         </Grid.Column>
                     </Grid>
                 </div>
-
-            <Segment inverted vertical style={{ padding: '5em 0em' }}>
-            <Container>
-                <Grid divided inverted stackable>
-                    <Grid.Row>
-                        <Grid.Column width={3}>
-                            <Header inverted as='h4' content='About' />
-                            <List link inverted>
-                                <List.Item as='a'>Sitemap</List.Item>
-                                <List.Item as='a'>Contact Us</List.Item>
-                            </List>
-                        </Grid.Column>
-                        <Grid.Column width={3}>
-                            <Header inverted as='h4' content='Learn' />
-                            <List link inverted>
-                                <List.Item as='a'>Binance</List.Item>
-                                <List.Item as='a'>Investing in Crypto</List.Item>
-                                <List.Item as='a'>How To Access</List.Item>
-                            </List>
-                        </Grid.Column>
-                        <Grid.Column width={7}>
-                            <Header as='h4' inverted>Birdie</Header>
-                            <p>Secure your financial future. Create an account now.</p>
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
-            </Container>
-        </Segment>
+                <Footer/>
             </div>
         )
     }

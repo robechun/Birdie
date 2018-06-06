@@ -26,7 +26,7 @@ import axios from 'axios';
 // }
 
 // Post
-export const newToken = (userData) => dispatch => {
+export const newToken = (userData, callback) => dispatch => {
     console.log("action called here");
     console.log(userData);
     const queryURL = "http://159.65.72.45:8080/signin"
@@ -39,9 +39,12 @@ export const newToken = (userData) => dispatch => {
             dispatch({
                 type : NEW_TOKEN,
                 payload : response
-            })
+            });
+            callback(1);
         }).catch((error) => {
             console.log(error);
+            callback(0);
         });
+
 }
 

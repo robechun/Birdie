@@ -1,18 +1,35 @@
 import React, { Component } from 'react'
-import { Grid, Header, Button, Form, Input, Modal} from 'semantic-ui-react'
+import { Grid, Header, Button, Form, Modal, Dropdown} from 'semantic-ui-react'
 import {connect} from 'react-redux';
 import {newToken} from "../../../../Actions/loginActions";
 import axios from 'axios';
+import {CoinPairs} from "../../../../Resources/CoinPairs"
 
 class OpenOrders extends Component {
 
     constructor(props){
         super(props);
-
         this.state = {
             open : false,
             modalHeader : <p/>,
-            modalBody : <p/>
+            modalBody : <p/>,
+            searchQuery : "",
+            responseData : [],
+            responseHTML: [
+                {
+                    clientOrderId : <p/>,
+                    executedQty : <p/>,
+                    icebergQty : <p/>,
+                    orderId : <p/>,
+                    origQty: <p/>,
+                    price: <p/>,
+                    side: <p/>,
+                    status : <p/>,
+                    stopPrice : <p/>,
+                    symbol : <p/>,
+                    time : <p/>,
+                }
+            ]
         }
 
         this.toggleModal = this.toggleModal.bind(this);
@@ -40,7 +57,7 @@ class OpenOrders extends Component {
         const baseURL = "http://159.65.72.45:8080/trade/openOrders?";
         const symbolParam = "symbol=";
 
-        let symbolInput = document.getElementById("OpenOrdersSymbol").value;
+        let symbolInput = this.state.symbolValue; // Symbol drop down menu value
 
         // TODO: Account of valid symbols, whitespace, case-sensitivity, buy/sell type, alpha chars in amt
 
@@ -49,31 +66,75 @@ class OpenOrders extends Component {
             url: baseURL + symbolParam + symbolInput,
             headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
         }).then((response) => {
+            let data = [];
+            let obj = {};
             console.log(response);
+            for(let i = 0; i < response.data.length; i++){
+                obj = {
+                    clientOrderId : <p>{response.data.clientOrderId} </p>,
+                    executedQty : <p> {response.data.executedQty} </p>,
+                    icebergQty : <p> {response.data.icebergQty} </p>,
+                    orderId : <p> {response.data.orderId} </p>,
+                    origQty: <p> {response.data.origQty}</p>,
+                    price: <p>{response.data.price}</p>,
+                    side: <p>{response.data.side}</p>,
+                    status : <p>{response.data.status}</p>,
+                    stopPrice : <p>{response.data.stopPrice}</p>,
+                    symbol : <p>{response.data.symbol}</p>,
+                    time : <p>{response.data.time}</p>,
+                }
+                data.push(obj);
+            }
             this.setState({
                 open : true,
-                modalHeader : <p>Success!</p>,
-                modalBody : <p>Orders Opened!</p>
+                modalHeader : <p className="success">Success!</p>,
+                modalBody : <p>Orders Opened!</p>,
+                responseData : response.data,
+                responseHTML : data,
+            }, () => {
+                console.log(this.state.responseHTML);
+                console.log(data);
             });
-            // Create a success modal when this occurs
         }).catch((error) => {
             console.log(error);
+            let response = error.response.data.message;
             this.setState({
                 open : true,
-                modalHeader : <p>Something Went Wrong...</p>,
-                modalBody : <p>Orders unable to be Opened.</p>
+                modalHeader : <p className="error">Something Went Wrong...</p>,
+                modalBody : <p>{response}</p>
             });
-            // Create an error modal when this occurs
         });
     }
 
+    handleChange = (e, { value }) => {
+        this.setState({
+            searchQuery: value,
+            symbolValue: value
+        })
+    }
+
+    handleSearchChange = (e, { searchQuery }) => this.setState({ searchQuery })
+
     render() {
+        let searchQuery = this.state.searchQuery;
+        let value = this.state.symbolValue;
+        console.log(this.state.symbolValue);
         return (
             <Grid.Column>
                 <Header>Open Orders</Header>
                 <hr/>
                 <Form>
-                    <Input id="OpenOrdersSymbol" placeholder="Symbol" />
+                    <Dropdown
+                        fluid
+                        selection
+                        onChange={this.handleChange}
+                        onSearchChange={this.handleSearchChange}
+                        options = {CoinPairs}
+                        placeholder="Symbol"
+                        search
+                        searchQuery={searchQuery}
+                        value = {value}
+                    />
                 </Form>
                 <Modal size="mini" open={this.state.open} onClose={this.toggleModal}>
                     <Modal.Header>
@@ -81,9 +142,10 @@ class OpenOrders extends Component {
                     </Modal.Header>
                     <Modal.Content>
                         {this.state.modalBody}
+                        {this.state.responseHTML[0].clientOrderId}
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button negative onClick={this.toggleModal}>
+                        <Button onClick={this.toggleModal}>
                             Close
                         </Button>
                     </Modal.Actions>

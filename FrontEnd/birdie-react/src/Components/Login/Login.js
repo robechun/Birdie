@@ -1,12 +1,12 @@
 
-import React, { Component } from 'react'
-import axios from 'axios';
+import React, { Component } from 'react';
 import NavBar from './../NavBar/NavBar';
 import {connect} from 'react-redux';
 import {newToken} from "../../Actions/loginActions";
 
 import {Redirect} from 'react-router-dom'
-import {Button, Grid, Header, Form, Image, Message, Segment, Container, List} from 'semantic-ui-react'
+import {Button, Grid, Header, Form, Image, Message, Segment} from 'semantic-ui-react'
+import Footer from "../Footer/Footer";
 
 
 class LoginForm extends Component {
@@ -29,10 +29,18 @@ class LoginForm extends Component {
         };
         //Redux Action
         try {
-            this.props.newToken(user);
-            this.setState({
-                redirect : <Redirect to="/"/>
-            })
+        this.props.newToken(user, (response) => {
+            if(response) {
+                this.setState({
+                    redirect : <Redirect to="/"/>
+                });
+            }
+            else{
+                this.setState({
+                    redirect : <p className="error">Invalid Login Credentials</p>
+                })
+            }
+            });
         }
         catch(e){
             console.log(e);
@@ -41,16 +49,8 @@ class LoginForm extends Component {
     }
 
     render() {
-        // let redirect = <div/>
-        // if(this.state.redirect == true) {
-        //     console.log("Log-in successful!");
-        //     redirect = <Redirect to={{pathname : '/', state : {accessToken : this.state.accessToken, redirect : true}}} />
-        // }
-
-
         return (
             <div className="full blackout">
-                {this.state.redirect}
                 <div className='registerForm-form'>
                     <div>
                         <NavBar/>
@@ -72,6 +72,7 @@ class LoginForm extends Component {
                                 <Image src='/logo.png' />
                                 {' '}Log-in to your Account
                             </Header>
+                            {this.state.redirect}
                             <Form size='large'>
                                 <Segment stacked>
                                     <Form.Input
@@ -93,41 +94,13 @@ class LoginForm extends Component {
                                     <Button color='black' type='button' fluid size='large' onClick={this.handleLogin}>Login</Button>
                                 </Segment>
                             </Form>
-                            <Message>
-                                New? <a href="/Register">Sign Up</a>
-                            </Message>
+                            <br/>
+                            <Button size="large" href="/register"> New? Sign-Up! </Button>
                         </Grid.Column>
                     </Grid>
 
                 </div>
-
-            <Segment inverted vertical style={{ padding: '5em 0em' }}>
-            <Container>
-                <Grid divided inverted stackable>
-                    <Grid.Row>
-                        <Grid.Column width={3}>
-                            <Header inverted as='h4' content='About' />
-                            <List link inverted>
-                                <List.Item as='a'>Sitemap</List.Item>
-                                <List.Item as='a'>Contact Us</List.Item>
-                            </List>
-                        </Grid.Column>
-                        <Grid.Column width={3}>
-                            <Header inverted as='h4' content='Learn' />
-                            <List link inverted>
-                                <List.Item as='a'>Binance</List.Item>
-                                <List.Item as='a'>Investing in Crypto</List.Item>
-                                <List.Item as='a'>How To Access</List.Item>
-                            </List>
-                        </Grid.Column>
-                        <Grid.Column width={7}>
-                            <Header as='h4' inverted>Birdie</Header>
-                            <p>Secure your financial future. Create an account now.</p>
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
-            </Container>
-        </Segment>
+                <Footer/>
             </div>
         )
     }
