@@ -9,12 +9,27 @@ class OpenOrders extends Component {
 
     constructor(props){
         super(props);
-
         this.state = {
             open : false,
             modalHeader : <p/>,
             modalBody : <p/>,
             searchQuery : "",
+            responseData : [],
+            responseHTML: [
+                {
+                    clientOrderId : <p/>,
+                    executedQty : <p/>,
+                    icebergQty : <p/>,
+                    orderId : <p/>,
+                    origQty: <p/>,
+                    price: <p/>,
+                    side: <p/>,
+                    status : <p/>,
+                    stopPrice : <p/>,
+                    symbol : <p/>,
+                    time : <p/>,
+                }
+            ]
         }
 
         this.toggleModal = this.toggleModal.bind(this);
@@ -51,11 +66,34 @@ class OpenOrders extends Component {
             url: baseURL + symbolParam + symbolInput,
             headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
         }).then((response) => {
+            let data = [];
+            let obj = {};
             console.log(response);
+            for(let i = 0; i < response.data.length; i++){
+                obj = {
+                    clientOrderId : <p>{response.data.clientOrderId} </p>,
+                    executedQty : <p> {response.data.executedQty} </p>,
+                    icebergQty : <p> {response.data.icebergQty} </p>,
+                    orderId : <p> {response.data.orderId} </p>,
+                    origQty: <p> {response.data.origQty}</p>,
+                    price: <p>{response.data.price}</p>,
+                    side: <p>{response.data.side}</p>,
+                    status : <p>{response.data.status}</p>,
+                    stopPrice : <p>{response.data.stopPrice}</p>,
+                    symbol : <p>{response.data.symbol}</p>,
+                    time : <p>{response.data.time}</p>,
+                }
+                data.push(obj);
+            }
             this.setState({
                 open : true,
                 modalHeader : <p className="success">Success!</p>,
-                modalBody : <p>Orders Opened!</p>
+                modalBody : <p>Orders Opened!</p>,
+                responseData : response.data,
+                responseHTML : data,
+            }, () => {
+                console.log(this.state.responseHTML);
+                console.log(data);
             });
         }).catch((error) => {
             console.log(error);
@@ -104,6 +142,7 @@ class OpenOrders extends Component {
                     </Modal.Header>
                     <Modal.Content>
                         {this.state.modalBody}
+                        {this.state.responseHTML[0].clientOrderId}
                     </Modal.Content>
                     <Modal.Actions>
                         <Button onClick={this.toggleModal}>

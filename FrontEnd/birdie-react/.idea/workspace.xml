@@ -34,34 +34,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OpenOrders.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Components/Trade/Tradeview/OpenOrdersTrade/OpenOrders.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="89" column="24" lean-forward="false" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="StopLoss.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/Trade/Tradeview/StopLossTrade/StopLoss.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="462">
               <caret line="73" column="57" lean-forward="false" selection-start-line="73" selection-start-column="57" selection-end-line="73" selection-end-column="57" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MarketTrade.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Components/Trade/Tradeview/MarketTrade/MarketTrade.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="22" column="13" lean-forward="true" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -96,6 +74,28 @@
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MarketTrade.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/Trade/Tradeview/MarketTrade/MarketTrade.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3297">
+              <caret line="157" column="66" lean-forward="true" selection-start-line="157" selection-start-column="66" selection-end-line="157" selection-end-column="66" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OpenOrders.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Components/Trade/Tradeview/OpenOrdersTrade/OpenOrders.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="392">
+              <caret line="82" column="59" lean-forward="true" selection-start-line="82" selection-start-column="59" selection-end-line="82" selection-end-column="59" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -187,8 +187,8 @@
         <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/LimitTrade/LimitTrade.js" />
         <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/StopLossTrade/StopLoss.js" />
         <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/CancelAllTrade/CancelAll.js" />
-        <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/OpenOrdersTrade/OpenOrders.js" />
         <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/MarketTrade/MarketTrade.js" />
+        <option value="$PROJECT_DIR$/src/Components/Trade/Tradeview/OpenOrdersTrade/OpenOrders.js" />
       </list>
     </option>
   </component>
@@ -369,12 +369,12 @@
       <workItem from="1526853854481" duration="31042000" />
       <workItem from="1527621786666" duration="16898000" />
       <workItem from="1527886956155" duration="1613000" />
-      <workItem from="1528089360248" duration="38075000" />
+      <workItem from="1528089360248" duration="39886000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147125000" />
+    <option name="totallyTimeSpent" value="148936000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1513" height="973" extended-state="6" />
@@ -783,21 +783,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Trade/Tradeview/OpenOrdersTrade/OpenOrders.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="89" column="24" lean-forward="false" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Trade/Tradeview/MarketTrade/MarketTrade.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="22" column="13" lean-forward="true" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        <state relative-caret-position="3297">
+          <caret line="157" column="66" lean-forward="true" selection-start-line="157" selection-start-column="66" selection-end-line="157" selection-end-column="66" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Trade/Tradeview/OpenOrdersTrade/OpenOrders.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="82" column="59" lean-forward="true" selection-start-line="82" selection-start-column="59" selection-end-line="82" selection-end-column="59" />
+          <folding />
         </state>
       </provider>
     </entry>
