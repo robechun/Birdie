@@ -11,6 +11,7 @@ import Wallet from "./Components/Wallet/Wallet";
 import Watchlist from "./Components/Watchlist/Watchlist";
 import Register from "./Components/RegisterPage/Register";
 import Trade from "./Components/Trade/Trade";
+import usermanual from "./Components/usermanual/usermanual";
 
 import Store from './Store';
 //const store = createStore(() => [], {}, applyMiddleware());
@@ -29,6 +30,7 @@ class App extends Component {
                             <Route exact path='/wallet' component={Wallet}/>
                             <Route exact path='/watchlist' component={Watchlist}/>
                             <Route exact path='/trade' component={Trade}/>
+                            <Route exact path ='/usermanual' component={usermanual}/>
                         </Switch>
                     </BrowserRouter>
                 </div>
