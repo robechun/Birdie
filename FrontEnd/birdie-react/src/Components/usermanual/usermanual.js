@@ -44,7 +44,7 @@ const HomepageHeading = ({ mobile }) => (
 
         <Header
             as='h1'
-            content='Birdie'
+            content='User Manual'
             inverted
             style={{
                 fontSize: mobile ? '2em' : '4em',
@@ -53,28 +53,6 @@ const HomepageHeading = ({ mobile }) => (
                 marginTop: 0//{/*mobile ? '1.5em' : '3em',*/}
             }}
         />
-        <Header
-            as='h2'
-            content='Invest'
-            inverted
-            style={{
-                fontSize: mobile ? '1.5em' : '1.7em',
-                fontWeight: 'normal',
-                marginTop: 1
-            }}
-        />
-
-        <div className = "landingPageChart">
-            <LandingPageChartThree/>
-            <br></br>
-        </div>
-
-        <Button primary size='huge'>
-            <NavLink exact to={'/login'}>
-                Get Started
-            </NavLink>
-            <Icon name='right arrow' />
-        </Button>
     </div>
 
 
@@ -193,28 +171,26 @@ const HomepageLayout = () => (
         <Segment style={{ padding: '8em 0em' }} vertical>
             <Grid container stackable verticalAlign='middle'>
                 <Grid.Row>
-                    <Grid.Column width={8}>
-                        <Header as='h3' style={{ fontSize: '2em' }}>We Make Investing in Cryptocurreny Easy</Header>
+                    <Grid.Column width={10}>
+
+                        <Header as='h3' style={{ fontSize: '2em' }}>To begin using Birdie, please sign-up with an email address, username, and password</Header>
                         <p style={{ fontSize: '1.33em' }}>
-                            With our safe and efficient website
+                            This can be done by clicking on sign up in the upper right hand corner.
                         </p>
-                        <Header as='h3' style={{ fontSize: '2em' }}>Invest with confidence</Header>
+                        <Header as='h3' style={{ fontSize: '2em' }}>Once you sign-up, you will be able to login</Header>
                         <p style={{ fontSize: '1.33em' }}>
-                            Everything is encrypted
+                            To be able to link your Birdie account with Binance, you must provide an API key and secret(from Binance). You find this information by clicking
+                            the button below. If the API key and secret are valid, trades and watchlist will work.
                         </p>
+
                     </Grid.Column>
-                    <Grid.Column floated='right' width={6}>
-                        <Image
-                            bordered
-                            rounded
-                            size='large'
-                            src='/crypto.jpg'
-                        />
+                    <Grid.Column floated='center' width={6}>
+
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column textAlign='center'>
-                        <Button circular loading size='huge'>Currencies</Button>
+                        <Button circular  size='huge'><a href = "https://support.binance.com/hc/en-us/articles/360002502072-How-to-create-API">Binance</a></Button>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
@@ -238,12 +214,12 @@ const HomepageLayout = () => (
     </Segment> */}
         <Segment style={{ padding: '8em 0em' }} vertical>
             <Container text>
-                <Header as='h3' style={{ fontSize: '2em' }}>How to Invest</Header>
+                <Header as='h3' style={{ fontSize: '2em' }}>Watchlist</Header>
                 <p style={{ fontSize: '1.33em' }}>
-                    Investing in crytocurrencies can be hard and confusing, but here at Birdie we
-                    have put together a comprehensive guide on how to get started.
+                  The watchlist allows you to select a symbol you wish to track and you will get 24 hour statistics for that coin.
+                  The symbols you selected to watch will still be there the next time you log in
                 </p>
-                <Button  circular as='a' size='large'><a href = "/usermanual">Read More</a></Button>
+
                 <Divider
                     as='h4'
                     className='header'
@@ -252,11 +228,24 @@ const HomepageLayout = () => (
                 >
                     {/*<a href='#'>Case Studies</a> */}
                 </Divider>
-                <Header as='h3' style={{ fontSize: '2em' }}>Blockchain</Header>
+                <Header as='h3' style={{ fontSize: '2em' }}>Trades</Header>
                 <p style={{ fontSize: '1.33em' }}>
-                    Blockchain is the tech of the future
+                1)	Market: buy or sell at current market price with specified amount<br></br><br></br>
+                2)	Limit: buy or sell at the price you set with specified amount<br></br><br></br>
+                    a.	If buying, price must be less than current market price<br></br>
+                    b.	If selling, price must be greater than current market price<br></br><br></br>
+               3)	Stop-Loss: trigger a market sell with specified amount if the market value crosses a specified trigger<br></br><br></br>
+               4)	Both: Given a threshold on top of information for both stop-loss and limit sell.<br></br><br></br>
+                    a.	If above threshold, will be a limit sell order<br></br>
+                    b.	If below threshold, will be a stop-loss order<br></br><br></br>
+               5)	Cancel: cancel all open orders of a specified coin<br></br><br></br>
+               6)	Open Orders: get all open orders of a specified coin<br></br><br></br>
+
                 </p>
-                <Button as='a' size='large'><a href to="https://blockgeeks.com/guides/what-is-blockchain-technology/">Learn More</a></Button>
+              <Header as='h3' style={{ fontSize: '2em' }}>Profile Page</Header>
+              <p style={{ fontSize: '1.33em' }}>
+              On the profile page you are able to change your password, add an API key, and add Secret.
+              </p>
             </Container>
         </Segment>
         <Segment inverted vertical style={{ padding: '5em 0em' }}>
