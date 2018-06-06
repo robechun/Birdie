@@ -67,31 +67,43 @@ class OpenOrders extends Component {
             url: baseURL + symbolParam + symbolInput,
             headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + token},
         }).then((response) => {
-            let data = [];
-            let obj = {};
-            for(let i = 0; i < response.data.length; i++){
-                obj = {
-                    clientOrderId : <p>ClientId: {response.data[i].clientOrderId} </p>,
-                    executedQty : <p>ExecutedQty: {response.data[i].executedQty} </p>,
-                    icebergQty : <p>IcebergQty: {response.data[i].icebergQty} </p>,
-                    orderId : <p>OrderId: {response.data[i].orderId} </p>,
-                    origQty: <p>OrigQty: {response.data[i].origQty}</p>,
-                    price: <p>Price: {response.data[i].price}</p>,
-                    side: <p>Side: {response.data[i].side}</p>,
-                    status : <p>Status: {response.data[i].status}</p>,
-                    stopPrice : <p>StopPrice: {response.data[i].stopPrice}</p>,
-                    symbol : <p>Symbol: {response.data[i].symbol}</p>,
-                    time : <p>Time: {response.data[i].time}</p>,
-                }
-                data.push(obj);
+            if(response.data.length === 0){
+                this.setState({
+                    open : true,
+                    modalHeader : <p className="success">Success!</p>,
+                    modalBody : <p>No Current Orders!</p>,
+                    responseData : response.data,
+                    responseHTML : [],
+                });
             }
-            this.setState({
-                open : true,
-                modalHeader : <p className="success">Success!</p>,
-                modalBody : <p>Orders Opened!</p>,
-                responseData : response.data,
-                responseHTML : data,
-            });
+            else {
+                let data = [];
+                let obj = {};
+                for (let i = 0; i < response.data.length; i++) {
+                    obj = {
+                        clientOrderId: <p>ClientId: {response.data[i].clientOrderId} </p>,
+                        executedQty: <p>ExecutedQty: {response.data[i].executedQty} </p>,
+                        icebergQty: <p>IcebergQty: {response.data[i].icebergQty} </p>,
+                        orderId: <p>OrderId: {response.data[i].orderId} </p>,
+                        origQty: <p>OrigQty: {response.data[i].origQty}</p>,
+                        price: <p>Price: {response.data[i].price}</p>,
+                        side: <p>Side: {response.data[i].side}</p>,
+                        status: <p>Status: {response.data[i].status}</p>,
+                        stopPrice: <p>StopPrice: {response.data[i].stopPrice}</p>,
+                        symbol: <p>Symbol: {response.data[i].symbol}</p>,
+                        time: <p>Time: {response.data[i].time}</p>,
+                    }
+                    data.push(obj);
+                }
+
+                this.setState({
+                    open: true,
+                    modalHeader: <p className="success">Success!</p>,
+                    modalBody: <p>Orders Opened!</p>,
+                    responseData: response.data,
+                    responseHTML: data,
+                });
+            }
         }).catch((error) => {
             console.log(error);
             let response = error.response.data.message;
