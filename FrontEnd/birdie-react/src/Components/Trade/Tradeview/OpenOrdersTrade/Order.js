@@ -15,6 +15,7 @@ class Order extends Component {
                     this.state.responseHTML.map((s) => {
                         return(
                             <div>
+                                <hr/>
                                 {s.clientOrderId}
                                 {s.executedQty}
                                 {s.icebergQty}

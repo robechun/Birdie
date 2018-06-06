@@ -6,6 +6,7 @@ import StopLoss from "./StopLossTrade/StopLoss";
 import StopLossLimit from "./StopLossLimitTrade/StopLossLimit";
 import CancelAll from "./CancelAllTrade/CancelAll";
 import OpenOrders from "./OpenOrdersTrade/OpenOrders"
+import Both from "./BothTrade/BothTrade"
 import Footer from "../../Footer/Footer"
 
 class Tradeview extends Component {
@@ -39,6 +40,9 @@ class Tradeview extends Component {
         else if (name === "Open Orders"){
             comp = <OpenOrders/>
         }
+        else if(name === "Both"){
+            comp = <Both/>
+        }
 
         this.setState({
             activeItem : name,
@@ -62,6 +66,7 @@ class Tradeview extends Component {
                         <Menu.Item name='StopLossLimit' active={activeItem === 'StopLossLimit'} onClick={this.handleItemClick} />
                         <Menu.Item name='Cancel All' active={activeItem === 'Cancel All'} onClick={this.handleItemClick} />
                         <Menu.Item name='Open Orders' active={activeItem === 'Open Orders'} onClick={this.handleItemClick} />
+                        <Menu.Item name='Both' active={activeItem === 'Both'} onClick={this.handleItemClick} />
                         </Menu>
                     </Grid.Column>
                     <Grid.Column stretched width={12}>
