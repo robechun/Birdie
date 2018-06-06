@@ -52,6 +52,7 @@ import {newToken} from "../../Actions/loginActions";
 
 const AboutBirdie = () => (
     <div>
+        <ResponsiveContainer>
         <Segment style={{padding: '8em 0em'}} vertical>
             <Grid container stackable verticalAlign='middle'>
                 <Grid.Row>
@@ -89,24 +90,6 @@ const AboutBirdie = () => (
                 </Grid.Row>
             </Grid>
         </Segment>
-
-        {/*  <Segment style={{ padding: '0em' }} vertical>
-      <Grid celled='internally' columns='equal' stackable>
-        <Grid.Row textAlign='center'>
-          <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-            <Header as='h3' style={{ fontSize: '2em' }}>"Stuff"</Header>
-            <p style={{ fontSize: '1.33em' }}>Stuff</p>
-          </Grid.Column>
-          <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-            <Header as='h3' style={{ fontSize: '2em' }}>"Stuff"</Header>
-            <p style={{ fontSize: '1.33em' }}>
-              <Image avatar src='' />
-              <b>Nan</b> Stuff
-            </p>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment> */}
         <Segment style={{ padding: '8em 0em' }} vertical>
             <Container text>
                 <Header as='h3' style={{ fontSize: '2em' }}>How to Invest</Header>
@@ -157,6 +140,7 @@ const AboutBirdie = () => (
                 </Grid>
             </Container>
         </Segment>
+    </ResponsiveContainer>
     </div>
 )
 
