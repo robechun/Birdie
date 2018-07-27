@@ -31,7 +31,8 @@
 //    public void run(String... args) throws Exception {
 //
 //        // Header for authentication to use API
-//        headers.add("X-MBX-APIKEY", "3P2pRnS2VlssnUb9EPXmqGexatYIgus2ZKPY580DH15ekQRXeIg6PW6H1IbQwZZu");
+// .      deleted below before making public
+//        headers.add("X-MBX-APIKEY", "XXXX");
 //        initializeSymbols();
 //        HttpEntity<?> entity = new HttpEntity<Object>(headers);
 //
